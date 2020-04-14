@@ -6,7 +6,6 @@ public class InitialVisit extends Visit {
 	public InitialVisit(Patient patient, String doctor, String date, String time) {
 		super(patient,doctor,date,time);
 	}
-}
 
 	@Override
 	public JPanel generateUI() {
@@ -17,4 +16,5 @@ public class InitialVisit extends Visit {
 	public String typeOfVisit() {
 		
 	}
+	
 }

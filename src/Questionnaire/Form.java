@@ -49,4 +49,13 @@ public abstract class Form implements Comparable, UIPanel{
 	public void setTreatment(Treatment t) {
 		
 	}
+	
+	/**
+	 * Compares the Questionnaire Forms
+	 */
+	public int compareTo(Object o) {
+		
+	}
+	
+	
 }

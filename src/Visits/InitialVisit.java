@@ -13,8 +13,8 @@ public class InitialVisit extends Visit {
 	}
 
 	@Override
-	public String typeOfVisit() {
-		
+	public boolean initialVisit() {
+		return true;
 	}
 	
 }

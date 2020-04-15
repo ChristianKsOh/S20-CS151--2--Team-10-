@@ -14,7 +14,7 @@ public class FollowUpVisit extends Visit{
 	}
 
 	@Override
-	public String typeOfVisit() {
-		
+	public boolean initialVisit() {
+		return false;
 	}
 }

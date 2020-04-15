@@ -1,6 +1,6 @@
 package Project;
 
-public class Patient {
+public class Patient implements Comparable{
 
 	private String name;
 	private String registrationDate;
@@ -21,4 +21,12 @@ public class Patient {
 	{
 		
 	}
+
+	/**
+	 * Compares different Patients
+	 */
+	public int compareTo(Object o) {
+		
+	}
+	
 }

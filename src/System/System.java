@@ -1,7 +1,7 @@
 package System;
 import UI.SystemUI;
 import Visits.Visit;
-import Patients.Patient;
+import Project.Patient;
 import Questionnaire.Form;
 
 public abstract class System {

@@ -1,5 +1,6 @@
 package Questionnaire;
 
+import Project.Category;
 import UI.UIPanel;
 
 /**

@@ -1,6 +1,7 @@
 package Visits;
 
 import javax.swing.JPanel;
+import Project.Patient;
 
 public class FollowUpVisit extends Visit{
 

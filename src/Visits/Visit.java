@@ -1,5 +1,6 @@
 package Visits;
 
+import Project.Patient;
 import UI.UIPanel;
 
 public abstract class Visit implements Comparable, UIPanel{

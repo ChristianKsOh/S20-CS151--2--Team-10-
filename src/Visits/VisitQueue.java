@@ -1,15 +1,21 @@
 package Visits;
 
 import java.util.Iterator;
+import java.util.Queue;
+import java.util.TreeMap;
+
+import Project.Patient;
 
 public class VisitQueue {
+	private TreeMap<DateAndTime,Visit> schedule;
 	private int size;
 	
 	/**
 	 * Initializes an instance of VisitQueue.
 	 */
 	public VisitQueue() {
-		
+		size=0;
+		schedule=new TreeMap<DateAndTime,Visit>();
 	}
 	
 	/**
@@ -22,11 +28,12 @@ public class VisitQueue {
 	}
 	
 	/**
-	 * Add a Visit to the end of the queue. Reorders if necessary.
+	 * Add a Visit to the end of the queue. 
+	 * Reorders if necessary based on date and time.
 	 * @param v object of Visit
 	 */
 	public void enqueue(Visit v) {
-		
+		schedule.put(v.getDateAndTime(),v);
 	}
 	
 	/**
@@ -34,7 +41,7 @@ public class VisitQueue {
 	 * @return The earliest Visit in the queue.
 	 */
 	public Visit dequeue() {
-		
+		return schedule.remove(schedule.firstKey());
 	}
 	
 	/**
@@ -43,7 +50,11 @@ public class VisitQueue {
 	 * @return Visit object.
 	 */
 	public Visit getVisit(int visitNum) {
-		
+		for(DateAndTime key:schedule.keySet()) {
+			if(schedule.get(key).getVisitNumber()==visitNum) {
+				return schedule.get(key);
+			}
+		}return null;
 	}
 	
 	/**
@@ -52,7 +63,11 @@ public class VisitQueue {
 	 * @return Visit object.
 	 */
 	public Visit removeVisit(int visitNum) {
-		
+		for(DateAndTime key:schedule.keySet()) {
+			if(schedule.get(key).getVisitNumber()==visitNum) {
+				return schedule.remove(key);
+			}
+		}return null;
 	}
 	
 	/**
@@ -60,7 +75,7 @@ public class VisitQueue {
 	 * @return size
 	 */
 	public int size() {
-		
+		return size;
 	}
 	
 	/**
@@ -68,7 +83,7 @@ public class VisitQueue {
 	 * @return whether the queue is empty.
 	 */
 	public boolean isEmpty() {
-		
+		return size==0;
 	}
 	
 	/**
@@ -76,7 +91,10 @@ public class VisitQueue {
 	 * @return Iterator object
 	 */
 	public Iterator<Visit> iterator(){
-		
+		return schedule.values().iterator();
 	}
 	
+	public TreeMap<DateAndTime,Visit> getSchedule(){
+		return new TreeMap<DateAndTime,Visit>(schedule);
+	}
 }

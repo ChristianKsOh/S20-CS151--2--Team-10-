@@ -3,9 +3,8 @@ package Visits;
 import Project.Patient;
 import UI.UIPanel;
 
-public abstract class Visit implements Comparable, UIPanel{
-	private String date;
-	private String time;
+public abstract class Visit implements Comparable<Visit>, UIPanel{
+	private DateAndTime dateAndTime;
 	private int visitNumber;
 	private Patient patient;
 	private String doctor;
@@ -18,8 +17,11 @@ public abstract class Visit implements Comparable, UIPanel{
 	 * @param date date of visit
 	 * @param time time of visit
 	 */
-	public Visit(Patient patient, String doctor, String date, String time) {
-		
+	public Visit(Patient patient, String doctor, int year, int month, int day, int hour, int minute, boolean dateAndTimePeriod) {
+		this.patient=patient;
+		this.doctor=doctor;
+		dateAndTime=new DateAndTime(month,day,year,hour,minute,dateAndTimePeriod);
+		this.visitNumber=patient.hashCode()+doctor.hashCode()+dateAndTime.hashCode();
 	}
 	
 	/**
@@ -27,7 +29,7 @@ public abstract class Visit implements Comparable, UIPanel{
 	 * @return patient object.
 	 */
 	public Patient getPatient() {
-		
+		return patient;
 	}
 	
 	/**
@@ -35,7 +37,7 @@ public abstract class Visit implements Comparable, UIPanel{
 	 * @return doctor's name.
 	 */
 	public String getDoctorName() {
-		
+		return doctor;
 	}
 	
 	/**
@@ -43,7 +45,9 @@ public abstract class Visit implements Comparable, UIPanel{
 	 * @return date of visit.
 	 */
 	public String getDate() {
-		
+		return dateAndTime.getMonth()
+				+"/"+dateAndTime.getDay()
+				+"/"+dateAndTime.getYear();
 	}
 	
 	/**
@@ -51,7 +55,17 @@ public abstract class Visit implements Comparable, UIPanel{
 	 * @return time of visit.
 	 */
 	public String getTime() {
-		
+		return dateAndTime.getHour()
+				+":"+dateAndTime.getMinutes()
+				+" "+dateAndTime.getPeriod();
+	}
+	
+	/**
+	 * Get the full DateAndTime object.
+	 * @return DateAndTime object.
+	 */
+	public DateAndTime getDateAndTime() {
+		return dateAndTime;
 	}
 	
 	/**
@@ -59,23 +73,23 @@ public abstract class Visit implements Comparable, UIPanel{
 	 * @return visit number.
 	 */
 	public int getVisitNumber() {
-		
+		return visitNumber;
 	}
 	
 	/**
 	 * Changes the date of the visit.
 	 * @param d new date.
 	 */
-	public void setDate(String d) {
-		
+	public void setDate(int month, int day, int year) {
+		dateAndTime.setDate(month, day, year);
 	}
 	
 	/**
 	 * Changes the time of the visit.
 	 * @param t new time.
 	 */
-	public void setTime(String t) {
-		
+	public void setTime(int hour, int minutes, boolean isPM) {
+		dateAndTime.setTime(hour, minutes, isPM);
 	}
 	
 	/**
@@ -83,15 +97,24 @@ public abstract class Visit implements Comparable, UIPanel{
 	 * @param doctorName new doctor's name
 	 */
 	public void changeDoctor(String doctorName) {
-		
+		doctor=doctorName;
 	}
 	
 	/**
 	 * Compares the Visit based on time and date.
 	 */
-	public int compareTo(Object o) {
-		
-	}
+	public int compareTo(Visit that) {
+			if(this.getDateAndTime().compareTo(that.getDateAndTime())==0) {
+				if(this.getDate().compareTo(that.getDoctorName())==0) {
+					if(this.getPatient().compareTo(that.getPatient())==0) {
+						return 0;
+					}
+					return this.getPatient().compareTo(that.getPatient());
+				}
+				return this.getDate().compareTo(that.getDoctorName());
+			}
+			return this.getDateAndTime().compareTo(that.getDateAndTime());
+		}
 	
 	/**
 	 * Returns whether visit is an initial visit.

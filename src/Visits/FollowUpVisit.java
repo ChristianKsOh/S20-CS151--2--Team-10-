@@ -2,6 +2,7 @@ package Visits;
 
 import javax.swing.JPanel;
 import Project.Patient;
+import UI.UIPanel;
 
 public class FollowUpVisit extends Visit{
 

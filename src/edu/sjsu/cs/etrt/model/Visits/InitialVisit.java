@@ -5,13 +5,8 @@ import Project.Patient;
 import UI.UIPanel;
 
 public class InitialVisit extends Visit{
-	public InitialVisit(Patient patient, String doctor, String date, String time) {
-		super(patient,doctor,date,time);
-	}
-
-	@Override
-	public JPanel generateUI() {
-		
+	public InitialVisit(Patient patient, String doctor, int month, int day, int year, int hour, int minutes, boolean isPM) {
+		super(patient,doctor,month,day,year,hour,minutes,isPM);
 	}
 
 	@Override

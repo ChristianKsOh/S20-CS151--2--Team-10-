@@ -1,5 +1,11 @@
 package Visits;
 
+import java.awt.Font;
+
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
 import Project.Patient;
 import UI.UIPanel;
 
@@ -17,11 +23,11 @@ public abstract class Visit implements Comparable<Visit>, UIPanel{
 	 * @param date date of visit
 	 * @param time time of visit
 	 */
-	public Visit(Patient patient, String doctor, int year, int month, int day, int hour, int minute, boolean dateAndTimePeriod) {
+	public Visit(Patient patient, String doctor, int month, int day, int year, int hour, int minute, boolean dateAndTimePeriod) {
 		this.patient=patient;
 		this.doctor=doctor;
 		dateAndTime=new DateAndTime(month,day,year,hour,minute,dateAndTimePeriod);
-		this.visitNumber=patient.hashCode()+doctor.hashCode()+dateAndTime.hashCode();
+		this.visitNumber=Math.abs(patient.hashCode()+doctor.hashCode()+dateAndTime.hashCode())/100;
 	}
 	
 	/**
@@ -115,6 +121,35 @@ public abstract class Visit implements Comparable<Visit>, UIPanel{
 			}
 			return this.getDateAndTime().compareTo(that.getDateAndTime());
 		}
+	
+	@Override
+	public JPanel generateUI() {
+		JPanel main=new JPanel();
+		main.setLayout(new BoxLayout(main,BoxLayout.Y_AXIS));
+		
+		String dateString=getDate()+" ("+getTime()+")";
+		JTextArea date=new JTextArea(dateString);
+		date.setEditable(false);
+		date.setFont(new Font(dateString,Font.PLAIN,20));
+		
+		String numberString=visitNumber+"";
+		JTextArea number=new JTextArea(numberString);
+		number.setEditable(false);
+		number.setFont(new Font(numberString,Font.PLAIN,20));
+		
+		JPanel header=new JPanel();
+		header.add(new JPanel());
+		header.add(date);
+		header.add(new JPanel());
+		header.add(number);
+		header.add(new JPanel());
+		
+		//Patient and ID (link to patient?)
+		//Doctor name
+		//Reason/Special notes
+		
+		return main;
+	}
 	
 	/**
 	 * Returns whether visit is an initial visit.

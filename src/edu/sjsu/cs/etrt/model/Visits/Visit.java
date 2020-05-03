@@ -1,4 +1,4 @@
-package Visits;
+package edu.sjsu.cs.etrt.model.Visits;
 
 import java.awt.Font;
 
@@ -6,8 +6,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import Project.Patient;
-import UI.UIPanel;
+import edu.sjsu.cs.etrt.model.Project.Patient;
+import edu.sjsu.cs.etrt.view.UI.UIPanel;
 
 public abstract class Visit implements Comparable<Visit>, UIPanel{
 	private DateAndTime dateAndTime;

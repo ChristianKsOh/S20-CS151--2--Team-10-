@@ -1,8 +1,8 @@
-package System;
-import UI.SystemUI;
-import Visits.Visit;
-import Project.Patient;
-import Questionnaire.Form;
+package edu.sjsu.cs.etrt.model.System;
+
+import edu.sjsu.cs.etrt.model.Visits.Visit;
+import edu.sjsu.cs.etrt.model.Project.Patient;
+import edu.sjsu.cs.etrt.model.Questionnaire.Form;
 
 public abstract class System {
 	

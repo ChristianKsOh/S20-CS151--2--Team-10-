@@ -1,4 +1,4 @@
-package Visits;
+package edu.sjsu.cs.etrt.model.Visits;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,8 +15,8 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import Project.Patient;
-import UI.UIPanel;
+import edu.sjsu.cs.etrt.model.Project.Patient;
+import edu.sjsu.cs.etrt.view.UI.UIPanel;
 
 public class VisitQueue implements UIPanel{
 	private TreeMap<DateAndTime,Visit> schedule;

@@ -1,11 +1,11 @@
-package UI;
+package edu.sjsu.cs.etrt.view.UI;
 
 import javax.swing.JPanel;
 
-public interface UIPanel {
+public abstract class UIPanel {
 	/**
 	 * Generate a JPanel UI for SystemUI to display.
 	 * @return JPanel for the UI.
 	 */
-	public JPanel generateUI();
+	public abstract JPanel generateUI();
 }

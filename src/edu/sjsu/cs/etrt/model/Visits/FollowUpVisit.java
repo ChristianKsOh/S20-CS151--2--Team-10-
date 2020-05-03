@@ -1,8 +1,6 @@
-package Visits;
+package edu.sjsu.cs.etrt.model.Visits;
 
-import javax.swing.JPanel;
-import Project.Patient;
-import UI.UIPanel;
+import edu.sjsu.cs.etrt.model.Project.Patient;
 
 public class FollowUpVisit extends Visit{
 

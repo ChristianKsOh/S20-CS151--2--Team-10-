@@ -1,19 +1,13 @@
 package edu.sjsu.cs.etrt.model.Visits;
 
-import java.awt.Font;
-
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
 import edu.sjsu.cs.etrt.model.Project.Patient;
-import edu.sjsu.cs.etrt.view.UI.UIPanel;
 
-public abstract class Visit implements Comparable<Visit>, UIPanel{
+public abstract class Visit implements Comparable<Visit>{
 	private DateAndTime dateAndTime;
 	private int visitNumber;
 	private Patient patient;
 	private String doctor;
+	private String specialNote;
 	
 	/**
 	 * Creates a new visit based on the patient, doctor name, 
@@ -26,8 +20,9 @@ public abstract class Visit implements Comparable<Visit>, UIPanel{
 	public Visit(Patient patient, String doctor, int month, int day, int year, int hour, int minute, boolean dateAndTimePeriod) {
 		this.patient=patient;
 		this.doctor=doctor;
-		dateAndTime=new DateAndTime(month,day,year,hour,minute,dateAndTimePeriod);
+		this.dateAndTime=new DateAndTime(month,day,year,hour,minute,dateAndTimePeriod);
 		this.visitNumber=Math.abs(patient.hashCode()+doctor.hashCode()+dateAndTime.hashCode())/100;
+		this.specialNote="";
 	}
 	
 	/**
@@ -61,8 +56,14 @@ public abstract class Visit implements Comparable<Visit>, UIPanel{
 	 * @return time of visit.
 	 */
 	public String getTime() {
+		String minutes="";
+		if(dateAndTime.getMinutes()<10) {
+			minutes+=0;
+		}
+		minutes+=dateAndTime.getMinutes();
+		
 		return dateAndTime.getHour()
-				+":"+dateAndTime.getMinutes()
+				+":"+minutes
 				+" "+dateAndTime.getPeriod();
 	}
 	
@@ -80,6 +81,14 @@ public abstract class Visit implements Comparable<Visit>, UIPanel{
 	 */
 	public int getVisitNumber() {
 		return visitNumber;
+	}
+	
+	/**
+	 * Retrieve special notes of the Visit.
+	 * @return special note.
+	 */
+	public String getSpecialNote() {
+		return specialNote;
 	}
 	
 	/**
@@ -107,6 +116,15 @@ public abstract class Visit implements Comparable<Visit>, UIPanel{
 	}
 	
 	/**
+	 * Add a special note to the visit. Special note is 
+	 * initially blank.
+	 * @param note Special note text.
+	 */
+	public void addSpecialNote(String note) {
+		specialNote=note;
+	}
+	
+	/**
 	 * Compares the Visit based on time and date.
 	 */
 	public int compareTo(Visit that) {
@@ -121,35 +139,6 @@ public abstract class Visit implements Comparable<Visit>, UIPanel{
 			}
 			return this.getDateAndTime().compareTo(that.getDateAndTime());
 		}
-	
-	@Override
-	public JPanel generateUI() {
-		JPanel main=new JPanel();
-		main.setLayout(new BoxLayout(main,BoxLayout.Y_AXIS));
-		
-		String dateString=getDate()+" ("+getTime()+")";
-		JTextArea date=new JTextArea(dateString);
-		date.setEditable(false);
-		date.setFont(new Font(dateString,Font.PLAIN,20));
-		
-		String numberString=visitNumber+"";
-		JTextArea number=new JTextArea(numberString);
-		number.setEditable(false);
-		number.setFont(new Font(numberString,Font.PLAIN,20));
-		
-		JPanel header=new JPanel();
-		header.add(new JPanel());
-		header.add(date);
-		header.add(new JPanel());
-		header.add(number);
-		header.add(new JPanel());
-		
-		//Patient and ID (link to patient?)
-		//Doctor name
-		//Reason/Special notes
-		
-		return main;
-	}
 	
 	/**
 	 * Returns whether visit is an initial visit.

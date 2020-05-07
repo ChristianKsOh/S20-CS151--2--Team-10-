@@ -1,4 +1,4 @@
-package UI;
+package edu.sjsu.cs.etrt.view.UI;
 
 import javax.swing.JFrame;
 

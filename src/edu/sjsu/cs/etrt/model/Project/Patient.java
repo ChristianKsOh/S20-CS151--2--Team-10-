@@ -1,4 +1,4 @@
-package Project;
+package edu.sjsu.cs.etrt.model.Project;
 
 public class Patient implements Comparable{
 
@@ -12,6 +12,14 @@ public class Patient implements Comparable{
 	private String orderNumber;
 	private Category categoryNum;
 	private int visitNumber;
+	
+	public Patient(String name) {
+		this.name=name;
+	}
+	
+	public String getName() {
+		return name;
+	}
 	
 	/**
 	 * Updates a patient's profile

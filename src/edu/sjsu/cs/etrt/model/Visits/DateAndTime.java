@@ -1,4 +1,4 @@
-package Visits;
+package edu.sjsu.cs.etrt.model.Visits;
 
 public class DateAndTime implements Comparable<DateAndTime>{
 	public static final boolean AM=false;

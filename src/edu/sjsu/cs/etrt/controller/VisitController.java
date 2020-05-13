@@ -15,7 +15,7 @@ public class VisitController {
 	public VisitController(Visit visit,VisitQueueController queue) {
 		this.queue=queue;
 		model=visit;
-		view=new VisitView(this,queue);
+		view=new VisitView(this);
 	}
 	
 	/**
@@ -80,6 +80,10 @@ public class VisitController {
 	
 	public Visit getModel() {
 		return model;
+	}
+	
+	public VisitQueueController getQueue() {
+		return queue;
 	}
 	
 	public void updateFrame(JPanel panel) {

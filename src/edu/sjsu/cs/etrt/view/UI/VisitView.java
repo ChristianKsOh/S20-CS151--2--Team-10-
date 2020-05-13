@@ -16,8 +16,6 @@ import edu.sjsu.cs.etrt.controller.VisitQueueController;
 
 public class VisitView extends UIPanel{
 	private VisitController controller;
-	private VisitQueueController back;
-	private JPanel main;
 	
 	private boolean editDate;
 	private boolean editTime;
@@ -29,10 +27,8 @@ public class VisitView extends UIPanel{
 	 * @param ctrl Reference for editing and JFrame.
 	 * @param queueCtrl Reference for the back button.
 	 */
-	public VisitView(VisitController ctrl, VisitQueueController queueCtrl) {
+	public VisitView(VisitController ctrl) {
 		controller=ctrl;
-		back=queueCtrl;
-		main=new JPanel();
 		main.setLayout(new BoxLayout(main,BoxLayout.Y_AXIS));
 		editDate=false;
 		editTime=false;
@@ -343,9 +339,9 @@ public class VisitView extends UIPanel{
 		//Delete Visit button
 		JButton deleteButton=new JButton("Cancel Appointment");
 		deleteButton.addActionListener(event->{
-			back.removeVisit(controller.getVisitNumber());
+			controller.getQueue().removeVisit(controller.getVisitNumber());
 			main.removeAll();
-			controller.updateFrame(back.getViewPanel());
+			controller.updateFrame(controller.getQueue().getViewPanel());
 		});
 		
 		//Back button to return to Queue
@@ -354,7 +350,7 @@ public class VisitView extends UIPanel{
 			editDoctor=false;
 			editNote=false;
 			main.removeAll();
-			controller.updateFrame(back.getViewPanel());
+			controller.updateFrame(controller.getQueue().getViewPanel());
 		});
 		JPanel buttons=new JPanel();
 		buttons.add(deleteButton);
@@ -363,11 +359,5 @@ public class VisitView extends UIPanel{
 		
 		main.add(blankPanel);
 		main.add(buttons);
-	}
-	
-	@Override
-	public JPanel generateUI() {
-		refresh();
-		return main;
 	}
 }

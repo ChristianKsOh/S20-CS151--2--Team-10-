@@ -17,13 +17,12 @@ import edu.sjsu.cs.etrt.controller.VisitQueueController;
 import edu.sjsu.cs.etrt.model.Visits.VisitQueue;
 
 public class VisitQueueView extends UIPanel {
-	private JPanel main;
+	
 	private VisitQueue schedule;
 	private VisitQueueController controller;
 	
 	public VisitQueueView(VisitQueueController ctrl) {
 		controller=ctrl;
-		main=new JPanel();
 	}
 	
 	public void setQueue(VisitQueue schedule) {

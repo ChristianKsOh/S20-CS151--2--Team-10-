@@ -1,71 +1,52 @@
 package edu.sjsu.cs.etrt.model.System;
 
-import edu.sjsu.cs.etrt.model.Visits.Visit;
+import javax.swing.JFrame;
+
+import edu.sjsu.cs.etrt.controller.VisitQueueController;
 import edu.sjsu.cs.etrt.model.Project.Patient;
 import edu.sjsu.cs.etrt.model.Questionnaire.Form;
 
-public abstract class System {
+public class System {
+	private VisitQueueController visits;
+	//private PatientQueueController patients;
+	//private Registry
+	private Form questionnaire;
+	
+	public System(JFrame UI) {
+		visits=new VisitQueueController(UI);
+		//patients=new PatientQueueController(UI);
+		//Initialize registry
+	}
 	
 	/**
 	 * open registry to register a new patient
 	 */
-	public void openRegistry() {
+	public Registry getRegistry() {
 		
 	}
 	
 	/**
-	 * open Visits of Patient
-	 * @param p Patient object
+	 * Return VisitQueue instance for editing.
+	 * @return visitqueue
 	 */
-	public void openVisits(Patient p) {
-		
+	public VisitQueueController getVisitQueue() {
+		return visits;
 	}
 	
-	/**
-	 * update the Visits of a Patient
-	 * @param v Visit object
-	 */
-	public void updateVisits(Visit v) {
-	
-	}
 	
 	/**
-	 * remove a Visit from a Patient
-	 * @param v Visit Object
+	 * Returns PatientQueue instance for editing.
+	 * @return patientqueue
 	 */
-	public void removeVisits(Visit v) {
-		
-	}
-	
-	/**
-	 * update Patient info
-	 * @param p Patient Object
-	 */
-	public void updatePatient(Patient p) {
-		
+	public PatientQueueController getPatientQueue() {
+		return patients;
 	}
 	
 	/**
 	 * open Questionnaire
 	 * @param f Questionnaire Form Object
 	 */
-	public void openQuestionnaire(Form f) {
-		
-	}
-	
-	/**
-	 * delete a Patient from PatientQueue
-	 * @param p Patient Object
-	 */
-	public void deletePatient(Patient p) {
-		
-	}
-	
-	/**
-	 * acquire a Patient from PatientQueue
-	 * @param p Patient Object
-	 */
-	public void getPatient(Patient p) {
-		
+	public Form openQuestionnaire(Form f) {
+		return questionnaire;
 	}
 }

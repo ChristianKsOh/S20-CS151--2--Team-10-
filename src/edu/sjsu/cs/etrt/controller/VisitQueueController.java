@@ -71,6 +71,10 @@ public class VisitQueueController {
 		return model.size();
 	}
 	
+	public boolean isEmpty() {
+		return model.isEmpty();
+	}
+	
 	public JPanel getViewPanel() {
 		return view.generateUI();
 	}

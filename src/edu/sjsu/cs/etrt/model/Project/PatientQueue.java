@@ -1,15 +1,18 @@
 package Project;
 
+import java.util.LinkedList;
+
+
 public class PatientQueue {
 
-	private int size;
+	private LinkedList<Patient> patientQueue;
 	
 	/**
 	 * Constructor for queue;
 	 */
 	public PatientQueue()
 	{
-		
+		patientQueue=new LinkedList<Patient>();
 	}
 	
 	/**
@@ -18,7 +21,7 @@ public class PatientQueue {
 	 */
 	public void enqueue(Patient p)
 	{
-		
+		patientQueue.add(p);
 	}
 	
 	
@@ -28,7 +31,7 @@ public class PatientQueue {
 	 */
 	public Patient dequeue()
 	{
-		return;
+		return patientQueue.getFirst();
 	}
 	
 	/**
@@ -37,6 +40,11 @@ public class PatientQueue {
 	 */
 	public int size()
 	{
-		
+		return patientQueue.size();
+	}
+	
+	public Patient getPatient(int num)
+	{
+		return patientQueue.get(num);
 	}
 }

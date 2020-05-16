@@ -1,8 +1,11 @@
+
+package edu.sjsu.cs.etrt.view.UI;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class PatientForm extends UIPanel{
+public class PatientListView {
 	
 	private PatientQueue patientQ;
 	
@@ -33,9 +36,9 @@ public class PatientForm extends UIPanel{
 		return main;
 	}
 	
-	void addPatientListListener(ActionListener listenForSubmitButton)
+	void addPatientListListener(ActionListener listenForAddPatientButton)
 	{
-		addPatient.addActionListener(listenForSubmitButton);
+		addPatient.addActionListener(listenForAddPatientButton);
 	}
 	
 	void displayErrorMessage(String errorMessage) {

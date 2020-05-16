@@ -8,6 +8,7 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Project.Patient;
@@ -170,5 +171,14 @@ public class PatientView extends UIPanel{
 		
 		main.add(mainPanel);	
 	}
+	void systemReturnListener(ActionListener ListenForSystemButton)
+	{
+		button.addActionListener(ListenForSystemButton);
+	}
+	
+	void displayErrorMessage(String errorMessage) {
+		JOptionPane.showMessageDialog(this, message);
+	}
+	
 
 }

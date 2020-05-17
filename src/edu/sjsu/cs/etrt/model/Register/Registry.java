@@ -1,9 +1,6 @@
 package Register;
 
-public interface Registry {
+public class Registry {
 	
-	/**
-	 * Register a new patient interface method
-	 */
 	public void registerNewPatient();
 }

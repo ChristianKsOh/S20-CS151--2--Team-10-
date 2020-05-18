@@ -1,7 +1,10 @@
+package edu.sjsu.cs.etrt.controller;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import edu.sjsu.cs.etrt.model.Patient;
+import edu.sjsu.cs.etrt.model.Patient.Category;
+import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.view.UI.PatientView;
 
 public class PatientController {
@@ -14,7 +17,6 @@ public class PatientController {
 		model = patient;
 		this.view=view;
 		
-		this.view.systemReturnListeners(new SystemButtonListener())
 	}
 	
 	public void updatePatients()
@@ -190,7 +192,7 @@ public class PatientController {
 		return model.getEducationalDegree();
 	}
 	
-	public void setEductationalDegree(String s)
+	public void setEducationalDegree(String s)
 	{
 		model.setEducationalDegree(s);
 	}

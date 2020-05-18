@@ -5,6 +5,9 @@ import javax.swing.JPanel;
 public abstract class UIPanel{
 	protected JPanel main;
 	
+	/**
+	 * A basis for the view classes.
+	 */
 	public UIPanel() {
 		main=new JPanel();
 	}

@@ -12,18 +12,16 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import edu.sjsu.cs.etrt.controller.VisitController;
-import edu.sjsu.cs.etrt.controller.VisitQueueController;
 
 public class VisitView extends UIPanel{
 	private VisitController controller;
-	
 	private boolean editDate;
 	private boolean editTime;
 	private boolean editDoctor;
 	private boolean editNote;
 	
 	/**
-	 * 
+	 * The view seen by the user and used in the JFrame.
 	 * @param ctrl Reference for editing and JFrame.
 	 * @param queueCtrl Reference for the back button.
 	 */
@@ -37,6 +35,9 @@ public class VisitView extends UIPanel{
 	}
 	
 	@Override
+	/**
+	 * Builds the JPanel view.
+	 */
 	public void refresh() {
 		//Reset main panel
 		main.removeAll();
@@ -75,12 +76,12 @@ public class VisitView extends UIPanel{
 			JPanel editPanel=new JPanel();
 			editPanel.setLayout(new BoxLayout(editPanel,BoxLayout.X_AXIS));
 			
-			JComboBox month=new JComboBox();
+			JComboBox<Integer> month=new JComboBox<Integer>();
 			for(int i=1;i<13;i++) {
 				month.addItem(i);
 			}
 			
-			JComboBox day=new JComboBox();
+			JComboBox<Integer> day=new JComboBox<Integer>();
 			for(int i=1;i<32;i++) {
 				day.addItem(i);
 			}
@@ -91,17 +92,22 @@ public class VisitView extends UIPanel{
 			JButton submit=new JButton("Update");
 			submit.addActionListener(event->{
 				int year;
-				if(yearInput.getText()=="") {
+				if(yearInput.getText().isEmpty()) {
 					year=controller.getDateAndTimeObject().getYear();
+				}else if(yearInput.getText().length()!=4){
+					//Do nothing
 				}else {
-					year=Integer.parseInt(yearInput.getText());
+					try {
+						year=Integer.parseInt(yearInput.getText());
+						controller.setVisitDate((int)month.getItemAt(month.getSelectedIndex()),
+								(int)day.getItemAt(day.getSelectedIndex()),
+								year);
+						editDate=false;
+						refresh();
+						controller.refreshFrame();
+					}catch(NumberFormatException e) {}
 				}
-				controller.setVisitDate((int)month.getItemAt(month.getSelectedIndex()),
-										(int)day.getItemAt(day.getSelectedIndex()),
-										year);
-				editDate=false;
-				refresh();
-				controller.refreshFrame();
+				
 			});
 			
 			JButton cancel=new JButton("Cancel");
@@ -149,17 +155,17 @@ public class VisitView extends UIPanel{
 			JPanel editPanel=new JPanel();
 			editPanel.setLayout(new BoxLayout(editPanel,BoxLayout.X_AXIS));
 			
-			JComboBox hour=new JComboBox();
+			JComboBox<Integer> hour=new JComboBox<Integer>();
 			for(int i=1;i<13;i++) {
 				hour.addItem(i);
 			}
 			
-			JComboBox minutes=new JComboBox();
+			JComboBox<Integer> minutes=new JComboBox<Integer>();
 			for(int i=0;i<60;i++) {
 				minutes.addItem(i);
 			}
 			
-			JComboBox period=new JComboBox();
+			JComboBox<String> period=new JComboBox<String>();
 			period.addItem("AM");
 			period.addItem("PM");
 			
@@ -209,9 +215,13 @@ public class VisitView extends UIPanel{
 		
 		
 		//Patient and ID (link to patient?)
-		JTextArea patientText=new JTextArea("Patient: "+controller.getPatient().getName());
+		String patientString="Patient: "+controller.getPatient().getLastName()+", "+controller.getPatient().getFirstName();
+		if(!controller.getPatient().getMiddleInitial().isEmpty()) {
+			patientString+=" "+controller.getPatient().getMiddleInitial()+".";
+		}
+		JTextArea patientText=new JTextArea(patientString);
 		patientText.setEditable(false);
-		patientText.setFont(new Font("Patient: "+controller.getPatient().getName(),Font.PLAIN,20));
+		patientText.setFont(new Font(patientString,Font.PLAIN,20));
 		patientText.addMouseListener(new MouseListener() {
 
 			@Override
@@ -341,7 +351,7 @@ public class VisitView extends UIPanel{
 		deleteButton.addActionListener(event->{
 			controller.getQueue().removeVisit(controller.getVisitNumber());
 			main.removeAll();
-			controller.updateFrame(controller.getQueue().getViewPanel());
+			controller.openVisitQueueView();
 		});
 		
 		//Back button to return to Queue
@@ -350,7 +360,7 @@ public class VisitView extends UIPanel{
 			editDoctor=false;
 			editNote=false;
 			main.removeAll();
-			controller.updateFrame(controller.getQueue().getViewPanel());
+			controller.openVisitQueueView();
 		});
 		JPanel buttons=new JPanel();
 		buttons.add(deleteButton);

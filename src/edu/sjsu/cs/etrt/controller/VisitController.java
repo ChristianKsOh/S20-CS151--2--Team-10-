@@ -1,6 +1,5 @@
 package edu.sjsu.cs.etrt.controller;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.model.Project.Patient;
@@ -12,6 +11,12 @@ public class VisitController {
 	private VisitView view;
 	private VisitQueueController queue;
 	
+	/**
+	 * Initializes the controller with the model and view. 
+	 * VisitQueueController is also needed for the view.
+	 * @param visit Visit model class.
+	 * @param queue VisitQueueController class that holds this visit.
+	 */
 	public VisitController(Visit visit,VisitQueueController queue) {
 		this.queue=queue;
 		model=visit;
@@ -74,24 +79,20 @@ public class VisitController {
 		return model.getSpecialNote();
 	}
 	
-	public JPanel getViewPanel() {
-		return view.generateUI();
-	}
-	
+	/**
+	 * Return a direct reference to the model. Used in view.
+	 * @return Visit object associated with the controller.
+	 */
 	public Visit getModel() {
 		return model;
 	}
 	
+	/**
+	 * Retrieve the VisitQueueController holding the visit. Used in view.
+	 * @return
+	 */
 	public VisitQueueController getQueue() {
 		return queue;
-	}
-	
-	public void updateFrame(JPanel panel) {
-		queue.updateFrame(panel);
-	}
-	
-	public void refreshFrame(){
-		queue.refreshFrame();
 	}
 	
 	/**
@@ -129,5 +130,34 @@ public class VisitController {
 	public void setVisitSpecialNote(String note) {
 		model.addSpecialNote(note);
 		view.refresh();
+	}
+	
+	/**
+	 * Retrieve the UI view panel.
+	 * @return view's JPanel.
+	 */
+	public JPanel getViewPanel() {
+		return view.generateUI();
+	}
+	
+	/**
+	 * Updates the JFrame for any changes in the view.
+	 */
+	public void refreshFrame(){
+		queue.refreshFrame();
+	}
+	
+	/**
+	 * Opens the VisitQueue view in the JFrame.
+	 */
+	public void openVisitQueueView() {
+		queue.updateFrame(queue.getViewPanel());
+	}
+	
+	/**
+	 * Opens the Visit view. Used by VisitQueueView.
+	 */
+	public void openVisit() {
+		queue.updateFrame(getViewPanel());
 	}
 }

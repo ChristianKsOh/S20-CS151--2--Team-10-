@@ -2,6 +2,7 @@ package edu.sjsu.cs.etrt.model.System;
 
 import javax.swing.JFrame;
 
+import edu.sjsu.cs.etrt.controller.SystemController;
 import edu.sjsu.cs.etrt.controller.VisitQueueController;
 import edu.sjsu.cs.etrt.model.Project.Patient;
 import edu.sjsu.cs.etrt.model.Questionnaire.Form;
@@ -12,8 +13,8 @@ public class System {
 	//private Registry
 	private Form questionnaire;
 	
-	public System(JFrame UI) {
-		visits=new VisitQueueController(UI);
+	public System(SystemController system) {
+		visits=new VisitQueueController(system);
 		//patients=new PatientQueueController(UI);
 		//Initialize registry
 	}

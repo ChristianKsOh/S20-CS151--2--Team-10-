@@ -1,11 +1,8 @@
 package edu.sjsu.cs.etrt.view.UI;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -18,10 +15,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import edu.sjsu.cs.etrt.controller.SystemController;
-import edu.sjsu.cs.etrt.controller.VisitQueueController;
-import edu.sjsu.cs.etrt.model.Project.Patient;
-import edu.sjsu.cs.etrt.model.Visits.DateAndTime;
-import edu.sjsu.cs.etrt.model.Visits.InitialVisit;
 
 public class SystemView extends UIPanel{
 	private final int MAIN_LENGTH=400;
@@ -31,8 +24,8 @@ public class SystemView extends UIPanel{
 	private boolean visitError;
 	
 	/**
-	 * Initializes instance variables and constructs
-	 *  UI frame in correlation to System object.
+	 * The view seen by the user and Used in the JFrame.
+	 * @param ctrl Reference for editing and JFrame.
 	 */
 	public SystemView(SystemController ctrl) {
 		controller=ctrl;
@@ -41,7 +34,12 @@ public class SystemView extends UIPanel{
 	}
 
 	@Override
+	/**
+	 * Builds the JPanel view.
+	 */
 	public void refresh() {
+		main.removeAll();
+		
 		main.setLayout(new BoxLayout(main,BoxLayout.Y_AXIS));
 		main.setPreferredSize(new Dimension(MAIN_LENGTH,MAIN_HEIGHT));
 		
@@ -154,6 +152,8 @@ public class SystemView extends UIPanel{
 		visitQueue.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		visitQueue.addActionListener(event->{
 			controller.openVisitQueue();
+			visitError=false;
+			patientError=false;
 		});
 		
 		//Panel that contains textInput to open selected patient page
@@ -175,7 +175,20 @@ public class SystemView extends UIPanel{
 		//Submit button
 		JButton visitSubmit=new JButton("Submit");
 		visitSubmit.addActionListener(event->{
-			
+			try {
+				if(controller.openVisit(Integer.parseInt(visitInput.getText()))) {
+					visitError=false;
+					patientError=false;
+				}else {
+					visitError=true;
+					refresh();
+					controller.refreshFrame();
+				}
+			}catch(NumberFormatException e) {
+				visitError=true;
+				refresh();
+				controller.refreshFrame();
+			}
 		});
 		visitDirect.add(visitInput);
 		visitDirect.add(visitSubmit);
@@ -196,17 +209,6 @@ public class SystemView extends UIPanel{
 		main.add(Box.createRigidArea(new Dimension(0, 30)));	//padding
 		main.add(visits);
 		main.add(Box.createRigidArea(new Dimension(0, 10)));	//padding
-	}
-	
-	private GridBagConstraints buildConstraint(int x, int y, int width) {
-		GridBagConstraints constraints=new GridBagConstraints();
-		constraints.fill=GridBagConstraints.HORIZONTAL;
-		constraints.gridx=x;
-		constraints.gridy=y;
-		constraints.gridwidth=width;
-		constraints.ipadx=20;
-		constraints.ipady=20;
-		return constraints;
 	}
 	
 	public static void main(String[] args) {

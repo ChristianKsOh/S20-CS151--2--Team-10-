@@ -1,33 +1,16 @@
 package edu.sjsu.cs.etrt.model.Visits;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Iterator;
-import java.util.Queue;
 import java.util.TreeMap;
 
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-
 import edu.sjsu.cs.etrt.controller.VisitController;
-import edu.sjsu.cs.etrt.model.Project.Patient;
-import edu.sjsu.cs.etrt.view.UI.UIPanel;
 
 public class VisitQueue {
 	private TreeMap<DateAndTime,VisitController> schedule;
-	private int size;
 	
 	/**
 	 * Initializes an instance of VisitQueue.
 	 */
 	public VisitQueue() {
-		size=0;
 		schedule=new TreeMap<DateAndTime,VisitController>();
 	}
 	
@@ -88,7 +71,7 @@ public class VisitQueue {
 	 * @return size
 	 */
 	public int size() {
-		return size;
+		return schedule.size();
 	}
 	
 	/**
@@ -96,7 +79,7 @@ public class VisitQueue {
 	 * @return whether the queue is empty.
 	 */
 	public boolean isEmpty() {
-		return size==0;
+		return schedule.size()==0;
 	}
 	
 	/**

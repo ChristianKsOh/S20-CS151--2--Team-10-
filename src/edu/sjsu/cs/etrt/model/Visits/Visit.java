@@ -12,17 +12,22 @@ public abstract class Visit implements Comparable<Visit>{
 	/**
 	 * Creates a new visit based on the patient, doctor name, 
 	 * and time and date. Also generates a visit number.
-	 * @param patient Object of patient
-	 * @param doctor doctor name
-	 * @param date date of visit
-	 * @param time time of visit
+	 * @param patient Patient object.
+	 * @param doctor Doctor name.
+	 * @param month Month of the appointment.
+	 * @param day Day of the appointment.
+	 * @param year Year of the appointment in yyyy format.
+	 * @param hour Hour of the time of the appointment.
+	 * @param minutes Minutes of the time of the appointment.
+	 * @param dateAndTimePeriod time period of the appointment. Use DateAndTime.AM or DateAndTime.PM.
+	 * @param notes Any (optional) special notes given when initializing visit.
 	 */
-	public Visit(Patient patient, String doctor, int month, int day, int year, int hour, int minute, boolean dateAndTimePeriod) {
+	public Visit(Patient patient, String doctor, int month, int day, int year, int hour, int minute, boolean dateAndTimePeriod, String notes) {
 		this.patient=patient;
 		this.doctor=doctor;
 		this.dateAndTime=new DateAndTime(month,day,year,hour,minute,dateAndTimePeriod);
 		this.visitNumber=Math.abs(patient.hashCode()+doctor.hashCode()+dateAndTime.hashCode())/100;
-		this.specialNote="";
+		this.specialNote=notes;
 	}
 	
 	/**
@@ -125,11 +130,11 @@ public abstract class Visit implements Comparable<Visit>{
 	}
 	
 	/**
-	 * Compares the Visit based on time and date.
+	 * Compares the Visit based on time and date, doctor, and patient.
 	 */
 	public int compareTo(Visit that) {
 			if(this.getDateAndTime().compareTo(that.getDateAndTime())==0) {
-				if(this.getDate().compareTo(that.getDoctorName())==0) {
+				if(this.getDoctorName().compareTo(that.getDoctorName())==0) {
 					if(this.getPatient().compareTo(that.getPatient())==0) {
 						return 0;
 					}

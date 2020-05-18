@@ -5,9 +5,8 @@ import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.view.UI.SystemView;
 import edu.sjsu.cs.etrt.model.Questionnaire.Form;
-import edu.sjsu.cs.etrt.model.System.PatientQueueController;
-import edu.sjsu.cs.etrt.model.System.Registry;
 import edu.sjsu.cs.etrt.model.System.System;
+import edu.sjsu.cs.etrt.model.Visits.Visit;
 
 public class SystemController{
 	private System model;
@@ -16,7 +15,7 @@ public class SystemController{
 	
 	public SystemController(JFrame UI) {
 		frame=UI;
-		model=new System(UI);
+		model=new System(this);
 		view=new SystemView(this);
 	}
 	
@@ -35,6 +34,14 @@ public class SystemController{
 		updateFrame(model.getVisitQueue().getViewPanel());
 	}
 	
+	public boolean openVisit(int visitNumber) {
+		VisitController visit=model.getVisitQueue().getVisitController(visitNumber);
+		if(visit!=null) {
+			updateFrame(visit.getViewPanel());
+			return true;
+		}
+		return false;
+	}
 	
 	/**
 	 * Open a list of all Patients
@@ -52,6 +59,10 @@ public class SystemController{
 		
 	}
 	
+	public void openSystem() {
+		updateFrame(getViewPanel());
+	}
+	
 	public VisitQueueController getVisitQueue() {
 		return model.getVisitQueue();
 	}
@@ -60,7 +71,7 @@ public class SystemController{
 		return view.generateUI();
 	}
 	
-	private void updateFrame(JPanel panel) {
+	public void updateFrame(JPanel panel) {
 		frame.setContentPane(panel);
 		refreshFrame();
 	}

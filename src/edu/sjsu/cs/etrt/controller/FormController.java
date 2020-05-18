@@ -2,8 +2,8 @@ package edu.sjsu.cs.etrt.controller;
 
 
 
+import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Questionnaire.*;
-import edu.sjsu.cs.etrt.model.Project.Patient;
 import edu.sjsu.cs.etrt.model.Visits.*;
 import edu.sjsu.cs.etrt.view.UI.VisitView;
 

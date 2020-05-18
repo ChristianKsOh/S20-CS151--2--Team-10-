@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import Patient.Patient;
 import edu.sjsu.cs.etrt.controller.PatientController;
 import edu.sjsu.cs.etrt.controller.SystemController;
 
@@ -29,11 +28,9 @@ public class PatientView extends UIPanel{
 		edit = false;
 	}
 	//Displays patient data
-	//TO DO: Add an edit feature and someway to restore data into model
 	public void refresh()
 	{
 		main.removeAll();
-		main.pack();
 		JPanel mainPanel=new JPanel();
 		mainPanel.setLayout(new BorderLayout());
 		JPanel panel = new JPanel();
@@ -42,21 +39,21 @@ public class PatientView extends UIPanel{
 		mainPanel.add(header, BorderLayout.NORTH);
 		
 		//Basic Information + Id stuff section
-		pane.setLayout(new GridBagLayout());
+		panel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(10,10,10,10);
 		JLabel label;
 		JTextArea basicHeader = new JTextArea("Basic Information");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady=50;
-		c.gridwidth(8);
+		c.gridwidth=8;
 		c.gridx = 0;
 		c.gridy = 0;
 		panel.add(basicHeader, c);
 		c.ipady=0;
-		c.gridwidth(0);
+		c.gridwidth=1;
 		
-		label = new JLabel("Gender: ")
+		label = new JLabel("Gender: ");
 		JTextArea tGender = new JTextArea(patientCtrl.getGender());
 		tGender.setEditable(edit);
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -79,8 +76,8 @@ public class PatientView extends UIPanel{
 		c.gridx=3;
 		panel.add(tPhoneNumber,c);
 		
-		label = new JLabe("Date of Birth: ")
-		JTextArea tDoB = new JTextArea(patientCtrl.getDateOfBrith());
+		label = new JLabel("Date of Birth: ");
+		JTextArea tDoB = new JTextArea(patientCtrl.getDateOfBirth());
 		tDoB.setEditable(edit);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 4;
@@ -100,8 +97,8 @@ public class PatientView extends UIPanel{
 		c.gridx=7;
 		panel.add(tRegDate,c);
 		
-		label= new JLabe("Category: ");
-		JTextArea tCategory = new JTextArea(patientCtrl.getCategory());
+		label= new JLabel("Category: ");
+		JTextArea tCategory = new JTextArea(""+patientCtrl.getCategory());
 		tCategory.setEditable(edit);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridy = 2;
@@ -127,7 +124,7 @@ public class PatientView extends UIPanel{
 		panel.add(tInsuranceId,c);
 		
 		label = new JLabel("Visit Number: ");
-		JTextArea tVisitNum = new JTextArea(patientCtrl.getVisitNumber());
+		JTextArea tVisitNum = new JTextArea("" + patientCtrl.getVisitNumber());
 		tVisitNum.setEditable(edit);
 		c.gridx = 6;
 		panel.add(label, c);
@@ -154,7 +151,7 @@ public class PatientView extends UIPanel{
 		c.gridwidth=1;
 		
 		//Start row 4
-		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1() +" " patientCtrl.getStreet2());
+		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1() +" " + patientCtrl.getStreet2());
 		tStreet.setEditable(edit);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx=0.5;
@@ -163,10 +160,10 @@ public class PatientView extends UIPanel{
 		c.gridwidth=4;
 		panel.add(label, c);
 		
-		label = new JLabe("Work Status: ")
+		label = new JLabel("Work Status: ");
 		JTextArea tWorkStatus = new JTextArea(patientCtrl.getWorkStatus());
 		tWorkStatus.setEditable(edit);
-		c.gridwdith=1;
+		c.gridwidth=1;
 		c.gridx = 4;
 		panel.add(label, c);
 		c.gridx=5;
@@ -226,7 +223,7 @@ public class PatientView extends UIPanel{
 		c.gridx=3;
 		panel.add(tCountry,c);
 		
-		label = new JLabel("Additional Notes: ")
+		label = new JLabel("Additional Notes: ");
 		JTextArea tNotes = new JTextArea(patientCtrl.getNotes());
 		tNotes.setEditable(edit);
 		c.gridx = 0;
@@ -254,8 +251,8 @@ public class PatientView extends UIPanel{
 				patientCtrl.setDateOfBirth(tDoB.getText());
 				patientCtrl.setPhoneNumber(tPhoneNumber.getText());
 				patientCtrl.setGender(tGender.getText());
-				patientCtrl.setSocialID(tSocialId.getText());
-				patientCtrl.setCategory((int)tCategory.getText());
+				patientCtrl.setSocialId(tSocialId.getText());
+				patientCtrl.setCategory(tCategory.getText());
 				patientCtrl.setInsuranceID(tInsuranceId.getText());
 				patientCtrl.setVisitNumber(tVisitNum.getText());
 				//Address

@@ -1,17 +1,23 @@
 package edu.sjsu.cs.etrt.model.Questionnaire;
-import edu.sjsu.cs.etrt.model.Project.Patient;
-import edu.sjsu.cs.etrt.model.Project.Treatment;
+import edu.sjsu.cs.etrt.model.Patient.*;
+import edu.sjsu.cs.etrt.model.Project.*;
 import javax.swing.JPanel;
 
 
 public class TFI extends Form {
 	
-	public TFI (Patient patient, String[][] questionList, int[][] answerList, int score, Treatment t) {
+	public TFI (Patient patient, String[] questionList, String[] answerList, int score, Treatment t) {
 		super(patient, questionList, answerList, score, t);
-		
-		answerList = new int[25][10];
 	}
 	
+	
+	/**
+	 * set up answers for THI
+	 */
+	public void makeAnswers() {
+		for(int i=0;i<11;i++)
+			setAnswer(i, ""+i);		//lazy casting...
+	}
 	
 	public void makeForm(){
 		setQuestion(0, "What percentage of your time were you consciously AWARE OF your tinnitus?");

@@ -1,13 +1,12 @@
 package edu.sjsu.cs.etrt.model.Questionnaire;
 
-import edu.sjsu.cs.etrt.model.Project.Category;
-import edu.sjsu.cs.etrt.model.Project.Treatment;
-import edu.sjsu.cs.etrt.model.Project.Patient;
+import edu.sjsu.cs.etrt.model.Patient.*;
+import edu.sjsu.cs.etrt.model.Project.*;
 //import UI.UIPanel;
 
 public abstract class Form {//implements Comparable<Form>{
-	private String[][] questionList = new String[25][1];		//25 questions per questionnaire form
-	private int[][] answerList;			//THI = 3; TFI = 10	//second index which returns value
+	private String[] questionList;		//25 questions per questionnaire form
+	private String[] answerList;			//THI = 3; TFI = 10	//second index which returns value
 	private int score = 0;			//initialized to 0
 	private Treatment treatmentNum;		//treatment number assigned
 	private Patient patient;					//patient object
@@ -16,13 +15,13 @@ public abstract class Form {//implements Comparable<Form>{
 	/**
 	 * Creates a new visit based on the patient, doctor name, 
 	 * and time and date. Also generates a visit number.
-	 * @param patient Object of patient
+	 * @param patient object of patient
 	 * @param questionList questionList of form
 	 * @param answerList answerList of form
 	 * @param score score of form
-	 * @param t enum treatment of form
+	 * @param t enumeration treatment of form
 	 */
-	public Form(Patient patient, String[][] questionList, int[][] answerList, int score, Treatment t) {
+	public Form(Patient patient, String[] questionList, String[] answerList, int score, Treatment t) {
 		this.patient = patient;
 		this.questionList = questionList;
 		this.answerList = answerList;	
@@ -32,27 +31,62 @@ public abstract class Form {//implements Comparable<Form>{
 	
 	
 	/**
-	 * Displays Questions for the Users to answer
-	 * @param q question array size
-	 * @return String of question
+	 * set questions based on index
+	 * @param q question index
+	 * @param s question string
 	 */
 	public void setQuestion(int q, String s) {
-		this.questionList[q][0] = s;
+		this.questionList[q] = s;
 	}
 	
 	
 	/**
-	 * Displays Questions for the Users to answer
-	 * @param q = question number
-	 * @return String of question
+	 * get question based on index
+	 * @param q question index
+	 * @return question string
 	 */
-	public String displayQuestion(int q) {
-		//System.out.println(questionList[q][0]);
-		return questionList[q][0];
+	public String getQuestion(int q) {
+		return questionList[q];
 	}
 	
 	/**
-	 * set score based per question
+	 * return questionList size
+	 * @return length of questionList
+	 */
+	public int getQuestionSize() {
+		return questionList.length;
+	}
+	
+	/**
+	 * set answers based on index
+	 * @param q index of answer
+	 * @param s answer string
+	 */
+	public void setAnswer(int q, String s) {
+		this.answerList[q] = s;
+	}
+	
+	/**
+	 * get answer string based on index
+	 * @param q = answer number
+	 * @return answer string
+	 */
+	public String getAnswer(int q) {
+		return answerList[q];
+	}
+	
+	/**
+	 * return answerList size
+	 * @return length of answerList
+	 */
+	public int getAnswerSize() {
+		return answerList.length;
+	}
+	
+	
+	
+	/**
+	 * set score per question
 	 * @param score value
 	 */
 	public void setScore(int score) {
@@ -61,8 +95,8 @@ public abstract class Form {//implements Comparable<Form>{
 	
 	
 	/**
-	 * get score of form
-	 * @return 
+	 * get score
+	 * @return score value
 	 */
 	public int getScore() {
 		return this.score;
@@ -73,18 +107,23 @@ public abstract class Form {//implements Comparable<Form>{
 	 * check if answer has been marked for question and return value
 	 * @return index of marked answer
 	 */
+	/*
 	public int markedAnswer() {
+		
 		for(int i=0;i<answerList.length;i++)
 			if(answerList[0][i] == 1)
 				return i;
 			
 		return 0;
+		
 	}
+	*/
+	
 	
 	
 	/**
-	 * get Patient filling out questionnaire
-	 * @return
+	 * get patient of form
+	 * @return patient object
 	 */
 	public Patient getPatient() {
 		return patient;
@@ -92,7 +131,7 @@ public abstract class Form {//implements Comparable<Form>{
 	
 	
 	/**
-	 * Set treatment based on questionnaire score
+	 * set treatment based on form score
 	 */
 	public void setTreatment() {
 		if(getScore() <= 16) {
@@ -114,8 +153,7 @@ public abstract class Form {//implements Comparable<Form>{
 	}
 	
 	/**
-	 * Set Category based on treatment value from questionnaire
-	 * -test switch statement
+	 * set category based on treatment value 
 	 */
 	public void setCategory() {
 		switch(this.treatmentNum) {
@@ -152,8 +190,8 @@ public abstract class Form {//implements Comparable<Form>{
 	*/
 	
 	/**
-	 * Returns whether form is of THI
-	 * @return boolean statement of whether visit is THI
+	 * check whether form is THI or TFI
+	 * @return boolean if THI
 	 */
 	public abstract boolean THI();
 }

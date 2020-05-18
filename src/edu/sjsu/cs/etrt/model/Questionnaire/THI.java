@@ -1,15 +1,25 @@
 package edu.sjsu.cs.etrt.model.Questionnaire;
-import edu.sjsu.cs.etrt.model.Project.Patient;
-import edu.sjsu.cs.etrt.model.Project.Treatment;
+import edu.sjsu.cs.etrt.model.Patient.*;
+import edu.sjsu.cs.etrt.model.Project.*;
 
 public class THI extends Form{
 	
-	public THI (Patient patient, String[][] questionList, int[][] answerList, int score, Treatment t) {
+	public THI (Patient patient, String[] questionList, String[] answerList, int score, Treatment t) {
 		super(patient, questionList, answerList, score, t);
-		
-		answerList = new int[25][3];
 	}
 	
+	/**
+	 * set up answers for THI
+	 */
+	public void makeAnswers() {
+		setAnswer(0, "Yes(4)");
+		setAnswer(1, "Sometimes(2)");
+		setAnswer(2, "No (0)");
+	}
+	
+	/**
+	 * set up questions on THI form
+	 */
 	public void makeForm(){
 		setQuestion(0, "Because of your tinnitus, is it difficult for you to concentrate?");
 		setQuestion(1, "Does the loudness of your tinnitus make it difficult for you to hear people?");
@@ -27,9 +37,9 @@ public class THI extends Form{
 		setQuestion(13, "Because of your tinnitus, do you find that you are often irritable?");
 		setQuestion(14, "Because of your tinnitus, is it difficult for you to read?");
 		setQuestion(15, "Does your tinnitus make you upset?");
-		setQuestion(16, "Do you feel that your tinnitus problem has placed more stress on your" 
+		setQuestion(16, "Do you feel that your tinnitus problem has placed more stress on your " 
 		+ "relationships with members of your family and friends?");
-		setQuestion(17, "Do you find it difficult to focus your attention away from your"
+		setQuestion(17, "Do you find it difficult to focus your attention away from your "
 		+ "tinnitus and on other things?");
 		setQuestion(18, "Do you feel that you have no control over your tinnitus?");
 		setQuestion(19, "Because of your tinnitus, do you often feel tired?");
@@ -39,6 +49,7 @@ public class THI extends Form{
 		setQuestion(23, "Does your tinnitus get worse when you are under stress?");
 		setQuestion(24, "Does your tinnitus make you feel insecure?");
 	}
+	
 	
 	/**
 	 * score multiplier for scoring value

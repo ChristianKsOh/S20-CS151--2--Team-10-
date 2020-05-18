@@ -1,4 +1,4 @@
-package Patient;
+package edu.sjsu.cs.etrt.model.Patient;
 
 public class Patient implements Comparable{
 	
@@ -7,7 +7,7 @@ public class Patient implements Comparable{
 	private String lastName;
 	private String registrationDate;
 	private String gender;
-	private String dateOfBrith;
+	private String dateOfBirth;
 	private String phoneNumber;
 	private String socialID;
 	private String insuranceID;
@@ -24,7 +24,7 @@ public class Patient implements Comparable{
 		this.middleInitial=mi;
 		this.registrationDate=r;
 		this.gender=g;
-		this.dateOfBrith=d;
+		this.dateOfBirth=d;
 		this.phoneNumber=p;
 		this.socialID=s;
 		this.insuranceID=i;
@@ -152,7 +152,7 @@ public class Patient implements Comparable{
 		return this.patientDemographic.getEducationalDegree();
 	}
 	
-	public void setEductationalDegree(String s)
+	public void setEducationalDegree(String s)
 	{
 		this.patientDemographic.setEducationalDegree(s);
 	}
@@ -194,12 +194,12 @@ public class Patient implements Comparable{
 		this.gender = gender;
 	}
 
-	public String getDateOfBrith() {
-		return dateOfBrith;
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDateOfBrith(String dateOfBrith) {
-		this.dateOfBrith = dateOfBrith;
+	public void setDateOfBirth(String dateOfBrith) {
+		this.dateOfBirth = dateOfBrith;
 	}
 
 	public String getPhoneNumber() {
@@ -261,7 +261,7 @@ public class Patient implements Comparable{
 		this.middleInitial=mi;
 		this.registrationDate=r;
 		this.gender=g;
-		this.dateOfBrith=d;
+		this.dateOfBirth=d;
 		this.phoneNumber=p;
 		this.socialID=s;
 		this.insuranceID=i;

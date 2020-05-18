@@ -1,4 +1,4 @@
-package Patient;
+package edu.sjsu.cs.etrt.model.Patient;
 public class Address {
 	
 	private String street1;

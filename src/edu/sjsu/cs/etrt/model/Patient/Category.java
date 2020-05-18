@@ -1,4 +1,4 @@
-package Patient;
+package edu.sjsu.cs.etrt.model.Patient;
 
 /**
  * 

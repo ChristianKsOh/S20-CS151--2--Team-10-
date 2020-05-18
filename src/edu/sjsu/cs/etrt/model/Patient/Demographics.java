@@ -1,4 +1,4 @@
-package Patient;
+package edu.sjsu.cs.etrt.model.Patient;
 public class Demographics {
 	private String occupation;
 	private String workStatus;

@@ -26,7 +26,6 @@ public class PatientListView extends UIPanel{
 	
 	public PatientListView(PatientListController p, SystemController systemCtrl) {
 		patientQ=p;
-		num=0;
 		this.systemCtrl=systemCtrl;
 	}
 	
@@ -44,29 +43,49 @@ public class PatientListView extends UIPanel{
 		header.setFont (header.getFont ().deriveFont (32.0f));
 		header.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		mainPanel.add(header);
-		JButton removePatient;
+		JButton removePatient[] = new JButton[patientQ.getSize()];
+		JButton editPatient[] = new JButton[patientQ.getSize()];
 		JLabel patientLabel;
 		for(int counter = 0; counter<patientQ.getSize();counter++)
 		{
 			c.gridy=counter;
 			c.gridx=0;
 			c.gridwidth=2;
-			patientLabel = new JLabel(patientQ.getPatient(counter).getLastName()+", " + patientQ.getPatient(counter).getFirstName()+" " + patientQ.getPatient(counter).getMiddleInitial()+
-					patientQ.getPatient(counter).getDateOfBirth());
+			patientLabel = new JLabel("ID: "+ counter+ " "+patientQ.getPatient(counter).getLastName()+", " + patientQ.getPatient(counter).getFirstName()+" " + patientQ.getPatient(counter).getMiddleInitial()+
+					" "+ patientQ.getPatient(counter).getDateOfBirth());
 			patientLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 			patientLabel.setFont (patientLabel.getFont ().deriveFont (16.0f));
-			removePatient = new JButton("Remove Patient");
-			num=counter; 
-			removePatient.addActionListener(event->{
+			removePatient[counter] = new JButton("Remove Patient");
+			num=counter;
+			removePatient[counter].addActionListener(event->{
 				//REMOVES PATIENT
-				patientQ.removePatient(num);
-				refresh();
-				patientQ.refreshFrame();
+				int i;
+				for(i =0; i < removePatient.length;i++)
+				{
+					if(event.getSource()==removePatient[i])
+					{
+						break;
+					}
+				}
+				patientQ.removePatient(i);
 			});
 			panel.add(patientLabel,c);
 			c.gridwidth=1;
 			c.gridx=2;
-			panel.add(removePatient,c);
+			panel.add(removePatient[counter],c);
+			editPatient[counter]=new JButton("Edit Patient");
+			editPatient[counter].addActionListener(event->{
+				int i;
+				for(i=0;i<editPatient.length;i++)
+				{
+					if(event.getSource()==editPatient[i])
+						break;
+				}
+				//Gets the right patient and needs to open PatientView
+				patientQ.getPatient(i);
+			});
+			c.gridx=3;
+			panel.add(editPatient[counter],c);
 			
 		}
 		JScrollPane scrollPane = new JScrollPane(panel);
@@ -76,16 +95,13 @@ public class PatientListView extends UIPanel{
 		mainPanel.add(scrollPane);
 		JPanel panelButtons = new JPanel();
 		panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
-		JButton addPatient = new JButton("Add Patient");
-		addPatient.addActionListener(event->{
-			//ADDPATIENT GO TO THE FORM
-		});
+		
 		JButton back = new JButton("System Return");
 		back.addActionListener(event->{
 			//GO BACK TO SYSTEM
 			systemCtrl.openSystem();
 		});
-		panelButtons.add(addPatient);
+		
 		panelButtons.add(back);
 		panelButtons.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		mainPanel.add(panelButtons);

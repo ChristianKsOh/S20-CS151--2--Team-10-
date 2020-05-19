@@ -90,7 +90,7 @@ public class PatientView extends UIPanel{
 		c.gridx=5;
 		panel.add(tDoB,c);
 
-		label = new JLabel("Regisrtaion Date: ");
+		label = new JLabel("Regisration Date: ");
 		JTextArea tRegDate = new JTextArea(patientCtrl.getRegistrationDate());
 		tRegDate.setEditable(edit);
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -133,7 +133,7 @@ public class PatientView extends UIPanel{
 		JTextArea tCategory = new JTextArea(""+patientCtrl.getCategory());
 		tCategory.setEditable(false);
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridy = 2;
+		c.gridy = 3;
 		c.gridx = 0;
 		panel.add(label, c);
 		c.gridx=1;
@@ -264,7 +264,7 @@ public class PatientView extends UIPanel{
 		//Button to return back to systems
 		JButton systemButton = new JButton("System");
 		systemButton.addActionListener(event->{
-			systemCtrl.refreshFrame();
+			systemCtrl.openSystem();
 		});
 		panelButtons.add(systemButton);
 		if(edit)
@@ -298,7 +298,7 @@ public class PatientView extends UIPanel{
 				patientCtrl.setOccupation(tOccupation.getText());
 				patientCtrl.setNotes(tNotes.getText());
 				
-				refresh();
+				systemCtrl.refreshFrame();
 			});
 			panelButtons.add(submitButton);
 			
@@ -308,7 +308,7 @@ public class PatientView extends UIPanel{
 			JButton editButton = new JButton("Edit");
 			editButton.addActionListener(event->{
 				edit=true;
-				refresh();
+				systemCtrl.refreshFrame();
 			});	
 			panelButtons.add(editButton);
 		}

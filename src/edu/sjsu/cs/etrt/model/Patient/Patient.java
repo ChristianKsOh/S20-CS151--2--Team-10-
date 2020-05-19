@@ -14,11 +14,15 @@ public class Patient implements Comparable{
 	private String orderNumber;
 	private Category categoryNum;
 	private int visitNumber;
+	private int scoreTFI;
+	private int scoreTHI;
 	private Address patientAddress;
 	private Demographics patientDemographic;
 	
-	public Patient(String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
+	public Patient(int tfi, int thi, String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
 	{
+		this.scoreTFI=tfi;
+		this.scoreTHI=thi;
 		this.firstName=n;
 		this.lastName=l;
 		this.middleInitial=mi;
@@ -35,6 +39,19 @@ public class Patient implements Comparable{
 		this.patientDemographic=pD;
 	}
 	
+	public int getScoreTFI()
+	{
+		return scoreTFI;
+	}
+	public void setScoreTFI(int tfi) {
+		scoreTFI=tfi;
+	}
+	public int getScoreTHI() {
+		return scoreTHI;
+	}
+	public void setScoreTHI(int thi) {
+		scoreTHI=thi;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

@@ -22,6 +22,22 @@ public class PatientController {
 		view.refresh();
 	}
 	
+	public int getScoreTFI() {
+		return model.getScoreTFI();
+	}
+	
+	public void setScoreTFI(int score) {
+		model.setScoreTFI(score);
+	}
+	
+	public int getScoreTHI() {
+		return model.getScoreTHI();
+	}
+	
+	public void setScoreTHI(int score) {
+		model.setScoreTHI(score);
+	}
+	
 	public String getFirstName() {
 		return model.getFirstName();
 	}

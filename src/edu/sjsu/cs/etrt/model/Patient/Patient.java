@@ -18,7 +18,27 @@ public class Patient implements Comparable{
 	private int scoreTHI;
 	private Address patientAddress;
 	private Demographics patientDemographic;
-	
+	public Patient()
+	{
+		this.scoreTFI=0;
+		this.scoreTHI=0;
+		this.firstName="NA";
+		this.lastName="NA";
+		this.middleInitial="NA";
+		this.registrationDate="NA";
+		this.gender="NA";
+		this.dateOfBirth="NA";
+		this.phoneNumber="NA";
+		this.socialID="NA";
+		this.insuranceID="NA";
+		this.orderNumber="NA";
+		this.categoryNum=categoryNum.category0;
+		this.visitNumber=0;
+		Address a = new Address("NA","NA","NA","NA","NA","NA");
+		this.patientAddress=a;
+		Demographics d= new Demographics("NA","NA","NA","NA");
+		this.patientDemographic=d;
+	}
 	public Patient(int tfi, int thi, String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
 	{
 		this.scoreTFI=tfi;

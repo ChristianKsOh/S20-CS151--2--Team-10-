@@ -1,8 +1,5 @@
 package edu.sjsu.cs.etrt.controller;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import edu.sjsu.cs.etrt.model.Patient.Category;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.view.UI.PatientView;
@@ -16,6 +13,7 @@ public class PatientController {
 	{
 		model = patient;
 		this.view=view;
+		this.systemController=systemController;
 		
 	}
 	

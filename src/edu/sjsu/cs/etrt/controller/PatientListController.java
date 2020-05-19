@@ -1,18 +1,34 @@
-import Project.PatientList;
+
 package edu.sjsu.cs.etrt.controller;
+
+import edu.sjsu.cs.etrt.model.Patient.Patient;
+import edu.sjsu.cs.etrt.model.Patient.PatientList;
+import edu.sjsu.cs.etrt.view.UI.PatientListView;
 
 public class PatientListController {
 	private PatientList model;
-	private PatientForm patientForm;
 	private PatientListView view;
-	public PatientListController(PatientList p, PatientListView v, PatientForm pf) {
+	public PatientListController(PatientList p, PatientListView v) {
 		this.model=p;
-		this.patientForm = pf;
 		this.view = v;
-		this.view.addPatientListListener(new PatientListListener());
-		this.view.RemovePatientListListener(new PatientList2Listener());
+	}
+	
+	public void removePatient(int num)
+	{
+		model.remove(num);
+	}
+	
+	public Patient getPatient(int num)
+	{
+		return model.getPatient(num);
+	}
+	
+	public int getSize()
+	{
+		return model.size();
 	}
 	//Add patient
+	/**
 	class PatientListListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			Patient p;
@@ -37,5 +53,5 @@ public class PatientListController {
 				view.displayErrorMessage("You done broke it");
 			}
 		}
-	}
+	}**/
 }

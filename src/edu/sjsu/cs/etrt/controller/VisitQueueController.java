@@ -34,7 +34,7 @@ public class VisitQueueController {
 	 * @param v object of Visit
 	 */
 	public void enqueue(Visit v) {
-		model.enqueue(new VisitController(v,this));
+		model.enqueue(v);
 		view.refresh();
 	}
 	
@@ -43,7 +43,7 @@ public class VisitQueueController {
 	 * @return The earliest Visit in the queue.
 	 */
 	public Visit dequeue() {
-		Visit v=model.dequeue().getModel();
+		Visit v=model.dequeue();
 		view.refresh();
 		return v;
 	}
@@ -54,16 +54,6 @@ public class VisitQueueController {
 	 * @return Visit object.
 	 */
 	public Visit getVisit(int visitNum) {
-		return model.getVisit(visitNum).getModel();
-	}
-	
-	/**
-	 * Return the VisitControlelr of a specific visit based on 
-	 * visit number. Used by System's direct open for Visits.
-	 * @param visitNum Exact visit number of the visit.
-	 * @return visit's object.
-	 */
-	public VisitController getVisitController(int visitNum) {
 		return model.getVisit(visitNum);
 	}
 	
@@ -96,7 +86,7 @@ public class VisitQueueController {
 	 * Returns an iterator of the queue's values.
 	 * @return Iterator of the queue's values.
 	 */
-	public Iterable<VisitController> iterator(){
+	public Iterable<Visit> iterator(){
 		return model.iterator();
 	}
 	
@@ -126,8 +116,13 @@ public class VisitQueueController {
 	 * Reopens VisitQueue's view on the frame. Used by VisitCreateView.
 	 */
 	public void reopenVisitQueueView() {
-		system.updateFrame(getViewPanel());
+		system.openVisitQueue();
 	}
+	
+	public void openVisit(Visit v) {
+		system.openVisit(v.getVisitNumber());
+	}
+	
 	/**
 	 * Updates JFrame to the provided JPanel. Used by VisitView.
 	 * @param panel JPanel to be opened.

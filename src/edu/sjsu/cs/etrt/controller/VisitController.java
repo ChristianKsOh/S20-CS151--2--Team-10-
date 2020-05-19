@@ -9,7 +9,7 @@ import edu.sjsu.cs.etrt.view.UI.VisitView;
 public class VisitController {
 	private Visit model;
 	private VisitView view;
-	private VisitQueueController queue;
+	private SystemController system;
 	
 	/**
 	 * Initializes the controller with the model and view. 
@@ -17,10 +17,10 @@ public class VisitController {
 	 * @param visit Visit model class.
 	 * @param queue VisitQueueController class that holds this visit.
 	 */
-	public VisitController(Visit visit,VisitQueueController queue) {
-		this.queue=queue;
+	public VisitController(Visit visit,SystemController system) {
+		this.system=system;
 		model=visit;
-		view=new VisitView(this);
+		view=new VisitView(this,system);
 	}
 	
 	/**
@@ -88,14 +88,6 @@ public class VisitController {
 	}
 	
 	/**
-	 * Retrieve the VisitQueueController holding the visit. Used in view.
-	 * @return
-	 */
-	public VisitQueueController getQueue() {
-		return queue;
-	}
-	
-	/**
 	 * Changes the date of the visit.
 	 * @param d new date.
 	 */
@@ -144,20 +136,20 @@ public class VisitController {
 	 * Updates the JFrame for any changes in the view.
 	 */
 	public void refreshFrame(){
-		queue.refreshFrame();
+		system.refreshFrame();
 	}
 	
 	/**
 	 * Opens the VisitQueue view in the JFrame.
 	 */
 	public void openVisitQueueView() {
-		queue.updateFrame(queue.getViewPanel());
+		system.openVisitQueue();
 	}
 	
 	/**
 	 * Opens the Visit view. Used by VisitQueueView.
 	 */
 	public void openVisit() {
-		queue.updateFrame(getViewPanel());
+		system.updateFrame(getViewPanel());
 	}
 }

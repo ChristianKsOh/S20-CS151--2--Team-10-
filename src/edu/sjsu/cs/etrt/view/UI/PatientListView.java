@@ -82,7 +82,7 @@ public class PatientListView extends UIPanel{
 		JButton back = new JButton("System Return");
 		back.addActionListener(event->{
 			//GO BACK TO SYSTEM
-			//systemCtrl.doWhatever();
+			systemCtrl.openSystem();
 		});
 		panelButtons.add(addPatient);
 		panelButtons.add(back);

@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 
 import edu.sjsu.cs.etrt.controller.VisitController;
 import edu.sjsu.cs.etrt.controller.VisitQueueController;
+import edu.sjsu.cs.etrt.model.Visits.Visit;
 import edu.sjsu.cs.etrt.model.Visits.VisitQueue;
 
 public class VisitQueueView extends UIPanel {
@@ -65,7 +66,7 @@ public class VisitQueueView extends UIPanel {
 		content.add(header);
 		
 		//Print each visit in order
-		for(VisitController visit:controller.iterator()) {
+		for(Visit visit:controller.iterator()) {
 			JPanel visitPanel=new JPanel();
 			String s=visit.getDate()+" ("+visit.getTime()+") : "+visit.getDoctorName();
 			JTextArea text=new JTextArea(s);
@@ -74,7 +75,7 @@ public class VisitQueueView extends UIPanel {
 			text.addMouseListener(new MouseListener() {
 				@Override
 				public void mousePressed(MouseEvent e) {
-					visit.openVisit();
+					controller.openVisit(visit);
 				}
 				public void mouseClicked(MouseEvent e) {}
 				public void mouseReleased(MouseEvent e) {}

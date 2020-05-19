@@ -1,6 +1,8 @@
 
 package edu.sjsu.cs.etrt.controller;
 
+import javax.swing.JPanel;
+
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Patient.PatientList;
 import edu.sjsu.cs.etrt.view.UI.PatientListView;
@@ -10,9 +12,10 @@ public class PatientListController {
 	private PatientListView view;
 	private SystemController systemCtrl;
 	
-	public PatientListController(PatientList p, PatientListView v) {
-		this.model=p;
-		this.view = v;
+	public PatientListController(SystemController ctrl) {
+		this.model=new PatientList();
+		this.view = new PatientListView(this,ctrl);
+		systemCtrl=ctrl;
 	}
 	
 	public void removePatient(int num)
@@ -28,6 +31,10 @@ public class PatientListController {
 	public int getSize()
 	{
 		return model.size();
+	}
+	
+	public JPanel getViewPanel() {
+		return view.generateUI();
 	}
 	//Add patient
 	/**

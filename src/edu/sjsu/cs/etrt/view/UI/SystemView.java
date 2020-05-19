@@ -96,7 +96,7 @@ public class SystemView extends UIPanel{
 		patientQueue.setPreferredSize(new Dimension(MAIN_LENGTH,50));
 		patientQueue.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		patientQueue.addActionListener(event->{
-			
+			controller.openPatientList();
 		});
 		
 		//Panel that contains textInput to open selected patient page
@@ -104,9 +104,9 @@ public class SystemView extends UIPanel{
 		patientDirect.setLayout(new BoxLayout(patientDirect,BoxLayout.X_AXIS));
 		
 		//Header and instructions during error
-		String patientDirectHeaderText="Open patient page by name.";
+		String patientDirectHeaderText="Open patient page by patient number.";
 		if(patientError) {
-			patientDirectHeaderText="Error opening page. Please enter exact name of patient.";
+			patientDirectHeaderText="Error opening page. Please enter exact patient number.";
 		}
 		JTextArea patientDirectHeader=new JTextArea(patientDirectHeaderText);
 		patientDirectHeader.setFont(new Font(patientDirectHeaderText,Font.PLAIN,14));
@@ -118,7 +118,20 @@ public class SystemView extends UIPanel{
 		//Submit button
 		JButton patientSubmit=new JButton("Submit");
 		patientSubmit.addActionListener(event->{
-			//Get patient by name
+			try {
+				if(controller.openPatient(Integer.parseInt(patientInput.getText()))) {
+					visitError=false;
+					patientError=false;
+				}else {
+					patientError=true;
+					refresh();
+					controller.refreshFrame();
+				}
+			}catch(NumberFormatException e) {
+				patientError=true;
+				refresh();
+				controller.refreshFrame();
+			}
 		});
 		patientDirect.add(patientInput);
 		patientDirect.add(patientSubmit);

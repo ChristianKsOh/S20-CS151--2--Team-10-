@@ -16,7 +16,7 @@ public class System {
 	
 	public System(SystemController system) {
 		visits=new VisitQueueController(system);
-		patients=new PatientListController();
+		patients=new PatientListController(system);
 		//Initialize registry
 	}
 	

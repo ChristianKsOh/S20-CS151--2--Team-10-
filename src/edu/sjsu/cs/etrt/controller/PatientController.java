@@ -1,5 +1,7 @@
 package edu.sjsu.cs.etrt.controller;
 
+import javax.swing.JPanel;
+
 import edu.sjsu.cs.etrt.model.Patient.Category;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.view.UI.PatientView;
@@ -9,10 +11,10 @@ public class PatientController {
 	private PatientView view;
 	private SystemController systemController;
 	
-	public PatientController(Patient patient, PatientView view, SystemController systemController)
+	public PatientController(Patient patient, SystemController systemController)
 	{
 		model = patient;
-		this.view=view;
+		this.view=new PatientView(this,systemController);
 		this.systemController=systemController;
 		
 	}
@@ -231,6 +233,10 @@ public class PatientController {
 		model.setOccupation(s);
 	}
 
+	public JPanel getViewPanel()
+	{
+		return view.generateUI();
+	}
 	
 	//Back to System GUI
 	/*

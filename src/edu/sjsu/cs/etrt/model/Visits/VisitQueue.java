@@ -5,13 +5,13 @@ import java.util.TreeMap;
 import edu.sjsu.cs.etrt.controller.VisitController;
 
 public class VisitQueue {
-	private TreeMap<DateAndTime,VisitController> schedule;
+	private TreeMap<DateAndTime,Visit> schedule;
 	
 	/**
 	 * Initializes an instance of VisitQueue.
 	 */
 	public VisitQueue() {
-		schedule=new TreeMap<DateAndTime,VisitController>();
+		schedule=new TreeMap<DateAndTime,Visit>();
 	}
 	
 	/**
@@ -19,7 +19,7 @@ public class VisitQueue {
 	 *  ordered location.
 	 * @param v object of Visit
 	 */
-	public void add(VisitController v) {
+	public void add(Visit v) {
 		enqueue(v);
 	}
 	
@@ -28,15 +28,15 @@ public class VisitQueue {
 	 * Reorders if necessary based on date and time.
 	 * @param v object of Visit
 	 */
-	public void enqueue(VisitController v) {
-		schedule.put(v.getDateAndTimeObject(),v);
+	public void enqueue(Visit v) {
+		schedule.put(v.getDateAndTime(),v);
 	}
 	
 	/**
 	 * Removes the earliest instance of Visit in the queue.
 	 * @return The earliest Visit in the queue.
 	 */
-	public VisitController dequeue() {
+	public Visit dequeue() {
 		return schedule.remove(schedule.firstKey());
 	}
 	
@@ -45,7 +45,7 @@ public class VisitQueue {
 	 * @param visitNum visit number
 	 * @return Visit object.
 	 */
-	public VisitController getVisit(int visitNum) {
+	public Visit getVisit(int visitNum) {
 		for(DateAndTime key:schedule.keySet()) {
 			if(schedule.get(key).getVisitNumber()==visitNum) {
 				return schedule.get(key);
@@ -58,7 +58,7 @@ public class VisitQueue {
 	 * @param visitNum visit number
 	 * @return Visit object.
 	 */
-	public VisitController removeVisit(int visitNum) {
+	public Visit removeVisit(int visitNum) {
 		for(DateAndTime key:schedule.keySet()) {
 			if(schedule.get(key).getVisitNumber()==visitNum) {
 				return schedule.remove(key);
@@ -86,7 +86,7 @@ public class VisitQueue {
 	 * Returns an Iterator for this class.
 	 * @return Iterator object
 	 */
-	public Iterable<VisitController> iterator(){
+	public Iterable<Visit> iterator(){
 		return schedule.values();
 	}
 	
@@ -94,7 +94,7 @@ public class VisitQueue {
 	 * Returns the full schedule.
 	 * @return TreeMap<DateAndTime,Visit> of the schedule.
 	 */
-	public TreeMap<DateAndTime,VisitController> getSchedule(){
-		return new TreeMap<DateAndTime,VisitController>(schedule);
+	public TreeMap<DateAndTime,Visit> getSchedule(){
+		return new TreeMap<DateAndTime,Visit>(schedule);
 	}
 }

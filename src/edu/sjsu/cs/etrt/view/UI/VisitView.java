@@ -11,10 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import edu.sjsu.cs.etrt.controller.SystemController;
 import edu.sjsu.cs.etrt.controller.VisitController;
 
 public class VisitView extends UIPanel{
 	private VisitController controller;
+	private SystemController system;
 	private boolean editDate;
 	private boolean editTime;
 	private boolean editDoctor;
@@ -25,8 +27,9 @@ public class VisitView extends UIPanel{
 	 * @param ctrl Reference for editing and JFrame.
 	 * @param queueCtrl Reference for the back button.
 	 */
-	public VisitView(VisitController ctrl) {
+	public VisitView(VisitController ctrl,SystemController system) {
 		controller=ctrl;
+		this.system=system;
 		main.setLayout(new BoxLayout(main,BoxLayout.Y_AXIS));
 		editDate=false;
 		editTime=false;
@@ -349,7 +352,7 @@ public class VisitView extends UIPanel{
 		//Delete Visit button
 		JButton deleteButton=new JButton("Cancel Appointment");
 		deleteButton.addActionListener(event->{
-			controller.getQueue().removeVisit(controller.getVisitNumber());
+			system.getVisitQueue().removeVisit(controller.getVisitNumber());
 			main.removeAll();
 			controller.openVisitQueueView();
 		});

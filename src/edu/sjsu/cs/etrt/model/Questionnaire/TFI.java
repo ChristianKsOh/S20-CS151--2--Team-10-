@@ -6,8 +6,8 @@ import javax.swing.JPanel;
 
 public class TFI extends Form {
 	
-	public TFI (Patient patient, String[] questionList, String[] answerList, int score, Treatment t) {
-		super(patient, questionList, answerList, score, t);
+	public TFI (Patient patient, String[] questionList, String[] answerList, int score) {
+		super(patient, questionList, answerList, score );
 	}
 	
 	

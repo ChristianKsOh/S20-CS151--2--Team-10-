@@ -18,11 +18,12 @@ public class FormView extends UIPanel{
 	int THIscore;
 	int TFIscore;
 	Patient p;
-	Treatment t;
 	
-	THI thi = new THI(p, daisies, flowers, THIscore, t);
-	TFI tfi = new TFI(p, daisies2, flowers2, TFIscore, t);
+	THI thi = new THI(p, daisies, flowers, THIscore);
+	TFI tfi = new TFI(p, daisies2, flowers2, TFIscore);
 
+	
+	
 	//frame
 	JFrame frame = new JFrame("Questionnaire Form");	
 	

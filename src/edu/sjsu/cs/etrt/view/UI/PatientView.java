@@ -6,11 +6,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 import edu.sjsu.cs.etrt.controller.PatientController;
 import edu.sjsu.cs.etrt.controller.SystemController;
@@ -33,9 +35,11 @@ public class PatientView extends UIPanel{
 		main.removeAll();
 		JPanel mainPanel=new JPanel();
 		mainPanel.setLayout(new BorderLayout());
+		mainPanel.setSize(1000, 800);
 		JPanel panel = new JPanel();
 		JLabel header= new JLabel(patientCtrl.getFirstName()+" " + patientCtrl.getMiddleInitial() + " " + patientCtrl.getLastName());
 		header.setFont (header.getFont ().deriveFont (32.0f));
+		header.setHorizontalAlignment(SwingConstants.CENTER);
 		mainPanel.add(header, BorderLayout.NORTH);
 		
 		//Basic Information + Id stuff section
@@ -43,7 +47,7 @@ public class PatientView extends UIPanel{
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(10,10,10,10);
 		JLabel label;
-		JTextArea basicHeader = new JTextArea("Basic Information");
+		JLabel basicHeader = new JLabel("Basic Information");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady=50;
 		c.gridwidth=8;
@@ -133,32 +137,31 @@ public class PatientView extends UIPanel{
 		
 		//Start of Address Section(Left Side)
 		label = new JLabel("Address");
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx=0.5;
 		c.ipady=50;
-		c.gridwidth=4;
+		c.gridwidth=1;
 		c.gridx = 0;
 		c.gridy = 3;
 		panel.add(label, c);
 		//Start of Demographics section(Right side)
 		label = new JLabel("Demographics");
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx=0.5;
-		c.gridx = 3;
-		c.gridy = 3;
+		c.gridx = 4;
 		panel.add(label, c);
 		c.ipady=0;
 		c.gridwidth=1;
+				
 		
 		//Start row 4
+		label = new JLabel("Street: ");
 		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1() +" " + patientCtrl.getStreet2());
 		tStreet.setEditable(edit);
-		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx=0.5;
 		c.gridx = 0;
 		c.gridy = 4;
-		c.gridwidth=4;
-		panel.add(label, c);
+		panel.add(label,c);
+		c.gridwidth=3;
+		c.gridx=1;
+		panel.add(tStreet, c);
+		c.gridwidth=1;
 		
 		label = new JLabel("Work Status: ");
 		JTextArea tWorkStatus = new JTextArea(patientCtrl.getWorkStatus());
@@ -235,13 +238,14 @@ public class PatientView extends UIPanel{
 		panel.add(tNotes,c);
 		
 		mainPanel.add(panel,BorderLayout.CENTER);
-		
+		JPanel panelButtons = new JPanel();
+		panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
 		//Button to return back to systems
 		JButton systemButton = new JButton("System");
 		systemButton.addActionListener(event->{
 			systemCtrl.refreshFrame();
 		});
-		mainPanel.add(systemButton,BorderLayout.SOUTH);
+		panelButtons.add(systemButton);
 		if(edit)
 		{
 			JButton submitButton = new JButton("Submit");
@@ -252,9 +256,11 @@ public class PatientView extends UIPanel{
 				patientCtrl.setPhoneNumber(tPhoneNumber.getText());
 				patientCtrl.setGender(tGender.getText());
 				patientCtrl.setSocialId(tSocialId.getText());
-				patientCtrl.setCategory(tCategory.getText());
+				int i=Integer.parseInt(tCategory.getText());
+				patientCtrl.setCategory(patientCtrl.getCategory().intToCategory(i));
 				patientCtrl.setInsuranceID(tInsuranceId.getText());
-				patientCtrl.setVisitNumber(tVisitNum.getText());
+				i=Integer.parseInt(tVisitNum.getText());
+				patientCtrl.setVisitNumber(i);
 				//Address
 				patientCtrl.setStreet1(tStreet.getText());
 				patientCtrl.setCity(tCity.getText());
@@ -269,7 +275,7 @@ public class PatientView extends UIPanel{
 				
 				refresh();
 			});
-			mainPanel.add(submitButton,BorderLayout.SOUTH);
+			panelButtons.add(submitButton);
 			
 		}
 		else
@@ -279,10 +285,9 @@ public class PatientView extends UIPanel{
 				edit=true;
 				refresh();
 			});	
-			mainPanel.add(editButton, BorderLayout.SOUTH);
+			panelButtons.add(editButton);
 		}
-		
-		
+		mainPanel.add(panelButtons, BorderLayout.SOUTH);
 		main.add(mainPanel);	
 	}
 	/*

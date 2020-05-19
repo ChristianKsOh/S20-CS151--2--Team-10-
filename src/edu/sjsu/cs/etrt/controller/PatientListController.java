@@ -8,6 +8,8 @@ import edu.sjsu.cs.etrt.view.UI.PatientListView;
 public class PatientListController {
 	private PatientList model;
 	private PatientListView view;
+	private SystemController systemCtrl;
+	
 	public PatientListController(PatientList p, PatientListView v) {
 		this.model=p;
 		this.view = v;

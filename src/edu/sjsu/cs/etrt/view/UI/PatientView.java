@@ -313,6 +313,7 @@ public class PatientView extends UIPanel{
 				patientCtrl.setPhoneNumber(tPhoneNumber.getText());
 				patientCtrl.setGender(tGender.getText());
 				patientCtrl.setSocialId(tSocialId.getText());
+
 				patientCtrl.setInsuranceID(tInsuranceId.getText());;
 				//Address
 				patientCtrl.setStreet1(tStreet.getText());
@@ -327,6 +328,10 @@ public class PatientView extends UIPanel{
 				patientCtrl.setNotes(tNotes.getText());
 				systemCtrl.openSystem();
 				
+
+				refresh();
+				systemCtrl.refreshFrame();
+
 			});
 			panelButtons.add(submitButton);
 			
@@ -336,7 +341,9 @@ public class PatientView extends UIPanel{
 			//Refresh this page with edit set to true;
 			JButton editButton = new JButton("Edit");
 			editButton.addActionListener(event->{
-				systemCtrl.openPatient(patientCtrl.getThisPatientId(),true);
+				edit=true;
+				refresh();
+				systemCtrl.refreshFrame();
 			});	
 			panelButtons.add(editButton);
 		}

@@ -15,7 +15,6 @@ public class VisitQueueController {
 	private VisitQueue model;
 	private VisitQueueView view;
 	private SystemController system;
-	private VisitCreateView create;
 	
 	/**
 	 * Initials the model and view of VisitQueue.
@@ -25,7 +24,6 @@ public class VisitQueueController {
 		this.system=system;
 		this.model=new VisitQueue();
 		this.view=new VisitQueueView(this);
-		this.create=new VisitCreateView(this);
 	}
 	
 	/**
@@ -109,7 +107,7 @@ public class VisitQueueController {
 	 * Open VisitCreate's view on the frame.
 	 */
 	public void openVisitCreateView() {
-		system.updateFrame(create.generateUI());
+		system.openVisitCreate();
 	}
 	
 	/**

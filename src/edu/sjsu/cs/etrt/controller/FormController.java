@@ -13,10 +13,10 @@ public class FormController {
 	private SystemController system;
 	
 	//set controller handler
-	public FormController(Form form, FormView view, SystemController system)
+	public FormController(Form form, SystemController system)
 	{
 		model = form;
-		this.view=view;
+		this.view=new FormView(this,system);
 		this.system=system;
 	}
 	

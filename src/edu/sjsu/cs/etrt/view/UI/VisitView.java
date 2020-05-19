@@ -217,6 +217,22 @@ public class VisitView extends UIPanel{
 		main.add(header);
 		
 		
+		//Form buttons
+		JPanel forms=new JPanel();
+		JButton THI=new JButton("Open THI form");
+		THI.addActionListener(event->{
+			system.openTHI(controller.getPatient());
+		});
+		JButton TFI=new JButton("Open TFI form");
+		TFI.addActionListener(event->{
+			system.openTFI(controller.getPatient());
+		});
+		forms.add(THI);
+		forms.add(TFI);
+		
+		main.add(forms);
+		
+		
 		//Patient and ID (link to patient?)
 		String patientString="Patient: "+controller.getPatient().getLastName()+", "+controller.getPatient().getFirstName();
 		if(!controller.getPatient().getMiddleInitial().isEmpty()) {
@@ -229,8 +245,7 @@ public class VisitView extends UIPanel{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//main.removeAll();
-				//controller.updateFrame(controller.getPatient().getViewPanel());
+				controller.openPatient();
 			}
 			public void mousePressed(MouseEvent e) {}
 			public void mouseReleased(MouseEvent e) {}

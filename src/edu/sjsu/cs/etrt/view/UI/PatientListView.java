@@ -68,7 +68,8 @@ public class PatientListView extends UIPanel{
 					}
 				}
 				patientQ.removePatient(i);
-				systemCtrl.openPatientList();
+				refresh();
+				systemCtrl.refreshFrame();
 			});
 			panel.add(patientLabel,c);
 			c.gridwidth=1;

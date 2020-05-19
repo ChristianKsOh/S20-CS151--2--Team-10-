@@ -3,8 +3,8 @@ import edu.sjsu.cs.etrt.model.Patient.*;
 
 public class THI extends Form{
 	
-	public THI (Patient patient, String[] questionList, String[] answerList, int score) {
-		super(patient, questionList, answerList, score);
+	public THI (Patient patient, int score) {
+		super(patient, score);
 	}
 	
 	

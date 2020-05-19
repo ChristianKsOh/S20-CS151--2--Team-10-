@@ -15,6 +15,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import edu.sjsu.cs.etrt.controller.SystemController;
+import edu.sjsu.cs.etrt.model.Patient.Address;
+import edu.sjsu.cs.etrt.model.Patient.Category;
+import edu.sjsu.cs.etrt.model.Patient.Demographics;
+import edu.sjsu.cs.etrt.model.Patient.Patient;
+import edu.sjsu.cs.etrt.model.Visits.DateAndTime;
+import edu.sjsu.cs.etrt.model.Visits.InitialVisit;
+import edu.sjsu.cs.etrt.model.Visits.Visit;
 
 public class SystemView extends UIPanel{
 	private final int MAIN_LENGTH=400;
@@ -63,17 +70,9 @@ public class SystemView extends UIPanel{
 		//Registry Button
 		JButton registry=new JButton("Registry");
 		registry.addActionListener(event->{
-			
-		});
-		
-		//Form button
-		JButton form=new JButton("Form");
-		form.addActionListener(event->{
-			
+			controller.openRegistry();
 		});
 		registryAndForm.add(registry);
-		registryAndForm.add(new JPanel());
-		registryAndForm.add(form);
 		
 		
 	//Bordered section for patient info//
@@ -104,9 +103,9 @@ public class SystemView extends UIPanel{
 		patientDirect.setLayout(new BoxLayout(patientDirect,BoxLayout.X_AXIS));
 		
 		//Header and instructions during error
-		String patientDirectHeaderText="Open patient page by patient number.";
+		String patientDirectHeaderText="Open patient page by name.";
 		if(patientError) {
-			patientDirectHeaderText="Error opening page. Please enter exact patient number.";
+			patientDirectHeaderText="Error opening page. Please enter patient's full name.";
 		}
 		JTextArea patientDirectHeader=new JTextArea(patientDirectHeaderText);
 		patientDirectHeader.setFont(new Font(patientDirectHeaderText,Font.PLAIN,14));
@@ -118,20 +117,21 @@ public class SystemView extends UIPanel{
 		//Submit button
 		JButton patientSubmit=new JButton("Submit");
 		patientSubmit.addActionListener(event->{
-			try {
-				if(controller.openPatient(Integer.parseInt(patientInput.getText()))) {
-					visitError=false;
-					patientError=false;
-				}else {
-					patientError=true;
-					refresh();
-					controller.refreshFrame();
+			for(int i=0;i<controller.getPatientList().getSize();i++) {
+				String patientName=controller.getPatientList().getPatient(i).getFirstName()+" "
+								+controller.getPatientList().getPatient(i).getMiddleInitial()+" "
+								+controller.getPatientList().getPatient(i).getLastName();
+				if(patientName.equalsIgnoreCase(patientInput.getText())) {
+					if(controller.openPatient(i)) {
+						visitError=false;
+						patientError=false;
+					}
 				}
-			}catch(NumberFormatException e) {
-				patientError=true;
-				refresh();
-				controller.refreshFrame();
 			}
+			//Patient not found
+			patientError=true;
+			refresh();
+			controller.refreshFrame();
 		});
 		patientDirect.add(patientInput);
 		patientDirect.add(patientSubmit);
@@ -226,11 +226,15 @@ public class SystemView extends UIPanel{
 	
 	public static void main(String[] args) {
 		JFrame frame=new JFrame();
-		SystemView system=new SystemView(new SystemController(frame));
-		
-		frame.add(system.generateUI());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
+		SystemController system=new SystemController(frame);
+		Patient p=new Patient(0,0,"Kevin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,123456789,new Address("My house","","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
+		system.getPatientList().addPatient(p);
+		system.getPatientList().addPatient(new Patient(0,0,"Devin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,123456789,new Address("My house","","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD","")));
+		system.getVisitQueue().enqueue(new InitialVisit(p,"Doctor",4,20,2020,3,30,DateAndTime.PM,"Notes"));
+		system.openSystem();
+		
 	}
 }

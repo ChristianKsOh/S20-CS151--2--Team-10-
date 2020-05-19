@@ -18,6 +18,11 @@ public class PatientListController {
 		systemCtrl=ctrl;
 	}
 	
+	public void addPatient(Patient patient) 
+	{
+		model.add(patient);
+	}
+	
 	public void removePatient(int num)
 	{
 		model.remove(num);
@@ -35,6 +40,10 @@ public class PatientListController {
 	
 	public JPanel getViewPanel() {
 		return view.generateUI();
+	}
+	
+	public void refreshFrame() {
+		systemCtrl.refreshFrame();
 	}
 	//Add patient
 	/**

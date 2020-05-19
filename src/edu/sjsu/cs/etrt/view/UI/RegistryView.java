@@ -13,16 +13,19 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import edu.sjsu.cs.etrt.controller.PatientController;
+import edu.sjsu.cs.etrt.controller.PatientListController;
 import edu.sjsu.cs.etrt.controller.SystemController;
+import edu.sjsu.cs.etrt.model.Patient.Patient;
 
 public class RegistryView extends UIPanel{
 	private PatientController patientCtrl;
+	private PatientListController patientListCtrl;
 	private SystemController systemCtrl;
 	private Boolean edit;
 	
-	public RegistryView(PatientController p, SystemController ctrl)
+	public RegistryView(PatientListController p, SystemController ctrl)
 	{
-		this.patientCtrl=p;
+		this.patientListCtrl=p;
 		systemCtrl=ctrl;
 		edit = false;
 	}
@@ -288,32 +291,35 @@ public class RegistryView extends UIPanel{
 		});
 		panelButtons.add(systemButton);
 		JButton submitButton = new JButton("Submit");
+		//NEEDS TO GET BACK TO THE SYSTEM
 		submitButton.addActionListener(event->{
-			patientCtrl.setRegistrationDate(tRegDate.getText());
-			patientCtrl.setDateOfBirth(tDoB.getText());
-			patientCtrl.setPhoneNumber(tPhoneNumber.getText());
-			patientCtrl.setGender(tGender.getText());
-			patientCtrl.setSocialId(tSocialId.getText());
+			Patient p = new Patient();
+			patientListCtrl.addPatient(p);
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setRegistrationDate(tRegDate.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setDateOfBirth(tDoB.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setPhoneNumber(tPhoneNumber.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setGender(tGender.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setSocialID(tSocialId.getText());
 			int i=Integer.parseInt(tCategory.getText());
-			patientCtrl.setCategory(patientCtrl.getCategory().intToCategory(i));
-			patientCtrl.setInsuranceID(tInsuranceId.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setCategoryNum(patientCtrl.getCategory().intToCategory(i));
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setInsuranceID(tInsuranceId.getText());
 			i=Integer.parseInt(tVisitNum.getText());
-			patientCtrl.setVisitNumber(i);
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setVisitNumber(i);
 			i=Integer.parseInt(tScoreTFI.getText());
-			patientCtrl.setScoreTFI(i);
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setScoreTFI(i);
 			i=Integer.parseInt(tScoreTHI.getText());
-			patientCtrl.setScoreTHI(i);
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setScoreTHI(i);
 			//Address
-			patientCtrl.setStreet1(tStreet.getText());
-			patientCtrl.setCity(tCity.getText());
-			patientCtrl.setState(tState.getText());
-			patientCtrl.setZip(tZip.getText());
-			patientCtrl.setCountry(tCountry.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setStreet1(tStreet.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setCity(tCity.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setState(tState.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setZip(tZip.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setCountry(tCountry.getText());
 			//Demographics
-			patientCtrl.setWorkStatus(tWorkStatus.getText());
-			patientCtrl.setEducationalDegree(tEducationalDegree.getText());
-			patientCtrl.setOccupation(tOccupation.getText());
-			patientCtrl.setNotes(tNotes.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setWorkStatus(tWorkStatus.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setEducationalDegree(tEducationalDegree.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setOccupation(tOccupation.getText());
+			patientListCtrl.getPatient(patientListCtrl.getSize()).setNotes(tNotes.getText());
 		});
 		panelButtons.add(submitButton);
 			

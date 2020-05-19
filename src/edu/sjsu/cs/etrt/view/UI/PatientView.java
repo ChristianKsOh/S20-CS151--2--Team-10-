@@ -269,6 +269,7 @@ public class PatientView extends UIPanel{
 		panelButtons.add(systemButton);
 		if(edit)
 		{
+			//refresh this page after submit or go back to system
 			JButton submitButton = new JButton("Submit");
 			submitButton.addActionListener(event->{
 				edit=false;
@@ -305,9 +306,11 @@ public class PatientView extends UIPanel{
 		}
 		else
 		{
+			//Refresh this page with edit set to true;
 			JButton editButton = new JButton("Edit");
 			editButton.addActionListener(event->{
 				edit=true;
+				panel.revalidate();
 				systemCtrl.refreshFrame();
 			});	
 			panelButtons.add(editButton);

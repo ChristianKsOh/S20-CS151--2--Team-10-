@@ -21,53 +21,13 @@ public class FormController {
 	}
 	
 	//controller call view create form
-	public void createForm(){
+	public void updateQuestionnaire(){
 		view.refresh();
 	}
 	
 	//model conversion of methods
 	public Patient getPatient() {
 		return model.getPatient();
-	}
-	
-	public void makeForm(boolean thi) {
-		model.makeForm(thi);
-	}
-	
-	public void makeAnswers(boolean thi) {
-		model.makeAnswers(thi);
-	}
-	
-	public void setQuestion(int q, String s) {
-		model.setQuestion(q, s);
-	}
-	
-	public String getQuestion(int q) {
-		return model.getQuestion(q);
-	}
-	
-	public int getQuestionSize() {
-		return model.getQuestionSize();
-	}
-	
-	public void setQuestionList() {
-		model.setQuestionList();
-	}
-	
-	public void setAnswerList(int size) {
-		model.setAnswerList(size);
-	}
-	
-	public void setAnswer(int q, String s) {
-		model.setAnswer(q, s);
-	}
-	
-	public String getAnswer(int q) {
-		return model.getAnswer(q);
-	}
-	
-	public int getAnswerSize() {
-		return model.getAnswerSize();
 	}
 	
 	public void setScore(int score) {

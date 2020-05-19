@@ -1,4 +1,4 @@
-package edu.sjsu.cs.etrt.model.Project;
+package edu.sjsu.cs.etrt.model.Patient;
 
 /**
  * describe Treatment protocol based on Category 

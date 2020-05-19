@@ -2,9 +2,11 @@ package edu.sjsu.cs.etrt.model.Patient;
 
 import java.util.LinkedList;
 
+import edu.sjsu.cs.etrt.controller.PatientController;
+
 public class PatientList {
 private LinkedList<Patient> patientQueue;
-	
+	private PatientController patientCtrl;
 	/**
 	 * Constructor for queue;
 	 */
@@ -17,7 +19,7 @@ private LinkedList<Patient> patientQueue;
 	 * Enqueues a patient
 	 * @param patient
 	 */
-	public void add(Patient p)
+	public void addPatient(Patient p)
 	{
 		patientQueue.add(p);
 	}

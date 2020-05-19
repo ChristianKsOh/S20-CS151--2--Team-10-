@@ -52,6 +52,7 @@ public class Patient implements Comparable{
 	public void setScoreTHI(int thi) {
 		scoreTHI=thi;
 	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -271,8 +272,10 @@ public class Patient implements Comparable{
 	 * Updates a patient's profile
 	 * @param name, date, gender, birth, number, social, insurance, category, visit
 	 */
-	public void updateProfile(String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
+	public void updateProfile(int tfi, int thi,String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
 	{
+		this.scoreTHI=thi;
+		this.scoreTFI=tfi;
 		this.firstName=n;
 		this.lastName=l;
 		this.middleInitial=mi;

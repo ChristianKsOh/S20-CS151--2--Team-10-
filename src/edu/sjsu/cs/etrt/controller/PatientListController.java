@@ -6,11 +6,13 @@ import javax.swing.JPanel;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Patient.PatientList;
 import edu.sjsu.cs.etrt.view.UI.PatientListView;
+import edu.sjsu.cs.etrt.view.UI.PatientView;
 
 public class PatientListController {
 	private PatientList model;
 	private PatientListView view;
 	private SystemController systemCtrl;
+	private PatientController pCtrl;
 	
 	public PatientListController(SystemController ctrl) {
 		this.model=new PatientList();
@@ -32,6 +34,7 @@ public class PatientListController {
 	{
 		model.addPatient(p);
 	}
+	
 	public int getSize()
 	{
 		return model.size();
@@ -39,6 +42,10 @@ public class PatientListController {
 	
 	public JPanel getViewPanel() {
 		return view.generateUI();
+	}
+	
+	public void refreshPatientFrame() {
+		
 	}
 	
 	//I SAW YOU DO THIS KEVIN - uadded a method in systemcontroller and a method in system(the model)

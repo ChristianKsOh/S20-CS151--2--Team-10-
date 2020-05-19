@@ -1,6 +1,7 @@
 package edu.sjsu.cs.etrt.view.UI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
@@ -29,6 +31,12 @@ public class PatientView extends UIPanel{
 		systemCtrl=ctrl;
 		edit = false;
 	}
+	public PatientView(PatientController p, SystemController ctrl, boolean edit)
+	{
+		this.patientCtrl=p;
+		systemCtrl=ctrl;
+		this.edit = edit;
+	}
 	//Displays patient data
 	public void refresh()
 	{
@@ -37,7 +45,7 @@ public class PatientView extends UIPanel{
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.setSize(1000, 800);
 		JPanel panel = new JPanel();
-		JLabel header= new JLabel(patientCtrl.getFirstName()+" " + patientCtrl.getMiddleInitial() + " " + patientCtrl.getLastName());
+		JLabel header= new JLabel("ID: "+patientCtrl.getThisPatientId()+", "+patientCtrl.getFirstName()+" " + patientCtrl.getMiddleInitial() + " " + patientCtrl.getLastName());
 		header.setFont (header.getFont ().deriveFont (32.0f));
 		header.setHorizontalAlignment(SwingConstants.CENTER);
 		mainPanel.add(header, BorderLayout.NORTH);
@@ -61,6 +69,8 @@ public class PatientView extends UIPanel{
 		JTextArea tGender = new JTextArea(patientCtrl.getGender());
 		tGender.setEditable(edit);
 		c.fill = GridBagConstraints.HORIZONTAL;
+		if(edit)
+			tGender.setBackground(Color.GREEN);
 		c.weightx = 0.5;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -73,6 +83,8 @@ public class PatientView extends UIPanel{
 		JTextArea tPhoneNumber = new JTextArea(patientCtrl.getPhoneNumber());
 		tPhoneNumber.setEditable(edit);
 		c.fill = GridBagConstraints.HORIZONTAL;
+		if(edit)
+			tPhoneNumber.setBackground(Color.GREEN);
 		c.weightx = 0.5;
 		c.gridx = 2;
 		c.gridy = 1;
@@ -84,15 +96,17 @@ public class PatientView extends UIPanel{
 		JTextArea tDoB = new JTextArea(patientCtrl.getDateOfBirth());
 		tDoB.setEditable(edit);
 		c.fill = GridBagConstraints.HORIZONTAL;
+		if(edit)
+			tDoB.setBackground(Color.GREEN);
 		c.gridx = 4;
 		c.gridy = 1;
 		panel.add(label, c);
 		c.gridx=5;
 		panel.add(tDoB,c);
 
-		label = new JLabel("Regisration Date: ");
+		label = new JLabel("Registration Date: ");
 		JTextArea tRegDate = new JTextArea(patientCtrl.getRegistrationDate());
-		tRegDate.setEditable(edit);
+		tRegDate.setEditable(false);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 0.5;
 		c.gridx = 6;
@@ -105,6 +119,8 @@ public class PatientView extends UIPanel{
 		label = new JLabel("Social Id:");
 		JTextArea tSocialId = new JTextArea(patientCtrl.getSocialID());
 		tSocialId.setEditable(edit);
+		if(edit)
+			tSocialId.setBackground(Color.GREEN);
 		c.gridy=2;
 		c.gridx = 0;
 		panel.add(label, c);
@@ -114,6 +130,8 @@ public class PatientView extends UIPanel{
 		label = new JLabel("Insurance Id: ");
 		JTextArea tInsuranceId = new JTextArea(patientCtrl.getInsuranceID());
 		tInsuranceId.setEditable(edit);
+		if(edit)
+			tInsuranceId.setBackground(Color.GREEN);
 		c.gridx = 2;
 		panel.add(label, c);
 		c.gridx=3;
@@ -173,8 +191,10 @@ public class PatientView extends UIPanel{
 		
 		//new row
 		label = new JLabel("Street: ");
-		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1() +" " + patientCtrl.getStreet2());
+		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1());
 		tStreet.setEditable(edit);
+		if(edit)
+			tStreet.setBackground(Color.GREEN);
 		c.weightx=0.5;
 		c.gridx = 0;
 		c.gridy = 5;
@@ -187,6 +207,8 @@ public class PatientView extends UIPanel{
 		label = new JLabel("Work Status: ");
 		JTextArea tWorkStatus = new JTextArea(patientCtrl.getWorkStatus());
 		tWorkStatus.setEditable(edit);
+		if(edit)
+			tWorkStatus.setBackground(Color.GREEN);
 		c.gridwidth=1;
 		c.gridx = 4;
 		panel.add(label, c);
@@ -196,6 +218,8 @@ public class PatientView extends UIPanel{
 		label = new JLabel("Occupation: ");
 		JTextArea tOccupation = new JTextArea(patientCtrl.getOccupation());
 		tOccupation.setEditable(edit);
+		if(edit)
+			tOccupation.setBackground(Color.GREEN);
 		c.gridx = 6;
 		panel.add(label, c);
 		c.gridx=7;
@@ -205,6 +229,8 @@ public class PatientView extends UIPanel{
 		label = new JLabel("City: ");
 		JTextArea tCity = new JTextArea(patientCtrl.getCity());
 		tCity.setEditable(edit);
+		if(edit)
+			tCity.setBackground(Color.GREEN);
 		c.gridx = 0;
 		c.gridy = 6;
 		panel.add(label, c);
@@ -214,6 +240,8 @@ public class PatientView extends UIPanel{
 		label=new JLabel("State: ");
 		JTextArea tState= new JTextArea(patientCtrl.getState());
 		tState.setEditable(edit);
+		if(edit)
+			tState.setBackground(Color.GREEN);
 		c.gridx=2;
 		panel.add(label,c);
 		c.gridx=3;
@@ -222,6 +250,8 @@ public class PatientView extends UIPanel{
 		label = new JLabel("Education: ");
 		JTextArea tEducationalDegree = new JTextArea(patientCtrl.getEducationalDegree());
 		tEducationalDegree.setEditable(edit);
+		if(edit)
+			tEducationalDegree.setBackground(Color.GREEN);
 		c.gridx = 4;
 		panel.add(label, c);
 		c.gridx=5;
@@ -232,6 +262,8 @@ public class PatientView extends UIPanel{
 		label = new JLabel("Zip: ");
 		JTextArea tZip = new JTextArea(patientCtrl.getZip());
 		tZip.setEditable(edit);
+		if(edit)
+			tZip.setBackground(Color.GREEN);
 		c.gridx = 0;
 		c.gridy=7;
 		panel.add(label, c);
@@ -242,6 +274,8 @@ public class PatientView extends UIPanel{
 		label =new JLabel("Country: ");
 		JTextArea tCountry = new JTextArea(patientCtrl.getCountry());
 		tCountry.setEditable(edit);
+		if(edit)
+			tCountry.setBackground(Color.GREEN);
 		c.gridx = 2;
 		panel.add(label, c);
 		c.gridx=3;
@@ -250,14 +284,16 @@ public class PatientView extends UIPanel{
 		label = new JLabel("Additional Notes: ");
 		JTextArea tNotes = new JTextArea(patientCtrl.getNotes());
 		tNotes.setEditable(edit);
+		if(edit)
+			tNotes.setBackground(Color.GREEN);
 		c.gridx = 0;
 		c.gridy = 8;
 		panel.add(label, c);
+		c.gridwidth=8;
 		c.ipady=3;
 		c.ipadx=8;
 		c.gridy=9;
 		panel.add(tNotes,c);
-		
 		mainPanel.add(panel,BorderLayout.CENTER);
 		JPanel panelButtons = new JPanel();
 		panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
@@ -273,20 +309,12 @@ public class PatientView extends UIPanel{
 			JButton submitButton = new JButton("Submit");
 			submitButton.addActionListener(event->{
 				edit=false;
-				patientCtrl.setRegistrationDate(tRegDate.getText());
 				patientCtrl.setDateOfBirth(tDoB.getText());
 				patientCtrl.setPhoneNumber(tPhoneNumber.getText());
 				patientCtrl.setGender(tGender.getText());
 				patientCtrl.setSocialId(tSocialId.getText());
-				int i=Integer.parseInt(tCategory.getText().substring(8));
-				patientCtrl.setCategory(patientCtrl.getCategory().intToCategory(i));
-				patientCtrl.setInsuranceID(tInsuranceId.getText());
-				i=Integer.parseInt(tVisitNum.getText());
-				patientCtrl.setVisitNumber(i);
-				i=Integer.parseInt(tScoreTFI.getText());
-				patientCtrl.setScoreTFI(i);
-				i=Integer.parseInt(tScoreTHI.getText());
-				patientCtrl.setScoreTHI(i);
+
+				patientCtrl.setInsuranceID(tInsuranceId.getText());;
 				//Address
 				patientCtrl.setStreet1(tStreet.getText());
 				patientCtrl.setCity(tCity.getText());
@@ -298,9 +326,12 @@ public class PatientView extends UIPanel{
 				patientCtrl.setEducationalDegree(tEducationalDegree.getText());
 				patientCtrl.setOccupation(tOccupation.getText());
 				patientCtrl.setNotes(tNotes.getText());
+				systemCtrl.openSystem();
 				
+
 				refresh();
 				systemCtrl.refreshFrame();
+
 			});
 			panelButtons.add(submitButton);
 			
@@ -317,6 +348,11 @@ public class PatientView extends UIPanel{
 			panelButtons.add(editButton);
 		}
 		mainPanel.add(panelButtons, BorderLayout.SOUTH);
+		JScrollPane scrollPane = new JScrollPane(panel);
+		scrollPane.setPreferredSize(new Dimension(1000,800));
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+		mainPanel.add(scrollPane);
 		main.add(mainPanel);	
 	}
 	/*

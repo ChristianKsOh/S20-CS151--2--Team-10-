@@ -34,7 +34,7 @@ public class Patient implements Comparable{
 		this.orderNumber="NA";
 		this.categoryNum=categoryNum.category0;
 		this.visitNumber=0;
-		Address a = new Address("NA","NA","NA","NA","NA","NA");
+		Address a = new Address("NA","NA","NA","NA","NA");
 		this.patientAddress=a;
 		Demographics d= new Demographics("NA","NA","NA","NA");
 		this.patientDemographic=d;
@@ -114,16 +114,6 @@ public class Patient implements Comparable{
 	public void setStreet1(String s)
 	{
 		this.patientAddress.setStreet1(s);
-	}
-	
-	public String getStreet2()
-	{
-		return this.patientAddress.getStreet2();
-	}
-	
-	public void setStreet2(String s)
-	{
-		this.patientAddress.setStreet2(s);
 	}
 	
 	public String getCity()

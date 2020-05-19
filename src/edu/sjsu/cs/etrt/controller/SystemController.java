@@ -27,6 +27,7 @@ public class SystemController{
 		model=new System(this);
 		view=new SystemView(this);
 		this.create=new VisitCreateView(this);
+
 	}
 	
 	/**
@@ -68,7 +69,16 @@ public class SystemController{
 	public boolean openPatient(int num) {
 		Patient patient=model.getPatientList().getPatient(num);
 		if(patient!=null) {
-			updateFrame(new PatientController(patient,this).getViewPanel());
+			updateFrame(new PatientController(patient,this, num).getViewPanel());
+			return true;
+		} 
+		return false;
+	}
+	
+	public boolean openPatient(int num, boolean edit) {
+		Patient patient=model.getPatientList().getPatient(num);
+		if(patient!=null) {
+			updateFrame(new PatientController(patient,this,num,edit).getViewPanel());
 			return true;
 		} 
 		return false;

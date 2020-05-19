@@ -84,8 +84,7 @@ public class PatientListView extends UIPanel{
 						break;
 				}
 				//Gets the right patient and needs to open PatientView
-				patientQ.getPatient(i);
-				patientQ.openPatient(i);
+				systemCtrl.openPatient(i,true);
 			});
 			c.gridx=3;
 			panel.add(editPatient[counter],c);

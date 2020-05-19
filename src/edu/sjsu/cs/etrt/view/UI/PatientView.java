@@ -101,9 +101,37 @@ public class PatientView extends UIPanel{
 		c.gridx=7;
 		panel.add(tRegDate,c);
 		
+
+		label = new JLabel("Social Id:");
+		JTextArea tSocialId = new JTextArea(patientCtrl.getSocialID());
+		tSocialId.setEditable(edit);
+		c.gridy=2;
+		c.gridx = 0;
+		panel.add(label, c);
+		c.gridx=1;
+		panel.add(tSocialId,c);
+
+		label = new JLabel("Insurance Id: ");
+		JTextArea tInsuranceId = new JTextArea(patientCtrl.getInsuranceID());
+		tInsuranceId.setEditable(edit);
+		c.gridx = 2;
+		panel.add(label, c);
+		c.gridx=3;
+		panel.add(tInsuranceId,c);
+		
+		
+		label = new JLabel("Visit Number: ");
+		JTextArea tVisitNum = new JTextArea("" + patientCtrl.getVisitNumber());
+		tVisitNum.setEditable(false);
+		c.gridx = 4;
+		panel.add(label, c);
+		c.gridx=5;
+		panel.add(tVisitNum,c);
+		
+		//new row
 		label= new JLabel("Category: ");
 		JTextArea tCategory = new JTextArea(""+patientCtrl.getCategory());
-		tCategory.setEditable(edit);
+		tCategory.setEditable(false);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridy = 2;
 		c.gridx = 0;
@@ -111,36 +139,29 @@ public class PatientView extends UIPanel{
 		c.gridx=1;
 		panel.add(tCategory,c);
 
-		label = new JLabel("Social Id:");
-		JTextArea tSocialId = new JTextArea(patientCtrl.getSocialID());
-		tSocialId.setEditable(edit);
+		
+		label = new JLabel("TFI Score: ");
+		JTextArea tScoreTFI = new JTextArea("" + patientCtrl.getScoreTFI());
+		tVisitNum.setEditable(false);
 		c.gridx = 2;
 		panel.add(label, c);
 		c.gridx=3;
-		panel.add(tSocialId,c);
-
-		label = new JLabel("Insurance Id: ");
-		JTextArea tInsuranceId = new JTextArea(patientCtrl.getInsuranceID());
-		tInsuranceId.setEditable(edit);
+		panel.add(tScoreTFI,c);
+		
+		label = new JLabel("THI Score: ");
+		JTextArea tScoreTHI = new JTextArea("" + patientCtrl.getScoreTHI());
+		tVisitNum.setEditable(false);
 		c.gridx = 4;
 		panel.add(label, c);
 		c.gridx=5;
-		panel.add(tInsuranceId,c);
-		
-		label = new JLabel("Visit Number: ");
-		JTextArea tVisitNum = new JTextArea("" + patientCtrl.getVisitNumber());
-		tVisitNum.setEditable(edit);
-		c.gridx = 6;
-		panel.add(label, c);
-		c.gridx=7;
-		panel.add(tVisitNum,c);
+		panel.add(tScoreTHI,c);
 		
 		//Start of Address Section(Left Side)
 		label = new JLabel("Address");
 		c.ipady=50;
 		c.gridwidth=1;
 		c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 4;
 		panel.add(label, c);
 		//Start of Demographics section(Right side)
 		label = new JLabel("Demographics");
@@ -150,13 +171,13 @@ public class PatientView extends UIPanel{
 		c.gridwidth=1;
 				
 		
-		//Start row 4
+		//new row
 		label = new JLabel("Street: ");
 		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1() +" " + patientCtrl.getStreet2());
 		tStreet.setEditable(edit);
 		c.weightx=0.5;
 		c.gridx = 0;
-		c.gridy = 4;
+		c.gridy = 5;
 		panel.add(label,c);
 		c.gridwidth=3;
 		c.gridx=1;
@@ -180,12 +201,12 @@ public class PatientView extends UIPanel{
 		c.gridx=7;
 		panel.add(tOccupation,c);
 		
-		//Start row 5
+		//new row
 		label = new JLabel("City: ");
 		JTextArea tCity = new JTextArea(patientCtrl.getCity());
 		tCity.setEditable(edit);
 		c.gridx = 0;
-		c.gridy = 5;
+		c.gridy = 6;
 		panel.add(label, c);
 		c.gridx=1;
 		panel.add(tCity,c);
@@ -206,13 +227,13 @@ public class PatientView extends UIPanel{
 		c.gridx=5;
 		panel.add(tEducationalDegree,c);
 		
-		//Start row 6
+		//new Row
 		
 		label = new JLabel("Zip: ");
 		JTextArea tZip = new JTextArea(patientCtrl.getZip());
 		tZip.setEditable(edit);
 		c.gridx = 0;
-		c.gridy=6;
+		c.gridy=7;
 		panel.add(label, c);
 		c.gridx=1;
 		panel.add(tZip,c);
@@ -230,11 +251,11 @@ public class PatientView extends UIPanel{
 		JTextArea tNotes = new JTextArea(patientCtrl.getNotes());
 		tNotes.setEditable(edit);
 		c.gridx = 0;
-		c.gridy = 7;
+		c.gridy = 8;
 		panel.add(label, c);
 		c.ipady=3;
 		c.ipadx=8;
-		c.gridy=8;
+		c.gridy=9;
 		panel.add(tNotes,c);
 		
 		mainPanel.add(panel,BorderLayout.CENTER);
@@ -261,6 +282,10 @@ public class PatientView extends UIPanel{
 				patientCtrl.setInsuranceID(tInsuranceId.getText());
 				i=Integer.parseInt(tVisitNum.getText());
 				patientCtrl.setVisitNumber(i);
+				i=Integer.parseInt(tScoreTFI.getText());
+				patientCtrl.setScoreTFI(i);
+				i=Integer.parseInt(tScoreTHI.getText());
+				patientCtrl.setScoreTHI(i);
 				//Address
 				patientCtrl.setStreet1(tStreet.getText());
 				patientCtrl.setCity(tCity.getText());

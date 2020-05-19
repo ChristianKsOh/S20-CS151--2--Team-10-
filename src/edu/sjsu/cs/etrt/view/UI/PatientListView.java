@@ -15,16 +15,19 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import edu.sjsu.cs.etrt.controller.PatientListController;
+import edu.sjsu.cs.etrt.controller.SystemController;
 import edu.sjsu.cs.etrt.model.Patient.PatientList;
 
 public class PatientListView extends UIPanel{
 	
 	private PatientListController patientQ;
 	private int num;
+	private SystemController systemCtrl;
 	
-	public PatientListView(PatientListController p) {
+	public PatientListView(PatientListController p, SystemController systemCtrl) {
 		patientQ=p;
 		num=0;
+		this.systemCtrl=systemCtrl;
 	}
 	
 	public void refresh()
@@ -79,6 +82,7 @@ public class PatientListView extends UIPanel{
 		JButton back = new JButton("System Return");
 		back.addActionListener(event->{
 			//GO BACK TO SYSTEM
+			//systemCtrl.doWhatever();
 		});
 		panelButtons.add(addPatient);
 		panelButtons.add(back);

@@ -10,13 +10,31 @@ public class PatientController {
 	private Patient model;
 	private PatientView view;
 	private SystemController systemController;
+	boolean edit;
+	private int thisPatientId;
 	
-	public PatientController(Patient patient, SystemController systemController)
+	public PatientController(Patient patient, SystemController systemController, int n)
 	{
 		model = patient;
 		this.view=new PatientView(this,systemController);
 		this.systemController=systemController;
+		edit=false;
+		this.thisPatientId=n;
 		
+	}
+	
+	public PatientController(Patient patient, SystemController systemController, int n, boolean edit)
+	{
+		model = patient;
+		this.view=new PatientView(this,systemController, edit);
+		this.systemController=systemController;
+		this.edit=edit;
+		this.thisPatientId=n;
+		
+	}
+	
+	public int getThisPatientId() {
+		return thisPatientId;
 	}
 	
 	public void updatePatients()
@@ -143,14 +161,6 @@ public class PatientController {
 	
 	public String getStreet1() {
 		return model.getStreet1();
-	}
-	
-	public void setStreet2(String s) {
-		model.setStreet2(s);
-	}
-
-	public String getStreet2() {
-		return model.getStreet2();
 	}
 	
 	public String getCity()

@@ -48,7 +48,7 @@ public class PatientListController {
 		
 	}
 	
-	//I SAW YOU DO THIS KEVIN - uadded a method in systemcontroller and a method in system(the model)
+	//I SAW YOU DO THIS KEVIN - u added a method in systemcontroller and a method in system(the model)
 	public void openPatient(Patient P) {
 		//systemCtrl.dosomethign();
 	}

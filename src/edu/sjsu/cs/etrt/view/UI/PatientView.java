@@ -29,6 +29,12 @@ public class PatientView extends UIPanel{
 		systemCtrl=ctrl;
 		edit = false;
 	}
+	public PatientView(PatientController p, SystemController ctrl, boolean edit)
+	{
+		this.patientCtrl=p;
+		systemCtrl=ctrl;
+		this.edit = edit;
+	}
 	//Displays patient data
 	public void refresh()
 	{
@@ -173,7 +179,7 @@ public class PatientView extends UIPanel{
 		
 		//new row
 		label = new JLabel("Street: ");
-		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1() +" " + patientCtrl.getStreet2());
+		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1());
 		tStreet.setEditable(edit);
 		c.weightx=0.5;
 		c.gridx = 0;
@@ -298,8 +304,8 @@ public class PatientView extends UIPanel{
 				patientCtrl.setEducationalDegree(tEducationalDegree.getText());
 				patientCtrl.setOccupation(tOccupation.getText());
 				patientCtrl.setNotes(tNotes.getText());
+				systemCtrl.openSystem();
 				
-				systemCtrl.refreshFrame();
 			});
 			panelButtons.add(submitButton);
 			
@@ -309,9 +315,7 @@ public class PatientView extends UIPanel{
 			//Refresh this page with edit set to true;
 			JButton editButton = new JButton("Edit");
 			editButton.addActionListener(event->{
-				edit=true;
-				panel.revalidate();
-				systemCtrl.refreshFrame();
+				systemCtrl.openPatient(patientCtrl.getThisPatientId(),true);
 			});	
 			panelButtons.add(editButton);
 		}

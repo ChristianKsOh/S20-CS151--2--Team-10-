@@ -5,6 +5,9 @@ import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.view.UI.PatientView;
 import edu.sjsu.cs.etrt.view.UI.SystemView;
+import edu.sjsu.cs.etrt.model.Patient.Address;
+import edu.sjsu.cs.etrt.model.Patient.Category;
+import edu.sjsu.cs.etrt.model.Patient.Demographics;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Questionnaire.Form;
 import edu.sjsu.cs.etrt.model.System.System;
@@ -19,6 +22,8 @@ public class SystemController{
 		frame=UI;
 		model=new System(this);
 		view=new SystemView(this);
+		model.getPatientList().addPatient(new Patient(100,200,"Kev","Truong","T.","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,123456789,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD","")));
+		model.getPatientList().addPatient(new Patient(100,200,"Kevin","Truong","T.","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,123456789,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD","")));
 	}
 	
 	/**
@@ -56,7 +61,16 @@ public class SystemController{
 	public boolean openPatient(int num) {
 		Patient patient=model.getPatientList().getPatient(num);
 		if(patient!=null) {
-			updateFrame(new PatientController(patient,this).getViewPanel());
+			updateFrame(new PatientController(patient,this, num).getViewPanel());
+			return true;
+		} 
+		return false;
+	}
+	
+	public boolean openPatient(int num, boolean edit) {
+		Patient patient=model.getPatientList().getPatient(num);
+		if(patient!=null) {
+			updateFrame(new PatientController(patient,this,num,edit).getViewPanel());
 			return true;
 		} 
 		return false;

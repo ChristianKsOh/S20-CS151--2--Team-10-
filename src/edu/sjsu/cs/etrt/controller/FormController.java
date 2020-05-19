@@ -2,13 +2,7 @@ package edu.sjsu.cs.etrt.controller;
 
 import edu.sjsu.cs.etrt.model.Patient.*;
 import edu.sjsu.cs.etrt.model.Questionnaire.*;
-import edu.sjsu.cs.etrt.model.Visits.Visit;
 import edu.sjsu.cs.etrt.view.UI.FormView;
-import edu.sjsu.cs.etrt.view.UI.PatientView;
-import edu.sjsu.cs.etrt.view.UI.VisitView;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class FormController {
 	//instances of model, view, and system
@@ -25,15 +19,21 @@ public class FormController {
 	}
 	
 	//controller call view create form
-	public void createForm()
-	{
+	public void createForm(){
 		view.refresh();
 	}
-	
 	
 	//model conversion of methods
 	public Patient getPatient() {
 		return model.getPatient();
+	}
+	
+	public void makeForm(boolean thi) {
+		model.makeForm(thi);
+	}
+	
+	public void makeAnswers(boolean thi) {
+		model.makeAnswers(thi);
 	}
 	
 	public void setQuestion(int q, String s) {
@@ -48,6 +48,14 @@ public class FormController {
 		return model.getQuestionSize();
 	}
 	
+	public void setQuestionList() {
+		model.setQuestionList();
+	}
+	
+	public void setAnswerList(int size) {
+		model.setAnswerList(size);
+	}
+	
 	public void setAnswer(int q, String s) {
 		model.setAnswer(q, s);
 	}
@@ -55,7 +63,6 @@ public class FormController {
 	public String getAnswer(int q) {
 		return model.getAnswer(q);
 	}
-	
 	
 	public int getAnswerSize() {
 		return model.getAnswerSize();
@@ -70,37 +77,14 @@ public class FormController {
 	}	
 
 	public void setTreatment() {
-		switch(model.getPatient().getCategoryNum()) {
-		case category0:
-		case category1:
-		case category2:
-		case category3:
-		case category4:
-		}
-				
+		model.setTreatment();
 	}
 	
 	/**
 	 * set category based on score
 	 */
 	public void setCategory(int score) {		
-		//total possible = 350 / 5 = 70
-		if(score <= 70) {
-			model.getPatient().setCategoryNum(Category.category0); 
-		}
-		else if (score <= 140) {
-			model.getPatient().setCategoryNum(Category.category1);
-		}
-		else if(score <= 210) {
-			model.getPatient().setCategoryNum(Category.category2);
-		}
-		else if(score <= 280)
-		{
-			model.getPatient().setCategoryNum(Category.category3);
-		}
-		else {
-			model.getPatient().setCategoryNum(Category.category4);
-		}
+		model.setCategory(score);
 	}
 	
 	

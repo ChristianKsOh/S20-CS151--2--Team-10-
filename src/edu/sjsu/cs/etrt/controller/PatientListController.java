@@ -18,11 +18,6 @@ public class PatientListController {
 		systemCtrl=ctrl;
 	}
 	
-	public void addPatient(Patient patient) 
-	{
-		model.add(patient);
-	}
-	
 	public void removePatient(int num)
 	{
 		model.remove(num);
@@ -33,6 +28,10 @@ public class PatientListController {
 		return model.getPatient(num);
 	}
 	
+	public void addPatient(Patient p)
+	{
+		model.addPatient(p);
+	}
 	public int getSize()
 	{
 		return model.size();
@@ -42,8 +41,9 @@ public class PatientListController {
 		return view.generateUI();
 	}
 	
-	public void refreshFrame() {
-		systemCtrl.refreshFrame();
+	//I SAW YOU DO THIS KEVIN - uadded a method in systemcontroller and a method in system(the model)
+	public void openPatient(Patient P) {
+		//systemCtrl.dosomethign();
 	}
 	//Add patient
 	/**

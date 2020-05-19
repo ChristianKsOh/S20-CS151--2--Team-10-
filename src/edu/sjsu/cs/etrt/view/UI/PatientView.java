@@ -278,7 +278,7 @@ public class PatientView extends UIPanel{
 				patientCtrl.setPhoneNumber(tPhoneNumber.getText());
 				patientCtrl.setGender(tGender.getText());
 				patientCtrl.setSocialId(tSocialId.getText());
-				int i=Integer.parseInt(tCategory.getText());
+				int i=Integer.parseInt(tCategory.getText().substring(8));
 				patientCtrl.setCategory(patientCtrl.getCategory().intToCategory(i));
 				patientCtrl.setInsuranceID(tInsuranceId.getText());
 				i=Integer.parseInt(tVisitNum.getText());
@@ -299,6 +299,7 @@ public class PatientView extends UIPanel{
 				patientCtrl.setOccupation(tOccupation.getText());
 				patientCtrl.setNotes(tNotes.getText());
 				
+				refresh();
 				systemCtrl.refreshFrame();
 			});
 			panelButtons.add(submitButton);
@@ -310,7 +311,7 @@ public class PatientView extends UIPanel{
 			JButton editButton = new JButton("Edit");
 			editButton.addActionListener(event->{
 				edit=true;
-				panel.revalidate();
+				refresh();
 				systemCtrl.refreshFrame();
 			});	
 			panelButtons.add(editButton);

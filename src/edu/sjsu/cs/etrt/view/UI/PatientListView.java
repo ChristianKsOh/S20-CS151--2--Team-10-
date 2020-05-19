@@ -68,7 +68,8 @@ public class PatientListView extends UIPanel{
 					}
 				}
 				patientQ.removePatient(i);
-				//ADD A PAGE REFRESH AFTER DELETING PATIENT SOME HOW
+				refresh();
+				systemCtrl.refreshFrame();
 			});
 			panel.add(patientLabel,c);
 			c.gridwidth=1;
@@ -84,6 +85,7 @@ public class PatientListView extends UIPanel{
 				}
 				//Gets the right patient and needs to open PatientView
 				patientQ.getPatient(i);
+				patientQ.openPatient(i);
 			});
 			c.gridx=3;
 			panel.add(editPatient[counter],c);

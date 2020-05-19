@@ -1,6 +1,6 @@
 package edu.sjsu.cs.etrt.model.Register;
 
-public class Registry {
+public abstract class Registry {
 	
-	public void registerNewPatient();
+	public abstract void registerNewPatient();
 }

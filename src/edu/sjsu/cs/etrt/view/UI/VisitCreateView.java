@@ -13,12 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import edu.sjsu.cs.etrt.controller.SystemController;
 import edu.sjsu.cs.etrt.controller.VisitQueueController;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Visits.FollowUpVisit;
 
 public class VisitCreateView extends UIPanel{
-	private VisitQueueController controller;
+	private SystemController controller;
 	private boolean incomplete;
 	private boolean patientDoesntExist;
 	
@@ -26,7 +27,7 @@ public class VisitCreateView extends UIPanel{
 	 * The view seen by the user and Used in the JFrame.
 	 * @param ctrl Reference for editing and JFrame.
 	 */
-	public VisitCreateView(VisitQueueController ctrl) {
+	public VisitCreateView(SystemController ctrl) {
 		controller=ctrl;
 		incomplete=false;
 		patientDoesntExist=false;
@@ -175,7 +176,7 @@ public class VisitCreateView extends UIPanel{
 		cancelButton.addActionListener(event->{
 			main.removeAll();
 			incomplete=false;
-			controller.reopenVisitQueueView();
+			controller.openVisitQueue();
 		});
 		JButton submit=new JButton("Create Visit!");
 		submit.addActionListener(event->{

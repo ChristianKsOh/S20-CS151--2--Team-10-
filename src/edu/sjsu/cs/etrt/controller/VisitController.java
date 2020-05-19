@@ -152,4 +152,8 @@ public class VisitController {
 	public void openVisit() {
 		system.updateFrame(getViewPanel());
 	}
+	
+	public void openPatient() {
+		//system.openPatient(model.getPatient().get);
+	}
 }

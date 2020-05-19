@@ -5,8 +5,14 @@ import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.view.UI.PatientView;
 import edu.sjsu.cs.etrt.view.UI.SystemView;
+import edu.sjsu.cs.etrt.view.UI.VisitCreateView;
+import edu.sjsu.cs.etrt.model.Patient.Address;
+import edu.sjsu.cs.etrt.model.Patient.Category;
+import edu.sjsu.cs.etrt.model.Patient.Demographics;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Questionnaire.Form;
+import edu.sjsu.cs.etrt.model.Questionnaire.TFI;
+import edu.sjsu.cs.etrt.model.Questionnaire.THI;
 import edu.sjsu.cs.etrt.model.System.System;
 import edu.sjsu.cs.etrt.model.Visits.Visit;
 
@@ -14,18 +20,20 @@ public class SystemController{
 	private System model;
 	private SystemView view;
 	private JFrame frame;
+	private VisitCreateView create;
 	
 	public SystemController(JFrame UI) {
 		frame=UI;
 		model=new System(this);
 		view=new SystemView(this);
+		this.create=new VisitCreateView(this);
 	}
 	
 	/**
 	 * Open registry to register a new patient
 	 */
 	public void openRegistry() {
-		
+		updateFrame(model.getRegistry().getViewPanel());
 	}
 	
 	/**
@@ -43,6 +51,10 @@ public class SystemController{
 			return true;
 		} 
 		return false;
+	}
+	
+	public void openVisitCreate() {
+		updateFrame(create.generateUI());
 	}
 	
 	/**
@@ -63,11 +75,16 @@ public class SystemController{
 	}
 	
 	/**
-	 * Open Questionnaire
-	 * @param f Questionnaire Form Object
+	 * Open Form
 	 */
-	public void openQuestionnaire() {
-		
+	public void openTFI(Patient p) {
+		FormController form=new FormController(new TFI(p,100),this);
+		updateFrame(form.getViewPanel());
+	}
+	
+	public void openTHI(Patient p) {
+		FormController form=new FormController(new THI(p,100),this);
+		updateFrame(form.getViewPanel());
 	}
 	
 	public void openSystem() {
@@ -76,6 +93,10 @@ public class SystemController{
 	
 	public VisitQueueController getVisitQueue() {
 		return model.getVisitQueue();
+	}
+	
+	public PatientListController getPatientList() {
+		return model.getPatientList();
 	}
 	
 	public JPanel getViewPanel() {

@@ -1,5 +1,7 @@
 package edu.sjsu.cs.etrt.controller;
 
+import javax.swing.JPanel;
+
 import edu.sjsu.cs.etrt.model.Patient.*;
 import edu.sjsu.cs.etrt.model.Questionnaire.*;
 import edu.sjsu.cs.etrt.view.UI.FormView;
@@ -80,16 +82,16 @@ public class FormController {
 		model.setTreatment();
 	}
 	
-	/**
-	 * set category based on score
-	 */
 	public void setCategory(int score) {		
 		model.setCategory(score);
 	}
 	
-	
 	public Form getModel() {
 		return model;
+	}
+	
+	public JPanel getViewPanel() {
+		return view.generateUI();
 	}
 
 }

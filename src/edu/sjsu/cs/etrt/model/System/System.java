@@ -2,20 +2,21 @@ package edu.sjsu.cs.etrt.model.System;
 
 import javax.swing.JFrame;
 
+import edu.sjsu.cs.etrt.controller.PatientListController;
 import edu.sjsu.cs.etrt.controller.SystemController;
 import edu.sjsu.cs.etrt.controller.VisitQueueController;
-import edu.sjsu.cs.etrt.model.Project.Patient;
+import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Questionnaire.Form;
 
 public class System {
 	private VisitQueueController visits;
-	//private PatientQueueController patients;
+	private PatientListController patients;
 	//private Registry
 	private Form questionnaire;
 	
 	public System(SystemController system) {
 		visits=new VisitQueueController(system);
-		//patients=new PatientQueueController(UI);
+		patients=new PatientListController();
 		//Initialize registry
 	}
 	
@@ -39,7 +40,7 @@ public class System {
 	 * Returns PatientQueue instance for editing.
 	 * @return patientqueue
 	 */
-	public PatientQueueController getPatientQueue() {
+	public PatientListController getPatientList() {
 		return patients;
 	}
 	

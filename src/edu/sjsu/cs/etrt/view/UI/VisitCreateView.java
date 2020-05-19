@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import edu.sjsu.cs.etrt.controller.VisitQueueController;
-import edu.sjsu.cs.etrt.model.Project.Patient;
+import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Visits.FollowUpVisit;
 
 public class VisitCreateView extends UIPanel{

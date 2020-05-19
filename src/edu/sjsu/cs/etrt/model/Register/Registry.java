@@ -1,4 +1,4 @@
-package Register;
+package edu.sjsu.cs.etrt.model.Register;
 
 public class Registry {
 	

@@ -48,7 +48,7 @@ public class SystemController{
 	 * @return patientqueue
 	 */
 	public void openPatientQueue() {
-		
+		updateFrame(model.getPatientList().getViewPanel());
 	}
 	
 	/**

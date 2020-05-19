@@ -1,6 +1,6 @@
 package edu.sjsu.cs.etrt.model.Visits;
 
-import edu.sjsu.cs.etrt.model.Project.Patient;
+import edu.sjsu.cs.etrt.model.Patient.Patient;
 
 public abstract class Visit implements Comparable<Visit>{
 	private DateAndTime dateAndTime;

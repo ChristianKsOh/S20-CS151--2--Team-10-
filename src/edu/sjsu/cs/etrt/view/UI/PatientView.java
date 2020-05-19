@@ -43,7 +43,7 @@ public class PatientView extends UIPanel{
 		main.removeAll();
 		JPanel mainPanel=new JPanel();
 		mainPanel.setLayout(new BorderLayout());
-		mainPanel.setSize(1000, 800);
+		//mainPanel.setSize(1000, 400);
 		JPanel panel = new JPanel();
 		JLabel header= new JLabel("ID: "+patientCtrl.getThisPatientId()+", "+patientCtrl.getFirstName()+" " + patientCtrl.getMiddleInitial() + " " + patientCtrl.getLastName());
 		header.setFont (header.getFont ().deriveFont (32.0f));
@@ -349,7 +349,7 @@ public class PatientView extends UIPanel{
 		}
 		mainPanel.add(panelButtons, BorderLayout.SOUTH);
 		JScrollPane scrollPane = new JScrollPane(panel);
-		scrollPane.setPreferredSize(new Dimension(1000,800));
+		scrollPane.setPreferredSize(new Dimension(1000,400));
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
 		mainPanel.add(scrollPane);

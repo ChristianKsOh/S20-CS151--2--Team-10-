@@ -10,7 +10,6 @@ import edu.sjsu.cs.etrt.model.Patient.Address;
 import edu.sjsu.cs.etrt.model.Patient.Category;
 import edu.sjsu.cs.etrt.model.Patient.Demographics;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
-import edu.sjsu.cs.etrt.model.Questionnaire.Form;
 import edu.sjsu.cs.etrt.model.System.System;
 import edu.sjsu.cs.etrt.model.Visits.Visit;
 
@@ -84,13 +83,13 @@ public class SystemController{
 	/**
 	 * Open Form
 	 */
-	public void openTFI(Patient p, Form f) {
-		FormController form = new FormController(p,f,this,true);
+	public void openTFI(Patient p) {
+		FormController form = new FormController(p,this,true);
 		updateFrame(form.getViewPanel());
 	}
 	
-	public void openTHI(Patient p, Form f) {
-		FormController form = new FormController(p,f,this);
+	public void openTHI(Patient p) {
+		FormController form = new FormController(p,this);
 		updateFrame(form.getViewPanel());
 	}
 	

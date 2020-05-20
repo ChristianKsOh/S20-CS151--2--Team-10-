@@ -12,7 +12,8 @@ import javax.swing.*;
 
 public class FormView extends UIPanel{
 	//controller instance
-	private FormController fCtrl;		//form contl
+	private FormController fCtrl;		//form cntrl
+	private PatientController pCtrl;	//patient ctrl?
 	private SystemController systemCtrl;	//systemCtrl
 	boolean displayForm;		//display form based on boolean
 	
@@ -300,8 +301,8 @@ public class FormView extends UIPanel{
 				}
 				//if all questions have been answered
 				if(count == 25) {
-					fCtrl.setTHIScore(score);
-					TFImessage.setText("Submitted successfully! Total: " + fCtrl.getTHIScore());
+					fCtrl.setScoreTHI(score);
+					TFImessage.setText("Submitted successfully! Total: " + fCtrl.getScoreTHI());
 					//reset count and score
 					count = score = 0;
 				}
@@ -328,8 +329,8 @@ public class FormView extends UIPanel{
 				
 				//if at least 19 questions have been answered
 				if(count >= 19) {
-					fCtrl.setTFIScore(score);
-					TFImessage.setText("Submitted successfully! Total: " + fCtrl.getTFIScore());
+					fCtrl.setScoreTFI(score);
+					TFImessage.setText("Submitted successfully! Total: " + fCtrl.getScoreTFI());
 					//reset count and score
 					count = score = 0;
 				}
@@ -397,7 +398,7 @@ public class FormView extends UIPanel{
 		
 						
 		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	

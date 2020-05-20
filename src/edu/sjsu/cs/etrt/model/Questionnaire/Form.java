@@ -3,10 +3,11 @@ package edu.sjsu.cs.etrt.model.Questionnaire;
 import edu.sjsu.cs.etrt.model.Patient.*;
 //import UI.UIPanel;
 
-public abstract class Form {//implements Comparable<Form>{
-	private int score;			//initialized to 0
+public abstract class Form {
+	private int THIscore;	//store THIscore		
+	private int TFIscore;	//store TFIscore
+	private Patient patient;	//patient object
 	//private Treatment treatmentNum;		//treatment number assigned
-	private Patient patient;					//patient object
 	
 	
 	/**
@@ -18,10 +19,10 @@ public abstract class Form {//implements Comparable<Form>{
 	 * @param score score of form
 	 * @param t enumeration treatment of form
 	 */
-	public Form(Patient patient, int score) {
+	public Form(Patient patient, int thiscore, int tfiscore) {
 		this.patient = patient;	
-		this.score = score;
-		//this.treatmentNum = t;
+		this.THIscore = thiscore;
+		this.TFIscore = tfiscore;
 	}
 	
 	/**
@@ -33,26 +34,43 @@ public abstract class Form {//implements Comparable<Form>{
 	}
 	
 	/**
-	 * set score per question
+	 * set THI score of patient
 	 * @param score value
 	 */
-	public void setScore(int score) {
-		this.score = score;
+	public void setTHIScore(int s) {
+		this.getPatient().setScoreTHI(s);
 	}
+	
+	/**
+	 * get THI patient score
+	 * 
+	 */
+	
+	public int getTHIScore() {
+		return this.getPatient().getScoreTHI();
+	}	
 	
 	
 	/**
-	 * get score
-	 * @return score value
+	 * set TFIscore of patient
+	 * @param score value
 	 */
-	public int getScore() {
-		return this.score;
+	public void setTFIScore(int s) {
+		this.getPatient().setScoreTFI(s);
+	}
+	
+	/**
+	 * get TFIScore
+	 * @return score value
+	 */ 
+	public int getTFIScore() {
+		return this.getPatient().getScoreTFI();
 	}	
-
-		
+	
 	/**
 	 * set treatment based on category
 	 */
+	/*
 	public void setTreatment() {
 		switch(getPatient().getCategoryNum()) {
 		case category0:
@@ -63,10 +81,12 @@ public abstract class Form {//implements Comparable<Form>{
 		}
 				
 	}
+	*/
 	
 	/**
 	 * set category based on score
 	 */
+	/*
 	public void setCategory(int score) {		
 		//total possible = 350 / 5 = 70
 		if(score <= 70) {
@@ -86,6 +106,7 @@ public abstract class Form {//implements Comparable<Form>{
 			getPatient().setCategoryNum(Category.category4);
 		}
 	}
+	*/
 	
 	/**
 	 * check whether form is THI or TFI

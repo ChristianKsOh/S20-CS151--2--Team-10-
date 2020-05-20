@@ -11,47 +11,48 @@ public class FormController {
 	private Form model;
 	private FormView view;
 	private SystemController system;
+	boolean displayType;
+	private Patient patient;
 	
-	//set controller handler
-	public FormController(Form form, SystemController system)
+	//form, controller, type
+	public FormController(Patient p, Form f, SystemController s) {
+		this.model = f;
+		this.patient = p;
+		this.view = new FormView(this, s);
+		this.system = s;
+		this.displayType = false;
+	}
+	
+	//form, controller, type
+	public FormController(Patient p, Form f, SystemController s, boolean b) {
+		this.model = f;
+		this.patient = p;
+		this.view = new FormView(this, s);
+		this.system = s;
+		this.displayType = b;
+	}
+	
+	//overwrite form methods
+	public void setTHIScore(int s) {
+		model.setTHIScore(s);
+	}
+	
+	public int getTHIScore() {
+		return model.getTHIScore();
+	}
+	
+	public void setTFIScore(int s) {
+		model.setTFIScore(s);
+	}
+	
+	public int getTFIScore() {
+		return model.getTFIScore();
+	}
+	
+	public JPanel getViewPanel()
 	{
-		model = form;
-		this.view=new FormView(this,system);
-		this.system=system;
-	}
-	
-	//controller call view create form
-	public void updateQuestionnaire(){
-		view.refresh();
-	}
-	
-	//model conversion of methods
-	public Patient getPatient() {
-		return model.getPatient();
-	}
-	
-	public void setScore(int score) {
-		model.setScore(score);
-	}
-	
-	public int getScore() {
-		return model.getScore();
-	}	
-
-	public void setTreatment() {
-		model.setTreatment();
-	}
-	
-	public void setCategory(int score) {		
-		model.setCategory(score);
-	}
-	
-	public Form getModel() {
-		return model;
-	}
-	
-	public JPanel getViewPanel() {
 		return view.generateUI();
 	}
+	
 
 }

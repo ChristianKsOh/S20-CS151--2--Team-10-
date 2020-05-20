@@ -56,7 +56,7 @@ public class FormView extends UIPanel{
 		JButton TFIsubmit = new JButton("Submit");		
 		JButton THIreset = new JButton("Reset");		//reset questionnaire
 		JButton TFIreset = new JButton("Reset");	
-		JButton goBack1 = new JButton("Back to Patient ");		//go back buttons
+		JButton goBack1 = new JButton("Back to Patient");		//go back buttons
 		JButton goBack2 = new JButton("Back to Patient");
 		JButton THIrandom = new JButton("Quick Fill");		//fill answers
 		JButton TFIrandom = new JButton("Quick Fill");

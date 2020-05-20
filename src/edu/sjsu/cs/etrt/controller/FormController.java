@@ -40,7 +40,7 @@ public class FormController {
 	}
 	
 	public void openView() {
-		system.openPatient(model.getVisitNumber()) ;
+		system.openPatient(model.getVisitNumber());
 	}
 	//return name
 	public String getName(){

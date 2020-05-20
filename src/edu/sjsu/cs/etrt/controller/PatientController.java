@@ -253,10 +253,6 @@ public class PatientController {
 		model.setOccupation(s);
 	}
 	
-	public Patient getPatient() {
-		return this.model;
-	}
-
 	public JPanel getViewPanel()
 	{
 		return view.generateUI();

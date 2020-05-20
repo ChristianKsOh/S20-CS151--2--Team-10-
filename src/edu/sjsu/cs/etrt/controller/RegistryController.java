@@ -13,10 +13,10 @@ public class RegistryController {
 	private RegistryView view;	//view
 	private SystemController system;	//system
 	
-	public RegistryController(PatientListController list, SystemController ctrl) {
+	public RegistryController(PatientListController list, VisitQueueController v, SystemController ctrl) {
 		model=new Registry(list);
 		system=ctrl;
-		view=new RegistryView(list,system);
+		view=new RegistryView(list,v,system);
 	}
 	
 	//insert a new Patient

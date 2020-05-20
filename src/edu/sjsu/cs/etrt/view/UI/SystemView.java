@@ -232,12 +232,13 @@ public class SystemView extends UIPanel{
 		frame.pack();
 		frame.setVisible(true);
 		SystemController system=new SystemController(frame);
-		/*
-		system.getPatientList().addPatient(p);
-		system.getPatientList().addPatient(p2);
-		system.getVisitQueue().enqueue(new InitialVisit(p,"Doctor",4,20,2020,3,30,DateAndTime.PM,"Notes"));
-		system.getVisitQueue().enqueue(new InitialVisit(p2,"Smth",4,20,2020,3,30,DateAndTime.PM,"Notes"));
-		*/
+		
+		//system.getPatientList().addPatient(p);
+		//system.getPatientList().addPatient(p2);
+		
+		//system.getVisitQueue().enqueue(new InitialVisit(p,"Doctor",4,20,2020,3,30,DateAndTime.PM,"Notes"));
+		//system.getVisitQueue().enqueue(new InitialVisit(p2,"Smth",4,20,2020,3,30,DateAndTime.PM,"Notes"));
+		
 		system.openSystem();
 		
 	}

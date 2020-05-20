@@ -45,8 +45,7 @@ public class SystemController{
 		updateFrame(model.getVisitQueue().getViewPanel());
 	}
 	
-	public boolean openVisit(int visitNumber) {
-		Visit visit=model.getVisitQueue().getVisit(visitNumber);
+	public boolean openVisit(Visit visit) {
 		if(visit!=null) {
 			updateFrame(new VisitController(visit,this).getViewPanel());
 			return true;

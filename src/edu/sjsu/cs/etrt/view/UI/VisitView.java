@@ -204,16 +204,7 @@ public class VisitView extends UIPanel{
 			header.add(editPanel);
 		}
 		
-		//Visit number in the header (unchangable)
-		String numberString=controller.getVisitNumber()+"";
-		JTextArea number=new JTextArea(numberString);
-		number.setEditable(false);
-		number.setFont(new Font(numberString,Font.PLAIN,28));
-		
 		//Finish adding header items
-		header.add(blankPanel);
-		header.add(number);
-		header.add(blankPanel);
 		main.add(header);
 		
 		
@@ -255,6 +246,15 @@ public class VisitView extends UIPanel{
 		});
 		
 		main.add(patientText);
+		
+		
+		//Visit number in the header (unchangable)
+		String numberString="Patient Visit: "+controller.getVisitNumber();
+		JTextArea number=new JTextArea(numberString);
+		number.setEditable(false);
+		number.setFont(new Font(numberString,Font.PLAIN,20));
+		main.add(number);
+		
 		
 		//Doctor name
 		//Clicking the text opens the edit fields
@@ -363,11 +363,12 @@ public class VisitView extends UIPanel{
 			
 			main.add(editPanel);
 		}
+
 		
 		//Delete Visit button
 		JButton deleteButton=new JButton("Cancel Appointment");
 		deleteButton.addActionListener(event->{
-			system.getVisitQueue().removeVisit(controller.getVisitNumber());
+			system.getVisitQueue().removeVisit(controller.getModel());
 			main.removeAll();
 			controller.openVisitQueueView();
 		});

@@ -154,6 +154,11 @@ public class VisitController {
 	}
 	
 	public void openPatient() {
-		//system.openPatient(model.getPatient().get);
+		for(int i=0;i<system.getPatientList().getSize();i++) {
+			if(system.getPatientList().getPatient(i).equals(model.getPatient())) {
+				system.openPatient(i);
+				break;
+			}
+		}
 	}
 }

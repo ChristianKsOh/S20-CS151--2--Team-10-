@@ -25,6 +25,9 @@ public class FormView extends UIPanel{
 	public FormView() {
 				//frame
 				JFrame frame = new JFrame("Questionnaire Form");	
+				
+				//scroll pane
+				JScrollPane scrollPane=new JScrollPane();
 						
 				//panels
 				JPanel panelCont = new JPanel();		//container panel		
@@ -369,12 +372,14 @@ public class FormView extends UIPanel{
 				});
 				
 				
-				
+				//Given panelCont a scroll bar
+				scrollPane.add(panelCont);
+				scrollPane.setViewportView(panelCont);
 				//set border layout
 				frame.setLayout(new BorderLayout());
 				//add panels to frame
 				frame.add(panelHead, BorderLayout.NORTH);
-				frame.add(panelCont, BorderLayout.CENTER);
+				frame.add(scrollPane, BorderLayout.CENTER);
 				frame.add(footCont, BorderLayout.SOUTH);
 				
 								

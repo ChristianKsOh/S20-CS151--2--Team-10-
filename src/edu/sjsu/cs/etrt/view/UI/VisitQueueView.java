@@ -68,7 +68,8 @@ public class VisitQueueView extends UIPanel {
 		//Print each visit in order
 		for(Visit visit:controller.iterator()) {
 			JPanel visitPanel=new JPanel();
-			String s=visit.getDate()+" ("+visit.getTime()+") : "+visit.getDoctorName();
+			visitPanel.setMaximumSize(new Dimension(350,30));
+			String s=visit.getDate()+" ("+visit.getTime()+") : Dr. "+visit.getDoctorName();
 			JTextArea text=new JTextArea(s);
 			text.setEditable(false);
 			text.setFont(new Font(s,Font.PLAIN,20));

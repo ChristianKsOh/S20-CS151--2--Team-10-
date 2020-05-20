@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -117,6 +119,7 @@ public class SystemView extends UIPanel{
 		//Submit button
 		JButton patientSubmit=new JButton("Submit");
 		patientSubmit.addActionListener(event->{
+			boolean error=true;
 			for(int i=0;i<controller.getPatientList().getSize();i++) {
 				String patientName=controller.getPatientList().getPatient(i).getFirstName()+" "
 								+controller.getPatientList().getPatient(i).getMiddleInitial()+" "
@@ -125,13 +128,16 @@ public class SystemView extends UIPanel{
 					if(controller.openPatient(i)) {
 						visitError=false;
 						patientError=false;
+						error=false;
 					}
 				}
 			}
 			//Patient not found
-			patientError=true;
-			refresh();
-			controller.refreshFrame();
+			if(error) {
+				patientError=true;
+				refresh();
+				controller.refreshFrame();
+			}
 		});
 		patientDirect.add(patientInput);
 		patientDirect.add(patientSubmit);
@@ -168,51 +174,42 @@ public class SystemView extends UIPanel{
 			visitError=false;
 			patientError=false;
 		});
+	 
+		//Most recent appointment/visit
+		JPanel recent=new JPanel();
+		recent.setLayout(new BoxLayout(recent,BoxLayout.Y_AXIS));
 		
-		//Panel that contains textInput to open selected patient page
-		JPanel visitDirect=new JPanel();
-		visitDirect.setLayout(new BoxLayout(visitDirect,BoxLayout.X_AXIS));
+		JTextArea recentHeader = new JTextArea("Latest visit:");
+		recentHeader.setFont(new Font("Latest visit:",Font.PLAIN,14));
+		recentHeader.setEditable(false);
+		recentHeader.setMaximumSize(new Dimension(MAIN_LENGTH,20));
 		
-		//Header and instructions during error
-		String visitDirectHeaderText="Open visit page by visit number.";
-		if(visitError) {
-			visitDirectHeaderText="Error opening page. Please reenter visit number.";
-		}
-		JTextArea visitDirectHeader=new JTextArea(visitDirectHeaderText);
-		visitDirectHeader.setFont(new Font(visitDirectHeaderText,Font.PLAIN,14));
-		visitDirectHeader.setEditable(false);
-		visitDirectHeader.setMaximumSize(new Dimension(MAIN_LENGTH,20));
-		//Text Field
-		JTextField visitInput=new JTextField();
-		visitInput.setMaximumSize(new Dimension(MAIN_LENGTH,25));
-		//Submit button
-		JButton visitSubmit=new JButton("Submit");
-		visitSubmit.addActionListener(event->{
-			try {
-				if(controller.openVisit(Integer.parseInt(visitInput.getText()))) {
-					visitError=false;
-					patientError=false;
-				}else {
-					visitError=true;
-					refresh();
-					controller.refreshFrame();
-				}
-			}catch(NumberFormatException e) {
-				visitError=true;
-				refresh();
-				controller.refreshFrame();
+		Visit peeked=controller.getVisitQueue().peek();
+		String s=peeked.getDate()+" ("+peeked.getTime()+"):\n"+peeked.getPatient().getFirstName() +" "+peeked.getPatient().getLastName()+" with Dr. "+peeked.getDoctorName();
+		JTextArea recentText=new JTextArea(s);
+		recentText.setEditable(false);
+		recentText.setFont(new Font(s,Font.PLAIN,20));
+		recentText.addMouseListener(new MouseListener() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				controller.openVisit(peeked);
 			}
+			public void mouseClicked(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			
 		});
-		visitDirect.add(visitInput);
-		visitDirect.add(visitSubmit);
+		recent.add(recentHeader);
+		recent.add(recentText);
+		
 		
 		//Adding patient info components together
 		visits.add(visitHeader);
 		visits.add(Box.createRigidArea(new Dimension(0, 10)));	//padding
 		visits.add(visitQueue);
 		visits.add(Box.createRigidArea(new Dimension(0, 10)));	//padding
-		visits.add(visitDirectHeader);
-		visits.add(visitDirect);
+		visits.add(recent);
 		
 	//Compiling all components onto main panel//
 		main.add(header);
@@ -230,10 +227,12 @@ public class SystemView extends UIPanel{
 		frame.pack();
 		frame.setVisible(true);
 		SystemController system=new SystemController(frame);
-		Patient p=new Patient(0,0,"Kevin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,123456789,new Address("My house","","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
+		Patient p=new Patient(0,0,"Kevin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,2,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
+		Patient p2=new Patient(0,0,"Devin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,0,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
 		system.getPatientList().addPatient(p);
-		system.getPatientList().addPatient(new Patient(0,0,"Devin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,123456789,new Address("My house","","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD","")));
+		system.getPatientList().addPatient(p2);
 		system.getVisitQueue().enqueue(new InitialVisit(p,"Doctor",4,20,2020,3,30,DateAndTime.PM,"Notes"));
+		system.getVisitQueue().enqueue(new InitialVisit(p2,"Smth",4,20,2020,3,30,DateAndTime.PM,"Notes"));
 		system.openSystem();
 		
 	}

@@ -26,7 +26,8 @@ public abstract class Visit implements Comparable<Visit>{
 		this.patient=patient;
 		this.doctor=doctor;
 		this.dateAndTime=new DateAndTime(month,day,year,hour,minute,dateAndTimePeriod);
-		this.visitNumber=Math.abs(patient.hashCode()+doctor.hashCode()+dateAndTime.hashCode())/100;
+		patient.setVisitNumber(patient.getVisitNumber()+1);
+		visitNumber=patient.getVisitNumber();
 		this.specialNote=notes;
 	}
 	

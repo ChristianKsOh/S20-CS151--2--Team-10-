@@ -184,25 +184,48 @@ public class VisitCreateView extends UIPanel{
 				int year=Integer.parseInt(yearInput.getText());
 			}catch(NumberFormatException e) {}
 			
-			if(monthMenu.getSelectedIndex()==0
-			||dayMenu.getSelectedIndex()==0
-			||yearInput.getText().length()==4
-			||hourMenu.getSelectedIndex()==0
-			||minuteMenu.getSelectedIndex()==0
-			||doctorInput.getText().isEmpty()) {
+			
+			//
+			if(yearInput.getText().length()!=4
+			||doctorInput.getText().isEmpty()
+			||patientInput.getText().isEmpty()) {
 				incomplete=true;
 				refresh();
 				controller.refreshFrame();
-			//}else if() { //patient doesn't exist
-				//patientDoesntExist=true;
-				//refresh();
-				//controller.refreshFrame();
 			}else {
-				incomplete=false;
-				//Visit visit=new FollowUpVisit(patient, doctor, month, day, year, hour, minute, dateAndTimePeriod, notes)
-				//int visitNumber=visit.getVisitNumber();
-				//controller.enqueue(visit);			
-				//controller.updateFrame(controller.getVisit(visitNumber).getViewPanel());
+				//Find patient
+				Patient patient=null;
+				for(int i=0;i<controller.getPatientList().getSize();i++) {
+					String patientName=controller.getPatientList().getPatient(i).getFirstName()+" "
+									+controller.getPatientList().getPatient(i).getMiddleInitial()+" "
+									+controller.getPatientList().getPatient(i).getLastName();
+					if(patientInput.getText().equalsIgnoreCase(patientName)) {
+						patient=controller.getPatientList().getPatient(i);
+						break;
+					}
+				}
+				if(patient==null) {
+					patientDoesntExist=true;
+					refresh();
+					controller.refreshFrame();
+				}else {
+					incomplete=false;
+					patientDoesntExist=false;
+					boolean isPM=true;
+					if(period.getSelectedIndex()==1) {
+						isPM=false;
+					}
+					FollowUpVisit visit=new FollowUpVisit(patient, doctorInput.getText(), 
+												monthMenu.getItemAt(monthMenu.getSelectedIndex()), 
+												dayMenu.getItemAt(dayMenu.getSelectedIndex()), 
+												Integer.parseInt(yearInput.getText()), 
+												hourMenu.getItemAt(hourMenu.getSelectedIndex()), 
+												minuteMenu.getItemAt(minuteMenu.getSelectedIndex()), 
+												isPM, 
+												noteInput.getText());
+					controller.getVisitQueue().enqueue(visit);			
+					controller.openVisit(visit);
+				}
 			}
 		});
 		buttons.add(cancelButton);

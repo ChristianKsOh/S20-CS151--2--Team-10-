@@ -47,21 +47,29 @@ public class VisitQueueController {
 	}
 	
 	/**
-	 * Get a Visit based on the visit number.
+	 * Get a Visit based on index.
 	 * @param visitNum visit number
 	 * @return Visit object.
 	 */
-	public Visit getVisit(int visitNum) {
-		return model.getVisit(visitNum);
+	public Visit getVisit(int index) {
+		return model.getVisit(index);
 	}
 	
 	/**
-	 * Remove a Visit based on the visit number.
+	 * Remove a Visit based on index.
 	 * @param visitNum visit number
 	 */
-	public void removeVisit(int visitNum) {
-		model.removeVisit(visitNum);
+	public void removeVisit(Visit v) {
+		model.removeVisit(v);
 		view.refresh();
+	}
+	
+	/**
+	 * Returns the latest Visit without removing
+	 * @return Latest visit
+	 */
+	public Visit peek() {
+		return model.peek();
 	}
 	
 	/**
@@ -118,7 +126,7 @@ public class VisitQueueController {
 	}
 	
 	public void openVisit(Visit v) {
-		system.openVisit(v.getVisitNumber());
+		system.openVisit(v);
 	}
 	
 	/**

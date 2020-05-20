@@ -203,7 +203,7 @@ public class PatientView extends UIPanel{
 		
 		//new row
 		label = new JLabel("Street: ");
-		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1());
+		JTextArea tStreet = new JTextArea(patientCtrl.getStreet1() + "\n" + patientCtrl.getStreet2());
 		tStreet.setEditable(edit);
 		if(edit)
 			tStreet.setBackground(Color.GREEN);

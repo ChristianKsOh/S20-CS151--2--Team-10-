@@ -2,14 +2,16 @@ package edu.sjsu.cs.etrt.model.Patient;
 public class Address {
 	
 	private String street1;
+	private String street2;
 	private String city;
 	private String state;
 	private String zip;
 	private String country;
 	
-	public Address(String s1, String c, String s, String z, String country)
+	public Address(String s1, String s2, String c, String s, String z, String country)
 	{
 		street1=s1;
+		street2=s2;
 		city=c;
 		state=s;
 		zip=z;
@@ -23,6 +25,14 @@ public class Address {
 
 	public void setStreet1(String street1) {
 		this.street1 = street1;
+	}
+	
+	public String getStreet2() {
+		return street2;
+	}
+
+	public void setStreet2(String street2) {
+		this.street2 = street2;
 	}
 
 	public String getCity() {

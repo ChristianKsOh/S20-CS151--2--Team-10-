@@ -174,6 +174,15 @@ public class PatientController {
 		return model.getStreet1();
 	}
 	
+	public void setStreet2(String s)
+	{
+		model.setStreet2(s);
+	}
+	
+	public String getStreet2() {
+		return model.getStreet2();
+	}
+	
 	public String getCity()
 	{
 		return model.getCity();

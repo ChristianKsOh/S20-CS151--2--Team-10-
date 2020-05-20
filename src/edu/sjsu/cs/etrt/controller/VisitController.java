@@ -3,6 +3,7 @@ package edu.sjsu.cs.etrt.controller;
 import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.model.Patient.Patient;
+import edu.sjsu.cs.etrt.model.Questionnaire.Form;
 import edu.sjsu.cs.etrt.model.Visits.*;
 import edu.sjsu.cs.etrt.view.UI.VisitView;
 
@@ -29,6 +30,14 @@ public class VisitController {
 	 */
 	public Patient getPatient() {
 		return model.getPatient();
+	}
+	
+	/**
+	 * Return the object of the form in the visit.
+	 * @return form object.
+	 */
+	public Form getForm() {
+		return model.getForm();
 	}
 	
 	/**

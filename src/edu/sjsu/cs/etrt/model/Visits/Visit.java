@@ -1,11 +1,13 @@
 package edu.sjsu.cs.etrt.model.Visits;
 
 import edu.sjsu.cs.etrt.model.Patient.Patient;
+import edu.sjsu.cs.etrt.model.Questionnaire.Form;
 
 public abstract class Visit implements Comparable<Visit>{
 	private DateAndTime dateAndTime;
 	private int visitNumber;
 	private Patient patient;
+	private Form form;
 	private String doctor;
 	private String specialNote;
 	
@@ -37,6 +39,14 @@ public abstract class Visit implements Comparable<Visit>{
 	 */
 	public Patient getPatient() {
 		return patient;
+	}
+	
+	/**
+	 * Return the object of the form in the visit
+	 * @return form object
+	 */
+	public Form getForm() {
+		return form;
 	}
 	
 	/**

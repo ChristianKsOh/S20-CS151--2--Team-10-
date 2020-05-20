@@ -33,7 +33,7 @@ public class SystemView extends UIPanel{
 	private boolean visitError;
 	
 	/**
-	 * The view seen by the user and Used in the JFrame.
+	 * The System's view seen by the user and used in the JFrame.
 	 * @param ctrl Reference for editing and JFrame.
 	 */
 	public SystemView(SystemController ctrl) {
@@ -44,7 +44,7 @@ public class SystemView extends UIPanel{
 
 	@Override
 	/**
-	 * Builds the JPanel view.
+	 * Builds the JPanel for System's view.
 	 */
 	public void refresh() {
 		main.removeAll();
@@ -227,11 +227,7 @@ public class SystemView extends UIPanel{
 	}
 	
 	public static void main(String[] args) {
-		JFrame frame=new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
-		SystemController system=new SystemController(frame);
+		SystemController system=new SystemController();
 		
 		//system.getPatientList().addPatient(p);
 		//system.getPatientList().addPatient(p2);
@@ -239,7 +235,7 @@ public class SystemView extends UIPanel{
 		//system.getVisitQueue().enqueue(new InitialVisit(p,"Doctor",4,20,2020,3,30,DateAndTime.PM,"Notes"));
 		//system.getVisitQueue().enqueue(new InitialVisit(p2,"Smth",4,20,2020,3,30,DateAndTime.PM,"Notes"));
 		
-		system.openSystem();
+		//system.openSystem();
 		
 	}
 }

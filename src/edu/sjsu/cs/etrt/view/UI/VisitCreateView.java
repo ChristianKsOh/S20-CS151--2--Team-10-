@@ -17,6 +17,8 @@ import edu.sjsu.cs.etrt.controller.SystemController;
 import edu.sjsu.cs.etrt.controller.VisitQueueController;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Visits.FollowUpVisit;
+import edu.sjsu.cs.etrt.model.Visits.InitialVisit;
+import edu.sjsu.cs.etrt.model.Visits.Visit;
 
 public class VisitCreateView extends UIPanel{
 	private SystemController controller;
@@ -161,9 +163,11 @@ public class VisitCreateView extends UIPanel{
 		String errorText="Error: Not all fields were filled out. Please try again.";
 		int fontLength=330;
 		if(patientDoesntExist) {
+			System.out.println("asdasd");
 			errorText="Error: Patient not found. Please try again.";
 			fontLength=265;
 		}
+		patientDoesntExist=false;
 		JTextArea incompleteText=new JTextArea(errorText);
 		incompleteText.setEditable(false);
 		incompleteText.setFont(new Font(errorText,Font.PLAIN,14));
@@ -196,9 +200,11 @@ public class VisitCreateView extends UIPanel{
 				//Find patient
 				Patient patient=null;
 				for(int i=0;i<controller.getPatientList().getSize();i++) {
-					String patientName=controller.getPatientList().getPatient(i).getFirstName()+" "
-									+controller.getPatientList().getPatient(i).getMiddleInitial()+" "
-									+controller.getPatientList().getPatient(i).getLastName();
+					String patientName=controller.getPatientList().getPatient(i).getFirstName()+" ";
+					if(!controller.getPatientList().getPatient(i).getMiddleInitial().equals("")) {
+						patientName+=controller.getPatientList().getPatient(i).getMiddleInitial()+" ";
+					}
+					patientName+=controller.getPatientList().getPatient(i).getLastName();
 					if(patientInput.getText().equalsIgnoreCase(patientName)) {
 						patient=controller.getPatientList().getPatient(i);
 						break;
@@ -215,7 +221,9 @@ public class VisitCreateView extends UIPanel{
 					if(period.getSelectedIndex()==1) {
 						isPM=false;
 					}
-					FollowUpVisit visit=new FollowUpVisit(patient, doctorInput.getText(), 
+					Visit visit;
+					if(patient.getVisitNumber()==0) {
+						visit=new InitialVisit(patient, doctorInput.getText(), 
 												monthMenu.getItemAt(monthMenu.getSelectedIndex()), 
 												dayMenu.getItemAt(dayMenu.getSelectedIndex()), 
 												Integer.parseInt(yearInput.getText()), 
@@ -223,6 +231,16 @@ public class VisitCreateView extends UIPanel{
 												minuteMenu.getItemAt(minuteMenu.getSelectedIndex()), 
 												isPM, 
 												noteInput.getText());
+					}else {
+						visit=new FollowUpVisit(patient, doctorInput.getText(), 
+													monthMenu.getItemAt(monthMenu.getSelectedIndex()), 
+													dayMenu.getItemAt(dayMenu.getSelectedIndex()), 
+													Integer.parseInt(yearInput.getText()), 
+													hourMenu.getItemAt(hourMenu.getSelectedIndex()), 
+													minuteMenu.getItemAt(minuteMenu.getSelectedIndex()), 
+													isPM, 
+													noteInput.getText());
+					}
 					controller.getVisitQueue().enqueue(visit);			
 					controller.openVisit(visit);
 				}

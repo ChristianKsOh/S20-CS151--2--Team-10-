@@ -24,6 +24,11 @@ public class PatientListView extends UIPanel{
 	private int num;
 	private SystemController systemCtrl;
 	
+	/**
+	 * 
+	 * @param p PatientListController holding this view.
+	 * @param systemCtrl SystemController for changes outside of PatientList
+	 */
 	public PatientListView(PatientListController p, SystemController systemCtrl) {
 		patientQ=p;
 		this.systemCtrl=systemCtrl;

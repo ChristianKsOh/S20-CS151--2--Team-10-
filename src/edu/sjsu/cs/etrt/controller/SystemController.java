@@ -20,12 +20,22 @@ public class SystemController{
 	private JFrame frame;
 	private VisitCreateView create;
 	
-	public SystemController(JFrame UI) {
-		frame=UI;
+	/**
+	 * The controller for System's model and view. This is the 
+	 * main controller of the whole program. It also initializes 
+	 * and opens a new window.
+	 */
+	public SystemController() {
+		frame=new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
+		
 		model=new System(this);
 		view=new SystemView(this);
 		this.create=new VisitCreateView(this);
-
+		
+		this.openSystem();
 	}
 	
 	/**
@@ -43,6 +53,11 @@ public class SystemController{
 		updateFrame(model.getVisitQueue().getViewPanel());
 	}
 	
+	/**
+	 * Opens the UI of a Visit on the frame given a Visit object.
+	 * @param visit Visit object to be opened.
+	 * @return
+	 */
 	public boolean openVisit(Visit visit) {
 		if(visit!=null) {
 			updateFrame(new VisitController(visit,this).getViewPanel());
@@ -51,6 +66,9 @@ public class SystemController{
 		return false;
 	}
 	
+	/**
+	 * Opens the visit create UI on the frame.
+	 */
 	public void openVisitCreate() {
 		updateFrame(create.generateUI());
 	}
@@ -63,6 +81,11 @@ public class SystemController{
 		updateFrame(model.getPatientList().getViewPanel());
 	}
 	
+	/**
+	 * Opens the UI of the patient based on the index of the patient in the list.
+	 * @param num Patient number.
+	 * @return Success of opening UI.
+	 */
 	public boolean openPatient(int num) {
 		Patient patient=model.getPatientList().getPatient(num);
 		if(patient!=null) {
@@ -72,6 +95,12 @@ public class SystemController{
 		return false;
 	}
 	
+	/**
+	 * Opens the UI of the patient based on the index of the patient in the list. 
+	 * Gives the option of enabling editing.
+	 * @param num Patient number.
+	 * @return Success of opening UI.
+	 */
 	public boolean openPatient(int num, boolean edit) {
 		Patient patient=model.getPatientList().getPatient(num);
 		if(patient!=null) {
@@ -81,37 +110,68 @@ public class SystemController{
 		return false;
 	}
 	
+	/**
+	 * Opens a graph of the patient's THI/TFI results over time in 
+	 * a new window.
+	 * @param p PatientController of the patient to be viewed.
+	 */
 	public void openGraph(PatientController p) {
 		GraphView graph=new GraphView(p,this);
 		graph.open();
 	}
 	
+	/**
+	 * Opens the UI of Form for a specific patient.
+	 * @param p Patient using the form.
+	 */
 	public void openForm(Patient p) {
 		FormController form = new FormController(p,this);
 		form.getViewPanel();
 	}
 	
+	/**
+	 * Opens the UI of System in the frame.
+	 */
 	public void openSystem() {
 		updateFrame(getViewPanel());
 	}
 	
+	/**
+	 * Returns the instance of VisitQueueController
+	 * @return VisitQueueController
+	 */
 	public VisitQueueController getVisitQueue() {
 		return model.getVisitQueue();
 	}
 	
+	/**
+	 * Returns the instance of PatientListController.
+	 * @return PatientListController
+	 */
 	public PatientListController getPatientList() {
 		return model.getPatientList();
 	}
 	
+	/**
+	 * Generate System's UI panel.
+	 * @return JPanel of Sysem's View.
+	 */
 	public JPanel getViewPanel() {
 		return view.generateUI();
 	}
 	
+	/**
+	 * Change the frame's view with a different panel.
+	 * @param panel JPnael of new View.
+	 */
 	public void updateFrame(JPanel panel) {
 		frame.setContentPane(panel);
 		refreshFrame();
 	}
 	
+	/**
+	 * Refresh the frame after an update in the panel.
+	 */
 	public void refreshFrame() {
 		frame.revalidate();
 		frame.pack();

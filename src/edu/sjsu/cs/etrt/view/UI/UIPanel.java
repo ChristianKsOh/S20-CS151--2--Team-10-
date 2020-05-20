@@ -22,7 +22,7 @@ public abstract class UIPanel{
 	}
 	
 	/**
-	 * Refreshes the panel.
+	 * Refreshes and builds the panel.
 	 */
 	public abstract void refresh();
 }

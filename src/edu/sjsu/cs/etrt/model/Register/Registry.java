@@ -111,6 +111,7 @@ public class Registry {
 		return getPatient().getTreatmentNum();
 	}
 	
+
 	/**
 	 * set firstName of patient object
 	 * @return int THI score

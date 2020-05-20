@@ -14,7 +14,7 @@ public class Patient implements Comparable{
 	private String socialID;
 	private String insuranceID;
 	private String orderNumber;
-	private Category categoryNum;
+	private Treatment treatmentNum;
 	private int visitNumber;
 	private ArrayList<Integer> scoresTFI;
 	private ArrayList<Integer> scoresTHI;
@@ -34,14 +34,14 @@ public class Patient implements Comparable{
 		this.socialID="NA";
 		this.insuranceID="NA";
 		this.orderNumber="NA";
-		this.categoryNum=categoryNum.category0;
+		this.treatmentNum=treatmentNum.Grade0;
 		this.visitNumber=0;
 		Address a = new Address("NA","NA","NA","NA","NA");
 		this.patientAddress=a;
 		Demographics d= new Demographics("NA","NA","NA","NA");
 		this.patientDemographic=d;
 	}
-	public Patient(String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
+	public Patient(String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Treatment c, int v, Address pA, Demographics pD)
 	{
 		scoresTFI=new ArrayList<Integer>();
 		scoresTHI=new ArrayList<Integer>();
@@ -55,7 +55,7 @@ public class Patient implements Comparable{
 		this.socialID=s;
 		this.insuranceID=i;
 		this.orderNumber=o;
-		this.categoryNum=c;
+		this.treatmentNum=c;
 		this.visitNumber=v;
 		this.patientAddress=pA;
 		this.patientDemographic=pD;
@@ -275,12 +275,12 @@ public class Patient implements Comparable{
 		this.orderNumber = orderNumber;
 	}
 
-	public Category getCategoryNum() {
-		return categoryNum;
+	public Treatment getTreatmentNum() {
+		return treatmentNum;
 	}
 
-	public void setCategoryNum(Category categoryNum) {
-		this.categoryNum = categoryNum;
+	public void setTreatmentNum(Treatment treatNum) {
+		this.treatmentNum = treatNum;
 	}
 
 	public int getVisitNumber() {
@@ -295,7 +295,7 @@ public class Patient implements Comparable{
 	 * Updates a patient's profile
 	 * @param name, date, gender, birth, number, social, insurance, category, visit
 	 */
-	public void updateProfile(String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
+	public void updateProfile(String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Treatment c, int v, Address pA, Demographics pD)
 	{
 		this.firstName=n;
 		this.lastName=l;
@@ -307,7 +307,7 @@ public class Patient implements Comparable{
 		this.socialID=s;
 		this.insuranceID=i;
 		this.orderNumber=o;
-		this.categoryNum=c;
+		this.treatmentNum=c;
 		this.visitNumber=v;
 		this.patientAddress=pA;
 		this.patientDemographic=pD;

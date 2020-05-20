@@ -1,14 +1,7 @@
 package edu.sjsu.cs.etrt.model.Register;
 
-//import edu.sjsu.cs.etrt.model.Visits.InitialVisit;
-import edu.sjsu.cs.etrt.model.Visits.Visit;
-import edu.sjsu.cs.etrt.model.Visits.VisitQueue;
-import edu.sjsu.cs.etrt.controller.PatientController;
 import edu.sjsu.cs.etrt.controller.PatientListController;
-import edu.sjsu.cs.etrt.controller.SystemController;
-import edu.sjsu.cs.etrt.controller.VisitQueueController;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
-import edu.sjsu.cs.etrt.model.Patient.PatientList;
 import edu.sjsu.cs.etrt.model.Patient.Treatment;
 
 public class Registry {

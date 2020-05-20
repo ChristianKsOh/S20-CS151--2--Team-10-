@@ -48,7 +48,9 @@ public class VisitQueue {
 	 * @return Latest Visit
 	 */
 	public Visit peek() {
-		return schedule.first();
+		if(schedule.size()!=0) {
+			return schedule.first();
+		}return null;
 	}
 	
 	/**

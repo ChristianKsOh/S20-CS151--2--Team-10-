@@ -80,15 +80,7 @@ public class SystemController{
 		return false;
 	}
 	
-	/**
-	 * Open Form
-	 */
-	public void openTFI(Patient p) {
-		FormController form = new FormController(p,this,true);
-		updateFrame(form.getViewPanel());
-	}
-	
-	public void openTHI(Patient p) {
+	public void openForm(Patient p) {
 		FormController form = new FormController(p,this);
 		updateFrame(form.getViewPanel());
 	}

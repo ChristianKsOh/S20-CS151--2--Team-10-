@@ -211,7 +211,7 @@ public class VisitView extends UIPanel{
 		JPanel formPanel=new JPanel();
 		JButton forms=new JButton("Open question forms");
 		forms.addActionListener(event->{
-			system.openTHI(controller.getPatient());
+			system.openForm(controller.getPatient());
 
 		});
 		

@@ -2,8 +2,7 @@ package edu.sjsu.cs.etrt.view.UI;
 import edu.sjsu.cs.etrt.controller.FormController;
 import edu.sjsu.cs.etrt.controller.PatientController;
 import edu.sjsu.cs.etrt.controller.SystemController;
-import edu.sjsu.cs.etrt.model.Questionnaire.*;
-import edu.sjsu.cs.etrt.model.Patient.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -15,24 +14,13 @@ public class FormView extends UIPanel{
 	private FormController fCtrl;		//form cntrl
 	private PatientController pCtrl;	//patient ctrl?
 	private SystemController systemCtrl;	//systemCtrl
-	boolean displayForm;		//display form based on boolean
 	
 	//instance of Form - default THI display
 	public FormView(FormController fCtrl, SystemController system)
 	{
 		this.fCtrl=fCtrl;
 		systemCtrl=system;
-		this.displayForm = false;		//false default
 	}
-	
-	//instance of Form - set parameter boolean b - change to TFI: set true
-	public FormView(FormController fCtrl, SystemController system, boolean b)
-	{
-		this.fCtrl=fCtrl;
-		systemCtrl=system;
-		this.displayForm = b;
-	}
-	
 	
 	@Override
 	public void refresh() {
@@ -56,8 +44,10 @@ public class FormView extends UIPanel{
 		JPanel TFIfoot = new JPanel(new GridLayout());
 				
 		//JLabel titles
-		JLabel title1 = new JLabel("Tinnitus Handicap Inventory");
-		JLabel title2 = new JLabel("Tinnitus Functional Index");
+		JLabel title1 = new JLabel("Tinnitus Handicap Inventory (" + fCtrl.getName() + ") - Visit #" +
+		fCtrl.getVisitNumber());
+		JLabel title2 = new JLabel("Tinnitus Functional Index (" + fCtrl.getName() + ") - Visit #" +
+				fCtrl.getVisitNumber());
 					
 		//buttons 
 		JButton THItoTFI = new JButton("Move to TFI Questionnaire");	//switch from THI > TFI
@@ -65,7 +55,11 @@ public class FormView extends UIPanel{
 		JButton THIsubmit = new JButton("Submit");		//submit result
 		JButton TFIsubmit = new JButton("Submit");		
 		JButton THIreset = new JButton("Reset");		//reset questionnaire
-		JButton TFIreset = new JButton("Reset");
+		JButton TFIreset = new JButton("Reset");	
+		JButton goBack1 = new JButton("Back");		//go back buttons
+		JButton goBack2 = new JButton("Back");
+		JButton THIrandom = new JButton("Quick Fill");		//fill answers
+		JButton TFIrandom = new JButton("Quick Fill");
 				
 		//JLabels for questions
 		JLabel[] THIquestions = new JLabel[] { 
@@ -159,26 +153,20 @@ public class FormView extends UIPanel{
 		title1.setFont(new Font("Arial", Font.BOLD, 30)); 
 		title2.setFont(new Font("Arial", Font.BOLD, 30)); 
 		//add to appropriate panels
-		THIheader.add(Box.createRigidArea(new Dimension(175, 0)));		//set header dimensions
+		//THIheader.add(Box.createRigidArea(new Dimension(175, 0)));		//set header dimensions
 		THIheader.setLayout(new BoxLayout(THIheader, BoxLayout.LINE_AXIS));
 		THIheader.add(title1);
-		THIheader.add(Box.createRigidArea(new Dimension(375, 0)));
+		THIheader.add(Box.createRigidArea(new Dimension(175, 0)));
 		THIheader.add(THItoTFI);
+		THIheader.add(THIrandom);
+		TFIheader.add(TFIrandom);
+		THIheader.add(goBack1);
 		TFIheader.setLayout(new BoxLayout(TFIheader, BoxLayout.LINE_AXIS));
-		TFIheader.add(Box.createRigidArea(new Dimension(175, 0)));
 		TFIheader.add(title2);
-		TFIheader.add(Box.createRigidArea(new Dimension(415, 0)));
+		TFIheader.add(Box.createRigidArea(new Dimension(175, 0)));
 		TFIheader.add(TFItoTHI);
-			
-		//intermediary random******************************
-		//line
-		gbc.gridx = 0;
-		gbc.gridy = 0;
+		TFIheader.add(goBack2);
 	
-		JButton THIrandom = new JButton("Lazy Press");
-		JButton TFIrandom = new JButton("Lazy Press");
-		THIpanel.add(THIrandom, gbc);
-		TFIpanel.add(TFIrandom, gbc);
 		
 		gbc.insets = new Insets(5, 5, 5 ,5);	//top, left, right, bot dimensions
 		//parse through questions - same for both THI and TFI
@@ -251,18 +239,11 @@ public class FormView extends UIPanel{
 		footCont.add(THIfoot, "1");
 		footCont.add(TFIfoot, "2");
 				
-		//show THI first
-		if(displayForm == false) {
-			c.show(panelCont, "1");
-			c1.show(panelHead, "1");
-			c2.show(footCont, "1");
-		}
-		else {
-			c.show(panelCont, "2");
-			c1.show(panelHead, "2");
-			c2.show(footCont, "2");
-		}
-			
+		//show THI panel first
+		c.show(panelCont, "1");
+		c1.show(panelHead, "1");
+		c2.show(footCont, "1");
+		
 		
 		//***************************ACTION LISTENERS*********************************
 		//questionnaire switch when button pressed
@@ -302,7 +283,7 @@ public class FormView extends UIPanel{
 				//if all questions have been answered
 				if(count == 25) {
 					fCtrl.setScoreTHI(score);
-					TFImessage.setText("Submitted successfully! Total: " + fCtrl.getScoreTHI());
+					THImessage.setText("Submitted successfully! Total: " + fCtrl.getScoreTHI());
 					//reset count and score
 					count = score = 0;
 				}
@@ -312,6 +293,7 @@ public class FormView extends UIPanel{
 				}
 			}
 		});
+		
 		//submission for questionnaire - replication of THIsubmit
 		TFIsubmit.addActionListener(new ActionListener() {
 			int count = 0;
@@ -385,6 +367,23 @@ public class FormView extends UIPanel{
 			}
 		});
 		
+		//add frame disposals and go back to visit queue
+		goBack1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				fCtrl.openVisitQueueView();
+				frame.dispose();
+			}
+		});
+		goBack2.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				fCtrl.openVisitQueueView();
+				frame.dispose();
+			}
+		});
+			
+		
+		//**********************************END ACTION LISTENERS************************************
+		
 		
 		//Given panelCont a scroll bar
 		scrollPane.add(panelCont);
@@ -396,11 +395,11 @@ public class FormView extends UIPanel{
 		frame.add(panelHead, BorderLayout.NORTH);
 		frame.add(scrollPane, BorderLayout.CENTER);
 		frame.add(footCont, BorderLayout.SOUTH);
-		
-						
+				
 		frame.pack();
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
+	
 	
 }

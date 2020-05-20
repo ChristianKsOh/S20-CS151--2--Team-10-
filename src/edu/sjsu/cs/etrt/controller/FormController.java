@@ -3,7 +3,6 @@ package edu.sjsu.cs.etrt.controller;
 import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.model.Patient.*;
-import edu.sjsu.cs.etrt.model.Questionnaire.*;
 import edu.sjsu.cs.etrt.view.UI.FormView;
 
 public class FormController {
@@ -11,25 +10,11 @@ public class FormController {
 	private Patient model;		//patient model
 	private FormView view;
 	private SystemController system;
-	boolean displayType;
-	private Patient patient;
-	
-	//form, controller, type
+	//patient, s
 	public FormController(Patient p, SystemController s) {
 		this.model = p;
-		//this.patient = p;
 		this.view = new FormView(this, s);
 		this.system = s;
-		this.displayType = false;
-	}
-	
-	//form, controller, type
-	public FormController(Patient p, SystemController s, boolean b) {
-		this.model = p;
-		//this.patient = p;
-		this.view = new FormView(this, s);
-		this.system = s;
-		this.displayType = b;
 	}
 	
 	//overwrite patient
@@ -54,20 +39,18 @@ public class FormController {
 		return view.generateUI();
 	}
 	
-	
-	/**
-	 * Updates the JFrame for any changes in the view.
-	 */
-	public void refreshFrame(){
-		system.refreshFrame();
-	}
-	
-	/**
-	 * Opens the VisitQueue view in the JFrame.
-	 */
 	public void openVisitQueueView() {
-		//system.openVisitQueue();
+		system.openVisitQueue();
 	}
+	//return name
+	public String getName(){
+		return model.getFirstName() + model.getLastName();
+	}
+	
+	public int getVisitNumber() {
+		return model.getVisitNumber();
+	}
+	
 	
 	
 

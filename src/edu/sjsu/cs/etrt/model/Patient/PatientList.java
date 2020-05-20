@@ -8,7 +8,7 @@ public class PatientList {
 private LinkedList<Patient> patientQueue;
 	private PatientController patientCtrl;
 	/**
-	 * Constructor for queue;
+	 * Constructor for queue.
 	 */
 	public PatientList()
 	{
@@ -16,18 +16,18 @@ private LinkedList<Patient> patientQueue;
 	}
 	
 	/**
-	 * Enqueues a patient
-	 * @param patient
+	 * Adds patient onto the list.
+	 * @param p Patient.
 	 */
 	public void addPatient(Patient p)
 	{
 		patientQueue.add(p);
 	}
 	
-	
 	/**
-	 * Dequeues a patient
-	 * @return
+	 * Removes  patient from the list.
+	 * @param num Index of patient.
+	 * @return Patient removed.
 	 */
 	public Patient remove(int num)
 	{
@@ -35,14 +35,19 @@ private LinkedList<Patient> patientQueue;
 	}
 	
 	/**
-	 * Returns the size of the queue
-	 * @return
+	 * Returns the size of the lsit.
+	 * @return Size of list.
 	 */
 	public int size()
 	{
 		return patientQueue.size();
 	}
 	
+	/**
+	 * Get patient without removing.
+	 * @param num Index of patient.
+	 * @return Patient.
+	 */
 	public Patient getPatient(int num)
 	{
 		return patientQueue.get(num);

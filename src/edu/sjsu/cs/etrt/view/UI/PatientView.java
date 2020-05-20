@@ -10,7 +10,6 @@ import java.awt.Insets;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -25,19 +24,37 @@ public class PatientView extends UIPanel{
 	private SystemController systemCtrl;
 	private Boolean edit;
 	
+	/**
+	 * The view for Patient seen by the user and used in the JFrame.
+	 * @param p PatientController holding the view.
+	 * @param ctrl SystemController for changes outside of Patient.
+	 */
 	public PatientView(PatientController p, SystemController ctrl)
 	{
 		this.patientCtrl=p;
 		systemCtrl=ctrl;
 		edit = false;
 	}
+	
+	/**
+	 * 
+	 * The view for Patient seen by the user and used in the JFrame. Can 
+	 * allow editing immediately after opening.
+	 * @param p PatientController holding the view.
+	 * @param ctrl SystemController for changes outside of Patient.
+	 * @param edit Allows editing upon opening view.
+	 */
 	public PatientView(PatientController p, SystemController ctrl, boolean edit)
 	{
 		this.patientCtrl=p;
 		systemCtrl=ctrl;
 		this.edit = edit;
 	}
-	//Displays patient data
+	
+	@Override
+	/**
+	 * Displays patient data
+	 */
 	public void refresh()
 	{
 		main.removeAll();
@@ -367,15 +384,4 @@ public class PatientView extends UIPanel{
 		mainPanel.add(scrollPane);
 		main.add(mainPanel);	
 	}
-	/*
-	void systemReturnListener(ActionListener ListenForSystemButton)
-	{
-		button.addActionListener(ListenForSystemButton);
-	}
-	
-	void displayErrorMessage(String errorMessage) {
-		JOptionPane.showMessageDialog(this, message);
-	}
-	*/
-
 }

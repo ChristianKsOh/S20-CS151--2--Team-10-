@@ -9,15 +9,12 @@ public abstract class Form {
 	private Patient patient;	//patient object
 	//private Treatment treatmentNum;		//treatment number assigned
 	
-	
 	/**
 	 * Creates a new visit based on the patient, doctor name, 
 	 * and time and date. Also generates a visit number.
 	 * @param patient object of patient
-	 * @param questionList questionList of form
-	 * @param answerList answerList of form
-	 * @param score score of form
-	 * @param t enumeration treatment of form
+	 * @param thiscore Max THI score.
+	 * @param tfiscore Max TFI score.
 	 */
 	public Form(Patient patient, int thiscore, int tfiscore) {
 		this.patient = patient;	
@@ -35,7 +32,7 @@ public abstract class Form {
 	
 	/**
 	 * set THI score of patient
-	 * @param score value
+	 * @param s score value
 	 */
 	public void setTHIScore(int s) {
 		this.getPatient().addScoreTHI(s);
@@ -43,7 +40,7 @@ public abstract class Form {
 	
 	/**
 	 * get THI patient score
-	 * 
+	 * @return THI score.
 	 */
 	
 	public int getTHIScore() {
@@ -53,7 +50,7 @@ public abstract class Form {
 	
 	/**
 	 * set TFIscore of patient
-	 * @param score value
+	 * @param s score value
 	 */
 	public void setTFIScore(int s) {
 		this.getPatient().addScoreTFI(s);

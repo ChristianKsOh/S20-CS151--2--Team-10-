@@ -12,21 +12,23 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import edu.sjsu.cs.etrt.controller.VisitController;
+import edu.sjsu.cs.etrt.controller.SystemController;
 import edu.sjsu.cs.etrt.controller.VisitQueueController;
 import edu.sjsu.cs.etrt.model.Visits.Visit;
-import edu.sjsu.cs.etrt.model.Visits.VisitQueue;
 
 public class VisitQueueView extends UIPanel {
 	
 	private VisitQueueController controller;
+	private SystemController system;
 	
 	/**
 	 * The view seen by the user and Used in the JFrame.
-	 * @param ctrl Reference for editing and JFrame.
+	 * @param ctrl VisitQueueController holding this view.
+	 * @param system SystemController for changes outside of VisitQueue.
 	 */
-	public VisitQueueView(VisitQueueController ctrl) {
+	public VisitQueueView(VisitQueueController ctrl,SystemController system) {
 		controller=ctrl;
+		this.system=system;
 	}
 	
 	@Override
@@ -43,13 +45,13 @@ public class VisitQueueView extends UIPanel {
 		buttons.setLayout(new BoxLayout(buttons,BoxLayout.X_AXIS));
 		JButton backButton=new JButton("Back");
 		backButton.addActionListener(event->{
-			controller.openSystemView();
+			system.openSystem();
 		});
 		content.add(backButton);
 		
 		JButton add=new JButton("+Create a new Visit");
 		add.addActionListener(event-> {
-			controller.openVisitCreateView();
+			system.openVisitCreate();
 		});
 		
 		buttons.add(backButton);
@@ -76,7 +78,7 @@ public class VisitQueueView extends UIPanel {
 			text.addMouseListener(new MouseListener() {
 				@Override
 				public void mousePressed(MouseEvent e) {
-					controller.openVisit(visit);
+					system.openVisit(visit);
 				}
 				public void mouseClicked(MouseEvent e) {}
 				public void mouseReleased(MouseEvent e) {}

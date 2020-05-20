@@ -1,7 +1,7 @@
 package edu.sjsu.cs.etrt.model.Patient;
 
 /**
- * describe Treatment protocol based on Category 
+ * Describe Treatment protocol based on Category 
  * of given Questionnaires
  */
 public enum Treatment {

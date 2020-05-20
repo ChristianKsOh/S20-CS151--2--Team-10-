@@ -11,18 +11,11 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import edu.sjsu.cs.etrt.controller.SystemController;
-import edu.sjsu.cs.etrt.model.Patient.Address;
-import edu.sjsu.cs.etrt.model.Patient.Category;
-import edu.sjsu.cs.etrt.model.Patient.Demographics;
-import edu.sjsu.cs.etrt.model.Patient.Patient;
-import edu.sjsu.cs.etrt.model.Visits.DateAndTime;
-import edu.sjsu.cs.etrt.model.Visits.InitialVisit;
 import edu.sjsu.cs.etrt.model.Visits.Visit;
 
 public class SystemView extends UIPanel{
@@ -30,7 +23,6 @@ public class SystemView extends UIPanel{
 	private final int MAIN_HEIGHT=550;
 	private SystemController controller;
 	private boolean patientError;
-	private boolean visitError;
 	
 	/**
 	 * The System's view seen by the user and used in the JFrame.
@@ -39,7 +31,6 @@ public class SystemView extends UIPanel{
 	public SystemView(SystemController ctrl) {
 		controller=ctrl;
 		patientError=false;
-		visitError=false;
 	}
 
 	@Override
@@ -128,7 +119,6 @@ public class SystemView extends UIPanel{
 				patientName+=controller.getPatientList().getPatient(i).getLastName();
 				if(patientName.equalsIgnoreCase(patientInput.getText())) {
 					if(controller.openPatient(i)) {
-						visitError=false;
 						patientError=false;
 						error=false;
 					}
@@ -173,7 +163,6 @@ public class SystemView extends UIPanel{
 		visitQueue.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		visitQueue.addActionListener(event->{
 			controller.openVisitQueue();
-			visitError=false;
 			patientError=false;
 		});
 	 

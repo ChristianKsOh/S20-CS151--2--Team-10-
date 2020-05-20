@@ -106,7 +106,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	/**
 	 * Changes just the time.
 	 * @param hour Integer representing the hour from 1-12.
-	 * @param minute Integer representing a minute from 1-59.
+	 * @param minutes Integer representing a minute from 1-59.
 	 * @param period Use DateAndTime.AM ot DateAndTime.PM to represent the period of time.
 	 */
 	public void setTime(int hour,int minutes, boolean period) {

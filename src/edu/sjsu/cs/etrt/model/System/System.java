@@ -1,20 +1,19 @@
 package edu.sjsu.cs.etrt.model.System;
 
-import javax.swing.JFrame;
-
-import edu.sjsu.cs.etrt.controller.FormController;
 import edu.sjsu.cs.etrt.controller.PatientListController;
 import edu.sjsu.cs.etrt.controller.RegistryController;
 import edu.sjsu.cs.etrt.controller.SystemController;
 import edu.sjsu.cs.etrt.controller.VisitQueueController;
-import edu.sjsu.cs.etrt.model.Patient.Patient;
-import edu.sjsu.cs.etrt.model.Questionnaire.Form;
 
 public class System {
 	private VisitQueueController visits;
 	private PatientListController patients;
 	private RegistryController registry;
 	
+	/**
+	 * Main system that holds and uses all controllers.
+	 * @param system SystemController hold this model to initializes other controllers.
+	 */
 	public System(SystemController system) {
 		visits=new VisitQueueController(system);
 		patients=new PatientListController(system);
@@ -22,15 +21,16 @@ public class System {
 	}
 	
 	/**
-	 * open registry to register a new patient
+	 * Return RegistryController for editing.
+	 * @return RegistryController object.
 	 */
 	public RegistryController getRegistry() {
 		return registry;
 	}
 	
 	/**
-	 * Return VisitQueue instance for editing.
-	 * @return visitqueue
+	 * Return VisitQueueController for editing.
+	 * @return VisitQueueController object.
 	 */
 	public VisitQueueController getVisitQueue() {
 		return visits;
@@ -38,8 +38,8 @@ public class System {
 	
 	
 	/**
-	 * Returns PatientQueue instance for editing.
-	 * @return patientqueue
+	 * Returns PatientQueueController for editing.
+	 * @return PatientQueueController object.
 	 */
 	public PatientListController getPatientList() {
 		return patients;

@@ -4,12 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.view.UI.GraphView;
-import edu.sjsu.cs.etrt.view.UI.PatientView;
 import edu.sjsu.cs.etrt.view.UI.SystemView;
 import edu.sjsu.cs.etrt.view.UI.VisitCreateView;
-import edu.sjsu.cs.etrt.model.Patient.Address;
-import edu.sjsu.cs.etrt.model.Patient.Category;
-import edu.sjsu.cs.etrt.model.Patient.Demographics;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.System.System;
 import edu.sjsu.cs.etrt.model.Visits.Visit;
@@ -46,8 +42,7 @@ public class SystemController{
 	}
 	
 	/**
-	 * OPen a list of all Visits
-	 * @return visitqueue
+	 * Open a list of all Visits
 	 */
 	public void openVisitQueue() {
 		updateFrame(model.getVisitQueue().getViewPanel());
@@ -56,7 +51,7 @@ public class SystemController{
 	/**
 	 * Opens the UI of a Visit on the frame given a Visit object.
 	 * @param visit Visit object to be opened.
-	 * @return
+	 * @return Success of opening view.
 	 */
 	public boolean openVisit(Visit visit) {
 		if(visit!=null) {
@@ -75,7 +70,6 @@ public class SystemController{
 	
 	/**
 	 * Open a list of all Patients
-	 * @return patientList
 	 */
 	public void openPatientList() {
 		updateFrame(model.getPatientList().getViewPanel());
@@ -99,6 +93,7 @@ public class SystemController{
 	 * Opens the UI of the patient based on the index of the patient in the list. 
 	 * Gives the option of enabling editing.
 	 * @param num Patient number.
+	 * @param edit Allow editing upon opening view.
 	 * @return Success of opening UI.
 	 */
 	public boolean openPatient(int num, boolean edit) {
@@ -116,7 +111,7 @@ public class SystemController{
 	 * @param p PatientController of the patient to be viewed.
 	 */
 	public void openGraph(PatientController p) {
-		GraphView graph=new GraphView(p,this);
+		GraphView graph=new GraphView(p);
 		graph.open();
 	}
 	

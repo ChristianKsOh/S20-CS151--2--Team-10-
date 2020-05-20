@@ -156,7 +156,7 @@ public class Registry {
 	
 	/**
 	 * set visit number of patient object
-	 * @param s String text
+	 * @param i visit number
 	 */
 	public void setVisitNum(int i) {
 		getPatient().setVisitNumber(i);

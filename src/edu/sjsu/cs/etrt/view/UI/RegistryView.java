@@ -31,7 +31,7 @@ public class RegistryView extends UIPanel{
 	
 	public RegistryView(PatientListController p, SystemController ctrl)
 	{	
-		patientCtrl = new PatientController(new Patient(), ctrl, p.getSize());
+		patientCtrl = new PatientController(new Patient(), ctrl, p.getSize());	//new Patient()
 		this.patientListCtrl=p;
 		systemCtrl=ctrl;
 	}
@@ -296,7 +296,7 @@ public class RegistryView extends UIPanel{
 					
 					Patient p = new Patient();
 					patientListCtrl.addPatient(p);
-
+					//patientCtrl.set
 					patientListCtrl.getPatient(patientListCtrl.getSize()-1).setRegistrationDate(tRegDate.getText());
 					/*
 					patientListCtrl.getPatient(patientListCtrl.getSize()).setDateOfBirth(tDoB.getText());

@@ -3,6 +3,7 @@ package edu.sjsu.cs.etrt.controller;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.sjsu.cs.etrt.view.UI.GraphView;
 import edu.sjsu.cs.etrt.view.UI.PatientView;
 import edu.sjsu.cs.etrt.view.UI.SystemView;
 import edu.sjsu.cs.etrt.view.UI.VisitCreateView;
@@ -78,6 +79,11 @@ public class SystemController{
 			return true;
 		} 
 		return false;
+	}
+	
+	public void openGraph(PatientController p) {
+		GraphView graph=new GraphView(p,this);
+		graph.open();
 	}
 	
 	public void openForm(Patient p) {

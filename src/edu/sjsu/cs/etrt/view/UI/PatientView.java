@@ -65,6 +65,18 @@ public class PatientView extends UIPanel{
 		c.ipady=0;
 		c.gridwidth=1;
 		
+		JButton openGraph = new JButton("Graph");
+		if(!edit) {
+			c.fill = GridBagConstraints.HORIZONTAL;
+			c.weightx = 0.5;
+			c.gridx = 6;
+			c.gridy = 0;
+			panel.add(openGraph, c);
+		}
+		openGraph.addActionListener(event->{
+			systemCtrl.openGraph(patientCtrl);
+		});
+		
 		label = new JLabel("Gender: ");
 		JTextArea tGender = new JTextArea(patientCtrl.getGender());
 		tGender.setEditable(edit);

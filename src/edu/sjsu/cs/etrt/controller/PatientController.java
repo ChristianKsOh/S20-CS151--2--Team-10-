@@ -1,5 +1,7 @@
 package edu.sjsu.cs.etrt.controller;
 
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.model.Patient.Category;
@@ -46,16 +48,24 @@ public class PatientController {
 		return model.getScoreTFI();
 	}
 	
-	public void setScoreTFI(int score) {
-		model.setScoreTFI(score);
+	public void addScoreTFI(int score) {
+		model.addScoreTFI(score);
+	}
+	
+	public ArrayList<Integer> getTFIHistory(){
+		return model.getScoreTFIHistory();
 	}
 	
 	public int getScoreTHI() {
 		return model.getScoreTHI();
 	}
 	
-	public void setScoreTHI(int score) {
-		model.setScoreTHI(score);
+	public void addScoreTHI(int score) {
+		model.addScoreTHI(score);
+	}
+	
+	public ArrayList<Integer> getTHIHistory(){
+		return model.getScoreTHIHistory();
 	}
 	
 	public String getFirstName() {

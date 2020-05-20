@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.model.Patient.Category;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
+import edu.sjsu.cs.etrt.model.Patient.Treatment;
 import edu.sjsu.cs.etrt.view.UI.PatientView;
 
 public class PatientController {
@@ -148,12 +149,12 @@ public class PatientController {
 		model.setOrderNumber(s);;
 	}
 	
-	public Category getCategory() {
-		return model.getCategoryNum();
+	public Treatment getTreatment() {
+		return model.getTreatmentNum();
 	}
 	
-	public void setCategory(Category s) {
-		model.setCategoryNum(s);;
+	public void setTreatment(Treatment s) {
+		model.setTreatmentNum(s);;
 	}
 	
 	public int getVisitNumber() {

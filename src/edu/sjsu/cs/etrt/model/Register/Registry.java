@@ -53,7 +53,7 @@ public class Registry {
 	
 	
 	public void setCategory(int i) {
-		getPatient().setCategoryNum(patientCtrl.getCategory().intToCategory(i));
+		getPatient().setTreatmentNum(patientCtrl.getTreatment());
 	} 
 	
 	public void setInsurance(String s) {

@@ -18,11 +18,20 @@ public class GraphView{
 	private final int LENGTH=600;
 	private final int HEIGHT=600;
 	
+	/**
+	 * Pops-up a window displaying linear graphs of the patient's 
+	 * THI and TFI progress.
+	 * @param patient PatientController of the patient.
+	 * @param system SystemController for changes outside of this class.
+	 */
 	public GraphView(PatientController patient,SystemController system) {
 		this.patient=patient;
 		this.system=system;
 	}
 
+	/**
+	 * Creates a new window alongs with the view.
+	 */
 	public void open() {
 		JFrame frame=new JFrame("Patient Graph");
 		

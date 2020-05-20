@@ -159,8 +159,8 @@ public class PatientView extends UIPanel{
 		panel.add(tVisitNum,c);
 		
 		//new row
-		label= new JLabel("Category: ");
-		JTextArea tCategory = new JTextArea(""+patientCtrl.getCategory());
+		label= new JLabel("Treatment: ");
+		JTextArea tCategory = new JTextArea(""+patientCtrl.getTreatment());
 		tCategory.setEditable(false);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridy = 3;

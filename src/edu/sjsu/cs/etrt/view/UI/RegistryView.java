@@ -306,9 +306,9 @@ public class RegistryView extends UIPanel{
 			i=Integer.parseInt(tVisitNum.getText());
 			patientListCtrl.getPatient(patientListCtrl.getSize()).setVisitNumber(i);
 			i=Integer.parseInt(tScoreTFI.getText());
-			patientListCtrl.getPatient(patientListCtrl.getSize()).setScoreTFI(i);
+			patientListCtrl.getPatient(patientListCtrl.getSize()).addScoreTFI(i);
 			i=Integer.parseInt(tScoreTHI.getText());
-			patientListCtrl.getPatient(patientListCtrl.getSize()).setScoreTHI(i);
+			patientListCtrl.getPatient(patientListCtrl.getSize()).addScoreTHI(i);
 			//Address
 			patientListCtrl.getPatient(patientListCtrl.getSize()).setStreet1(tStreet.getText());
 			patientListCtrl.getPatient(patientListCtrl.getSize()).setCity(tCity.getText());

@@ -1,5 +1,7 @@
 package edu.sjsu.cs.etrt.model.Patient;
 
+import java.util.ArrayList;
+
 public class Patient implements Comparable{
 	
 	private String firstName;
@@ -14,14 +16,14 @@ public class Patient implements Comparable{
 	private String orderNumber;
 	private Category categoryNum;
 	private int visitNumber;
-	private int scoreTFI;
-	private int scoreTHI;
+	private ArrayList<Integer> scoresTFI;
+	private ArrayList<Integer> scoresTHI;
 	private Address patientAddress;
 	private Demographics patientDemographic;
 	public Patient()
 	{
-		this.scoreTFI=0;
-		this.scoreTHI=0;
+		scoresTFI=new ArrayList<Integer>();
+		scoresTHI=new ArrayList<Integer>();
 		this.firstName="NA";
 		this.lastName="NA";
 		this.middleInitial="NA";
@@ -39,10 +41,10 @@ public class Patient implements Comparable{
 		Demographics d= new Demographics("NA","NA","NA","NA");
 		this.patientDemographic=d;
 	}
-	public Patient(int tfi, int thi, String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
+	public Patient(String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
 	{
-		this.scoreTFI=tfi;
-		this.scoreTHI=thi;
+		scoresTFI=new ArrayList<Integer>();
+		scoresTHI=new ArrayList<Integer>();
 		this.firstName=n;
 		this.lastName=l;
 		this.middleInitial=mi;
@@ -59,20 +61,31 @@ public class Patient implements Comparable{
 		this.patientDemographic=pD;
 	}
 	
-	public int getScoreTFI()
+	public ArrayList<Integer> getScoreTFIHistory()
 	{
-		return scoreTFI;
+		return scoresTFI;
 	}
-	public void setScoreTFI(int tfi) {
-		scoreTFI=tfi;
+	public void addScoreTFI(int tfi) {
+		scoresTFI.add(tfi);
+	}
+	public int getScoreTFI() {
+		if(scoresTFI.size()==0) {
+			return 0;
+		}
+		return scoresTFI.get(scoresTFI.size()-1);
+	}
+	public ArrayList<Integer> getScoreTHIHistory() {
+		return scoresTHI;
+	}
+	public void addScoreTHI(int thi) {
+		scoresTHI.add(thi);
 	}
 	public int getScoreTHI() {
-		return scoreTHI;
+		if(scoresTHI.size()==0) {
+			return 0;
+		}
+		return scoresTHI.get(scoresTHI.size()-1);
 	}
-	public void setScoreTHI(int thi) {
-		scoreTHI=thi;
-	}
-	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -282,10 +295,8 @@ public class Patient implements Comparable{
 	 * Updates a patient's profile
 	 * @param name, date, gender, birth, number, social, insurance, category, visit
 	 */
-	public void updateProfile(int tfi, int thi,String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
+	public void updateProfile(String n, String l, String mi, String r, String g, String d, String p, String s, String i, String o, Category c, int v, Address pA, Demographics pD)
 	{
-		this.scoreTHI=thi;
-		this.scoreTFI=tfi;
 		this.firstName=n;
 		this.lastName=l;
 		this.middleInitial=mi;

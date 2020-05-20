@@ -232,8 +232,14 @@ public class SystemView extends UIPanel{
 		frame.pack();
 		frame.setVisible(true);
 		SystemController system=new SystemController(frame);
-		Patient p=new Patient(0,0,"Kevin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,2,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
-		Patient p2=new Patient(0,0,"Devin","Truong","","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,0,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
+		Patient p=new Patient("Kevin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,2,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
+		p.addScoreTFI(100);
+		p.addScoreTFI(150);
+		p.addScoreTFI(125);
+		p.addScoreTHI(90);
+		p.addScoreTHI(80);
+		p.addScoreTHI(75);
+		Patient p2=new Patient("Devin","Truong","","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,0,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
 		system.getPatientList().addPatient(p);
 		system.getPatientList().addPatient(p2);
 		system.getVisitQueue().enqueue(new InitialVisit(p,"Doctor",4,20,2020,3,30,DateAndTime.PM,"Notes"));

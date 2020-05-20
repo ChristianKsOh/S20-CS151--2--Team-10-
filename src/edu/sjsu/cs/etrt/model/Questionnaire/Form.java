@@ -38,7 +38,7 @@ public abstract class Form {
 	 * @param score value
 	 */
 	public void setTHIScore(int s) {
-		this.getPatient().setScoreTHI(s);
+		this.getPatient().addScoreTHI(s);
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public abstract class Form {
 	 * @param score value
 	 */
 	public void setTFIScore(int s) {
-		this.getPatient().setScoreTFI(s);
+		this.getPatient().addScoreTFI(s);
 	}
 	
 	/**

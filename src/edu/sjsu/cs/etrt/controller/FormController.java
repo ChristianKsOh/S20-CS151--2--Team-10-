@@ -19,7 +19,7 @@ public class FormController {
 	
 	//overwrite patient
 	public void setScoreTHI(int s) {
-		model.setScoreTHI(s);
+		model.addScoreTHI(s);
 	}
 	
 	public int getScoreTHI() {
@@ -27,7 +27,7 @@ public class FormController {
 	}
 	
 	public void setScoreTFI(int s) {
-		model.setScoreTFI(s);
+		model.addScoreTFI(s);
 	}
 	
 	public int getScoreTFI() {
@@ -40,7 +40,13 @@ public class FormController {
 	}
 	
 	public void openView() {
-		system.openPatient(model.getVisitNumber());
+		for(int i=0;i<system.getPatientList().getSize();i++) {
+			if(system.getPatientList().getPatient(i).equals(model)){
+				system.openPatient(i);
+				break;
+			}
+		}
+		
 	}
 	//return name
 	public String getName(){

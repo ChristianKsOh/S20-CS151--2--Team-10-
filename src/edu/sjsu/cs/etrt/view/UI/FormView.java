@@ -159,12 +159,12 @@ public class FormView extends UIPanel{
 		THIheader.add(Box.createRigidArea(new Dimension(175, 0)));
 		THIheader.add(THItoTFI);
 		THIheader.add(THIrandom);
-		TFIheader.add(TFIrandom);
 		THIheader.add(goBack1);
 		TFIheader.setLayout(new BoxLayout(TFIheader, BoxLayout.LINE_AXIS));
 		TFIheader.add(title2);
 		TFIheader.add(Box.createRigidArea(new Dimension(175, 0)));
 		TFIheader.add(TFItoTHI);
+		TFIheader.add(TFIrandom);
 		TFIheader.add(goBack2);
 	
 		

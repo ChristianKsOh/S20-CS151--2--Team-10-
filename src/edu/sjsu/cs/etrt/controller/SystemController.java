@@ -82,7 +82,7 @@ public class SystemController{
 	
 	public void openForm(Patient p) {
 		FormController form = new FormController(p,this);
-		updateFrame(form.getViewPanel());
+		form.getViewPanel();
 	}
 	
 	public void openSystem() {

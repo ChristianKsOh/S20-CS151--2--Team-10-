@@ -121,9 +121,11 @@ public class SystemView extends UIPanel{
 		patientSubmit.addActionListener(event->{
 			boolean error=true;
 			for(int i=0;i<controller.getPatientList().getSize();i++) {
-				String patientName=controller.getPatientList().getPatient(i).getFirstName()+" "
-								+controller.getPatientList().getPatient(i).getMiddleInitial()+" "
-								+controller.getPatientList().getPatient(i).getLastName();
+				String patientName=controller.getPatientList().getPatient(i).getFirstName()+" ";
+				if(!controller.getPatientList().getPatient(i).getMiddleInitial().equals("")) {
+					patientName+=controller.getPatientList().getPatient(i).getMiddleInitial()+" ";
+				}
+				patientName+=controller.getPatientList().getPatient(i).getLastName();
 				if(patientName.equalsIgnoreCase(patientInput.getText())) {
 					if(controller.openPatient(i)) {
 						visitError=false;
@@ -231,7 +233,7 @@ public class SystemView extends UIPanel{
 		frame.setVisible(true);
 		SystemController system=new SystemController(frame);
 		Patient p=new Patient(0,0,"Kevin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,2,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
-		Patient p2=new Patient(0,0,"Devin","Truong","T","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,0,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
+		Patient p2=new Patient(0,0,"Devin","Truong","","4/5/20","male","2/2/2000","18883664342","123456789","insurance","12345",Category.category1,0,new Address("My house","Sand","CA","99999","USA"),new Demographics("Doctor","legal","PhD",""));
 		system.getPatientList().addPatient(p);
 		system.getPatientList().addPatient(p2);
 		system.getVisitQueue().enqueue(new InitialVisit(p,"Doctor",4,20,2020,3,30,DateAndTime.PM,"Notes"));

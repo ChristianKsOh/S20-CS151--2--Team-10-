@@ -397,7 +397,6 @@ public class FormView extends UIPanel{
 		frame.add(footCont, BorderLayout.SOUTH);
 				
 		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	

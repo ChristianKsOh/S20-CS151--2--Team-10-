@@ -39,8 +39,8 @@ public class FormController {
 		return view.generateUI();
 	}
 	
-	public void openVisitQueueView() {
-		system.openVisitQueue();
+	public void openView() {
+		system.openPatient(model.getVisitNumber());
 	}
 	//return name
 	public String getName(){

@@ -208,20 +208,14 @@ public class VisitView extends UIPanel{
 		main.add(header);
 		
 		
-		//Form buttons
-		JPanel forms=new JPanel();
-		JButton THI=new JButton("Open THI form");
-		THI.addActionListener(event->{
-			system.openTHI(controller.getPatient(), controller.getForm());		//returns patient
+		//Open Forms
+		JPanel formPanel=new JPanel();
+		JButton forms=new JButton("Open question forms");
+		forms.addActionListener(event->{
+			system.openTHI(controller.getPatient(), controller.getForm());
 		});
-		JButton TFI=new JButton("Open TFI form");
-		TFI.addActionListener(event->{
-			system.openTFI(controller.getPatient(), controller.getForm());		//returns patient
-		});
-		forms.add(THI);
-		forms.add(TFI);
-		
-		main.add(forms);
+		formPanel.add(forms);
+		main.add(formPanel);
 		
 		
 		//Patient and ID (link to patient?)

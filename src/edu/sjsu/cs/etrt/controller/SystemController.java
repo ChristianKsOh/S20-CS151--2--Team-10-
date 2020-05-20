@@ -86,12 +86,12 @@ public class SystemController{
 	 */
 	public void openTFI(Patient p, Form f) {
 		FormController form = new FormController(p,f,this,true);
-		updateFrame(form.getViewPanel());
+		form.getViewPanel();
 	}
 	
 	public void openTHI(Patient p, Form f) {
-		FormController form = new FormController(p,f,this);
-		updateFrame(form.getViewPanel());
+		FormController form = new FormController(p,f,this,false);
+		form.getViewPanel();
 	}
 	
 	public void openSystem() {

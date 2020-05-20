@@ -388,6 +388,7 @@ public class FormView extends UIPanel{
 		//Given panelCont a scroll bar
 		scrollPane.add(panelCont);
 		scrollPane.setViewportView(panelCont);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(5);
 		//set border layout
 		frame.setLayout(new BorderLayout());
 		//add panels to frame
@@ -397,7 +398,6 @@ public class FormView extends UIPanel{
 		
 						
 		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	

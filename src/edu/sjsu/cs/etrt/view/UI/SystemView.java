@@ -185,7 +185,10 @@ public class SystemView extends UIPanel{
 		recentHeader.setMaximumSize(new Dimension(MAIN_LENGTH,20));
 		
 		Visit peeked=controller.getVisitQueue().peek();
-		String s=peeked.getDate()+" ("+peeked.getTime()+"):\n"+peeked.getPatient().getFirstName() +" "+peeked.getPatient().getLastName()+" with Dr. "+peeked.getDoctorName();
+		String s="";
+		if(peeked!=null) {
+			s=peeked.getDate()+" ("+peeked.getTime()+"):\n"+peeked.getPatient().getFirstName() +" "+peeked.getPatient().getLastName()+" with Dr. "+peeked.getDoctorName();
+		}
 		JTextArea recentText=new JTextArea(s);
 		recentText.setEditable(false);
 		recentText.setFont(new Font(s,Font.PLAIN,20));

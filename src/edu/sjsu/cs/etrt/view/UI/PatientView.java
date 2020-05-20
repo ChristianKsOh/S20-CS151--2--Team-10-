@@ -160,7 +160,7 @@ public class PatientView extends UIPanel{
 		
 		label = new JLabel("TFI Score: ");
 		JTextArea tScoreTFI = new JTextArea("" + patientCtrl.getScoreTFI());
-		tVisitNum.setEditable(false);
+		tScoreTFI.setEditable(false);
 		c.gridx = 2;
 		panel.add(label, c);
 		c.gridx=3;
@@ -168,7 +168,7 @@ public class PatientView extends UIPanel{
 		
 		label = new JLabel("THI Score: ");
 		JTextArea tScoreTHI = new JTextArea("" + patientCtrl.getScoreTHI());
-		tVisitNum.setEditable(false);
+		tScoreTHI.setEditable(false);
 		c.gridx = 4;
 		panel.add(label, c);
 		c.gridx=5;

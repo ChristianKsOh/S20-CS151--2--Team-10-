@@ -91,7 +91,7 @@ public class PatientView extends UIPanel{
 			panel.add(openGraph, c);
 		}
 		openGraph.addActionListener(event->{
-			systemCtrl.openGraph(patientCtrl);
+			systemCtrl.openGraph(systemCtrl.getPatientList().getPatient(patientCtrl.getThisPatientId()));
 		});
 		
 		label = new JLabel("Gender: ");

@@ -10,9 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.controller.PatientController;
+import edu.sjsu.cs.etrt.model.Patient.Patient;
 
 public class GraphView{
-	private PatientController patient;
+	private Patient patient;
 	private final int LENGTH=600;
 	private final int HEIGHT=600;
 	
@@ -21,7 +22,7 @@ public class GraphView{
 	 * THI and TFI progress.
 	 * @param patient PatientController of the patient.
 	 */
-	public GraphView(PatientController patient) {
+	public GraphView(Patient patient) {
 		this.patient=patient;
 	}
 
@@ -75,9 +76,9 @@ public class GraphView{
 				g2d.setColor(Color.black);
 				int prevX=0;
 				int prevY=0;
-				for(int i=0;i<patient.getTHIHistory().size();i++) {
+				for(int i=0;i<patient.getScoreTHIHistory().size();i++) {
 					int x=25*(i+1)+100;
-					int y=(int)(2.5*(100-patient.getTHIHistory().get(i)))+25;	//2.5=250/100
+					int y=(int)(2.5*(100-patient.getScoreTHIHistory().get(i)))+25;	//2.5=250/100
 					g2d.fillOval(x-2, y-2, 5, 5);
 					if(i!=0) {
 						g2d.drawLine(prevX, prevY, x, y);
@@ -94,7 +95,7 @@ public class GraphView{
 				Graphics2D g2d=(Graphics2D)g;
 				
 				//Header
-				g2d.drawString("THI Results", 275, 15);
+				g2d.drawString("TFI Results", 275, 15);
 				
 				//Build Graph Base
 				g2d.setColor(Color.black);
@@ -112,7 +113,7 @@ public class GraphView{
 				
 				//Graph numbers
 				for(int i=0;i<=10;i++) {	//Vertical lines
-					g2d.drawString(10*i+"", 100, 25*(10-i)+25);
+					g2d.drawString(25*i+"", 100, 25*(10-i)+25);
 				}
 				for(int i=0;i<=16;i++) {	//Horizontal lines
 					g2d.drawString(i+"", 25*i+100, 275);
@@ -128,9 +129,9 @@ public class GraphView{
 				g2d.setColor(Color.black);
 				int prevX=0;
 				int prevY=0;
-				for(int i=0;i<patient.getTFIHistory().size();i++) {
+				for(int i=0;i<patient.getScoreTFIHistory().size();i++) {
 					int x=25*(i+1)+100;
-					int y=(int)((250-patient.getTFIHistory().get(i)))+25;	//1=250/250
+					int y=(int)((250-patient.getScoreTFIHistory().get(i)))+25;	//1=250/250
 					g2d.fillOval(x-2, y-2, 5, 5);
 					if(i!=0) {
 						g2d.drawLine(prevX, prevY, x, y);

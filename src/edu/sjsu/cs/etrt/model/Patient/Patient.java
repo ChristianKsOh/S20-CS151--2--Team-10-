@@ -94,6 +94,7 @@ public class Patient implements Comparable<Patient>{
 	 * @param tfi TFI score.
 	 */
 	public void addScoreTFI(int tfi) {
+		java.lang.System.out.println("asdasd");
 		scoresTFI.add(tfi);
 	}
 	

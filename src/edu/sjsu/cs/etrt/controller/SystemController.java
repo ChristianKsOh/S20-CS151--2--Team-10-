@@ -108,9 +108,9 @@ public class SystemController{
 	/**
 	 * Opens a graph of the patient's THI/TFI results over time in 
 	 * a new window.
-	 * @param p PatientController of the patient to be viewed.
+	 * @param p Patient of the patient to be viewed.
 	 */
-	public void openGraph(PatientController p) {
+	public void openGraph(Patient p) {
 		GraphView graph=new GraphView(p);
 		graph.open();
 	}

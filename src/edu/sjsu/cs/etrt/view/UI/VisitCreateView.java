@@ -160,7 +160,6 @@ public class VisitCreateView extends UIPanel{
 		String errorText="Error: Not all fields were filled out. Please try again.";
 		int fontLength=330;
 		if(patientDoesntExist) {
-			System.out.println("asdasd");
 			errorText="Error: Patient not found. Please try again.";
 			fontLength=265;
 		}
@@ -182,7 +181,7 @@ public class VisitCreateView extends UIPanel{
 		JButton submit=new JButton("Create Visit!");
 		submit.addActionListener(event->{
 			try {
-				int year=Integer.parseInt(yearInput.getText());
+				Integer.parseInt(yearInput.getText());
 			}catch(NumberFormatException e) {}
 			
 			

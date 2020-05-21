@@ -19,7 +19,7 @@ public class FormController {
 	 */
 	public FormController(Patient p, SystemController s) {
 		this.model = new Form(p);
-		this.view = new FormView(this, s);
+		this.view = new FormView(this);
 		this.system = s;
 	}
 	
@@ -125,12 +125,7 @@ public class FormController {
 	 * open patient from system using model and for index
 	 */
 	public void openView() {
-		for(int i=0;i<system.getPatientList().getSize();i++) {
-			if(system.getPatientList().getPatient(i).equals(model.getPatient())){
-				system.openPatient(i);
-				break;
-			}
-		}		
+		system.openPatient(model.getPatient().getPatientID());
 	}
 	
 	/**

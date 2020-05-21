@@ -2,11 +2,8 @@ package edu.sjsu.cs.etrt.model.Patient;
 
 import java.util.LinkedList;
 
-import edu.sjsu.cs.etrt.controller.PatientController;
-
 public class PatientList {
 private LinkedList<Patient> patientQueue;
-	private PatientController patientCtrl;
 	/**
 	 * Constructor for queue.
 	 */
@@ -21,6 +18,7 @@ private LinkedList<Patient> patientQueue;
 	 */
 	public void addPatient(Patient p)
 	{
+		p.setPatientID(patientQueue.size());
 		patientQueue.add(p);
 	}
 	

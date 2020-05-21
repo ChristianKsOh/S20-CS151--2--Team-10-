@@ -9,7 +9,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import edu.sjsu.cs.etrt.controller.PatientController;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 
 public class GraphView{
@@ -37,6 +36,7 @@ public class GraphView{
 		content.setPreferredSize(new Dimension(LENGTH,HEIGHT));
 		content.setMaximumSize(new Dimension(LENGTH,HEIGHT));
 		
+		@SuppressWarnings("serial")
 		JPanel THIGraph=new JPanel() {
 			public void paintComponent(Graphics g) {
 				Graphics2D g2d=(Graphics2D)g;
@@ -90,6 +90,7 @@ public class GraphView{
 			}
 		};
 		
+		@SuppressWarnings("serial")
 		JPanel TFIGraph=new JPanel() {
 			public void paintComponent(Graphics g) {
 				Graphics2D g2d=(Graphics2D)g;

@@ -1,8 +1,5 @@
 package edu.sjsu.cs.etrt.view.UI;
 import edu.sjsu.cs.etrt.controller.FormController;
-import edu.sjsu.cs.etrt.controller.PatientController;
-import edu.sjsu.cs.etrt.controller.SystemController;
-import edu.sjsu.cs.etrt.model.Patient.Treatment;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -13,7 +10,6 @@ import javax.swing.*;
 public class FormView extends UIPanel{
 	//controller instance
 	private FormController fCtrl;		//form cntrl
-	private SystemController systemCtrl;
 	
 	/**
 	 * FormView controller using FormController and SystemController
@@ -21,10 +17,9 @@ public class FormView extends UIPanel{
 	 * @param system SystemController
 	 */
 	//instance of Form - default THI display
-	public FormView(FormController fCtrl, SystemController system)
+	public FormView(FormController fCtrl)
 	{
 		this.fCtrl=fCtrl;
-		this.systemCtrl=system;
 	}
 	
 

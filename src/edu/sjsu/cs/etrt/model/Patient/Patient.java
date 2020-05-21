@@ -35,7 +35,7 @@ public class Patient implements Comparable<Patient>{
 		this.socialID="NA";
 		this.insuranceID="NA";
 		this.orderNumber="NA";
-		this.treatmentNum=treatmentNum.Grade0;
+		this.treatmentNum=Treatment.Grade0;
 		this.visitNumber=0;
 		Address a = new Address("NA","NA","NA","NA","NA","NA");
 		this.patientAddress=a;
@@ -94,7 +94,6 @@ public class Patient implements Comparable<Patient>{
 	 * @param tfi TFI score.
 	 */
 	public void addScoreTFI(int tfi) {
-		java.lang.System.out.println("asdasd");
 		scoresTFI.add(tfi);
 	}
 	

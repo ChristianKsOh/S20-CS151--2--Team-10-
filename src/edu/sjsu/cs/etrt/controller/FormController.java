@@ -42,7 +42,7 @@ public class FormController {
 		
 	/**
 	 * get score of THI of patient using model
-	 * @return
+	 * @return THI score
 	 */
 	public int getScoreTHI() {
 		return model.getScoreTHI();
@@ -74,7 +74,7 @@ public class FormController {
 		
 	/**
 	 * get visit number of patient using model
-	 * @return
+	 * @return visit number
 	 */
 	public int getVisitNumber() {
 		return model.getVisitNumber();
@@ -83,7 +83,7 @@ public class FormController {
 	
 	/**
 	 * set THI score of patient from parameter using model
-	 * @param s score value
+	 * @param thi score value
 	 */
 	public void setTHIScore(int thi) {
 		model.setScoreTFI(thi);

@@ -39,7 +39,7 @@ public class Form {
 		
 	/**
 	 * set TFI score of form
-	 * @param s
+	 * @param s int TFI score
 	 */
 	public void setScoreTFI(int s) {
 		patient.addScoreTFI(s);

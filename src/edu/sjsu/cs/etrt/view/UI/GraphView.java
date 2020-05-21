@@ -10,11 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.controller.PatientController;
-import edu.sjsu.cs.etrt.controller.SystemController;
 
 public class GraphView{
 	private PatientController patient;
-	private SystemController system;
 	private final int LENGTH=600;
 	private final int HEIGHT=600;
 	
@@ -22,15 +20,13 @@ public class GraphView{
 	 * Pops-up a window displaying linear graphs of the patient's 
 	 * THI and TFI progress.
 	 * @param patient PatientController of the patient.
-	 * @param system SystemController for changes outside of this class.
 	 */
-	public GraphView(PatientController patient,SystemController system) {
+	public GraphView(PatientController patient) {
 		this.patient=patient;
-		this.system=system;
 	}
 
 	/**
-	 * Creates a new window alongs with the view.
+	 * Creates a new window along with the view.
 	 */
 	public void open() {
 		JFrame frame=new JFrame("Patient Graph");

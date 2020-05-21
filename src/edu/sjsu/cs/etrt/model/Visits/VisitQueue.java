@@ -1,9 +1,6 @@
 package edu.sjsu.cs.etrt.model.Visits;
 
-import java.util.TreeMap;
 import java.util.TreeSet;
-
-import edu.sjsu.cs.etrt.controller.VisitController;
 
 public class VisitQueue {
 	private TreeSet<Visit> schedule;
@@ -39,7 +36,7 @@ public class VisitQueue {
 	 */
 	public Visit dequeue() {
 		Visit v=schedule.first();
-		schedule.remove(0);
+		schedule.remove(v);
 		return v;
 	}
 	
@@ -55,7 +52,7 @@ public class VisitQueue {
 	
 	/**
 	 * Get a Visit based on index.
-	 * @param visitNum visit number
+	 * @param index visit number
 	 * @return Visit object.
 	 */
 	public Visit getVisit(int index) {
@@ -70,7 +67,7 @@ public class VisitQueue {
 	
 	/**
 	 * Remove a Visit based on index.
-	 * @param visitNum visit number
+	 * @param index visit number
 	 * @return Visit object.
 	 */
 	public Visit removeVisit(int index) {

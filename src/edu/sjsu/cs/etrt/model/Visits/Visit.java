@@ -20,7 +20,7 @@ public abstract class Visit implements Comparable<Visit>{
 	 * @param day Day of the appointment.
 	 * @param year Year of the appointment in yyyy format.
 	 * @param hour Hour of the time of the appointment.
-	 * @param minutes Minutes of the time of the appointment.
+	 * @param minute Minutes of the time of the appointment.
 	 * @param dateAndTimePeriod time period of the appointment. Use DateAndTime.AM or DateAndTime.PM.
 	 * @param notes Any (optional) special notes given when initializing visit.
 	 */
@@ -108,16 +108,20 @@ public abstract class Visit implements Comparable<Visit>{
 	}
 	
 	/**
-	 * Changes the date of the visit.
-	 * @param d new date.
+	 * Changes just the date.
+	 * @param month Integer representing a month from 1 to 12.
+	 * @param day Integer representing a day from 1 to 31.
+	 * @param year Integer representing a year in yyyy format.
 	 */
 	public void setDate(int month, int day, int year) {
 		dateAndTime.setDate(month, day, year);
 	}
 	
 	/**
-	 * Changes the time of the visit.
-	 * @param t new time.
+	 * Changes just the time.
+	 * @param hour Integer representing the hour from 1-12.
+	 * @param minutes Integer representing a minute from 1-59.
+	 * @param isPM Use DateAndTime.AM or DateAndTime.PM to represent the period of time.
 	 */
 	public void setTime(int hour, int minutes, boolean isPM) {
 		dateAndTime.setTime(hour, minutes, isPM);

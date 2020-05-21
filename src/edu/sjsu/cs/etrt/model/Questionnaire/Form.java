@@ -22,16 +22,26 @@ public class Form {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * set score of form
 	 * @param s score object
+=======
+	 * set THI score of patient
+	 * @param s score value
+>>>>>>> branch 'master' of https://github.com/ChristianKsOh/S20-CS151--2--Team-10-.git
 	 */
 	public void setScoreTHI(int s) {
 		patient.addScoreTHI(s);
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * get THI score of form
 	 * @return int THI score
+=======
+	 * get THI patient score
+	 * @return THI score.
+>>>>>>> branch 'master' of https://github.com/ChristianKsOh/S20-CS151--2--Team-10-.git
 	 */
 	public int getScoreTHI() {
 		return patient.getScoreTHI();

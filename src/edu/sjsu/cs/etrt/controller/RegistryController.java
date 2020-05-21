@@ -3,6 +3,7 @@ package edu.sjsu.cs.etrt.controller;
 import javax.swing.JPanel;
 
 import edu.sjsu.cs.etrt.model.Patient.Patient;
+import edu.sjsu.cs.etrt.model.Patient.Treatment;
 import edu.sjsu.cs.etrt.model.Register.Registry;
 import edu.sjsu.cs.etrt.view.UI.RegistryView;
 
@@ -13,7 +14,7 @@ public class RegistryController {
 	
 	/**
 	 * constructor for RegistryController; model creates a new Registry by passing PatientListController,
-	 * system gets passed the SystemController (sys), & view creates a new RegistryView(RegistryController,
+	 * system gets passed the SystemController (sys), and view creates a new RegistryView(RegistryController,
 	 * SystemController)
 	 * @param p PatientListController
 	 * @param sys SystemController
@@ -114,10 +115,10 @@ public class RegistryController {
 	
 	/**
 	 * get treatment of patient with model
-	 * @param s String text
+	 * @return Treatment
 	 */
-	public void getTreatment() {
-		model.getTreatment();
+	public Treatment getTreatment() {
+		return model.getTreatment();
 	}
 	
 	/**
@@ -145,7 +146,7 @@ public class RegistryController {
 	
 	/**
 	 * set insurance ID of patient with model 
-	 * @param String text
+	 * @param s String text
 	 */
 	public void setInsurance(String s) {
 		model.setInsurance(s);
@@ -247,8 +248,8 @@ public class RegistryController {
 	}	
 	
 	/**
-	 * generation of UI refresh
-	 * @return generation of UI
+	 * Retrieve the UI view panel.
+	 * @return View's JPanel.
 	 */
 	public JPanel getViewPanel() {
 		return view.generateUI();

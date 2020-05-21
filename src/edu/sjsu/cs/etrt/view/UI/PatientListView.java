@@ -1,7 +1,6 @@
 
 package edu.sjsu.cs.etrt.view.UI;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,28 +11,29 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 
 import edu.sjsu.cs.etrt.controller.PatientListController;
 import edu.sjsu.cs.etrt.controller.SystemController;
-import edu.sjsu.cs.etrt.model.Patient.PatientList;
 
 public class PatientListView extends UIPanel{
 	
 	private PatientListController patientQ;
-	private int num;
 	private SystemController systemCtrl;
 	
 	/**
-	 * 
+	 * The view for PatientList seen by the user and used in the JFrame.
 	 * @param p PatientListController holding this view.
-	 * @param systemCtrl SystemController for changes outside of PatientList
+	 * @param systemCtrl SystemController for changes outside of PatientList.
 	 */
 	public PatientListView(PatientListController p, SystemController systemCtrl) {
 		patientQ=p;
 		this.systemCtrl=systemCtrl;
 	}
 	
+	@Override
+	/**
+	 * Builds the JPanel view.
+	 */
 	public void refresh()
 	{
 		main.removeAll();
@@ -61,7 +61,6 @@ public class PatientListView extends UIPanel{
 			patientLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 			patientLabel.setFont (patientLabel.getFont ().deriveFont (16.0f));
 			removePatient[counter] = new JButton("Remove Patient");
-			num=counter;
 			removePatient[counter].addActionListener(event->{
 				//REMOVES PATIENT
 				int i;
@@ -114,28 +113,4 @@ public class PatientListView extends UIPanel{
 		mainPanel.add(panelButtons);
 		main.add(mainPanel);
 	}
-	
-	public JPanel generateUI() {
-		refresh();
-		return main;
-	}
-	
-	public int getNum()
-	{
-		return num;
-	}
-	/**
-	void addPatientListListener(ActionListener listenForAddPatientButton)
-	{
-		addPatient.addActionListener(listenForAddPatientButton);
-	}
-	
-	void removePatientListener(ActionListener listenForRemovePatientButton)
-	{
-		removePatient.addActionListener(listenForRemovePatientButton);
-	}
-	
-	void displayErrorMessage(String errorMessage) {
-		JOptionPane.showMessageDialog(this, message);
-	}**/
 }

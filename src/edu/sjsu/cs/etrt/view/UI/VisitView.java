@@ -23,9 +23,9 @@ public class VisitView extends UIPanel{
 	private boolean editNote;
 	
 	/**
-	 * The view seen by the user and used in the JFrame.
-	 * @param ctrl Reference for editing and JFrame.
-	 * @param queueCtrl Reference for the back button.
+	 * The view for Visit seen by the user and used in the JFrame.
+	 * @param ctrl VisitController holding this view.
+	 * @param system SystemController for changes outside of Visit.
 	 */
 	public VisitView(VisitController ctrl,SystemController system) {
 		controller=ctrl;
@@ -284,7 +284,7 @@ public class VisitView extends UIPanel{
 			
 			JButton submit=new JButton("Update");
 			submit.addActionListener(event->{
-				controller.setvisitDoctor(doctorInput.getText());
+				controller.setVisitDoctor(doctorInput.getText());
 				editDoctor=false;
 				refresh();
 				controller.refreshFrame();
@@ -365,7 +365,7 @@ public class VisitView extends UIPanel{
 		deleteButton.addActionListener(event->{
 			system.getVisitQueue().removeVisit(controller.getModel());
 			main.removeAll();
-			controller.openVisitQueueView();
+			system.openVisitQueue();
 		});
 		
 		//Back button to return to Queue
@@ -374,7 +374,7 @@ public class VisitView extends UIPanel{
 			editDoctor=false;
 			editNote=false;
 			main.removeAll();
-			controller.openVisitQueueView();
+			system.openVisitQueue();
 		});
 		JPanel buttons=new JPanel();
 		buttons.add(deleteButton);

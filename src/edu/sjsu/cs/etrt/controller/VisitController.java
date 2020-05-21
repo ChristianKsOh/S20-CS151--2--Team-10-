@@ -14,9 +14,8 @@ public class VisitController {
 	
 	/**
 	 * Initializes the controller with the model and view. 
-	 * VisitQueueController is also needed for the view.
 	 * @param visit Visit model class.
-	 * @param queue VisitQueueController class that holds this visit.
+	 * @param system SystemController holding this object.
 	 */
 	public VisitController(Visit visit,SystemController system) {
 		this.system=system;
@@ -98,7 +97,9 @@ public class VisitController {
 	
 	/**
 	 * Changes the date of the visit.
-	 * @param d new date.
+	 * @param month Month of a int.
+	 * @param day Day as an int.
+	 * @param year Year as an int.
 	 */
 	public void setVisitDate(int month, int day, int year) {
 		model.setDate(month, day, year);
@@ -107,7 +108,9 @@ public class VisitController {
 	
 	/**
 	 * Changes the time of the visit.
-	 * @param t new time.
+	 * @param hour Hour as an int.
+	 * @param minutes Minuts as an int.
+	 * @param isPM Use DtateAndTime static variables.
 	 */
 	public void setVisitTime(int hour, int minutes, boolean isPM) {
 		model.setTime(hour, minutes, isPM);
@@ -118,7 +121,7 @@ public class VisitController {
 	 * Change the doctor of the visit.
 	 * @param doctorName new doctor's name
 	 */
-	public void setvisitDoctor(String doctorName) {
+	public void setVisitDoctor(String doctorName) {
 		model.changeDoctor(doctorName);
 		view.refresh();
 	}
@@ -149,25 +152,9 @@ public class VisitController {
 	}
 	
 	/**
-	 * Opens the VisitQueue view in the JFrame.
+	 * Opens Patient view of this visit's patient.
 	 */
-	public void openVisitQueueView() {
-		system.openVisitQueue();
-	}
-	
-	/**
-	 * Opens the Visit view. Used by VisitQueueView.
-	 */
-	public void openVisit() {
-		system.updateFrame(getViewPanel());
-	}
-	
 	public void openPatient() {
-		for(int i=0;i<system.getPatientList().getSize();i++) {
-			if(system.getPatientList().getPatient(i).equals(model.getPatient())) {
-				system.openPatient(i);
-				break;
-			}
-		}
+		system.openPatient(model.getPatient().getPatientID());	
 	}
 }

@@ -2,8 +2,6 @@ package edu.sjsu.cs.etrt.view.UI;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -14,7 +12,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import edu.sjsu.cs.etrt.controller.SystemController;
-import edu.sjsu.cs.etrt.controller.VisitQueueController;
 import edu.sjsu.cs.etrt.model.Patient.Patient;
 import edu.sjsu.cs.etrt.model.Visits.FollowUpVisit;
 import edu.sjsu.cs.etrt.model.Visits.InitialVisit;
@@ -27,7 +24,7 @@ public class VisitCreateView extends UIPanel{
 	
 	/**
 	 * The view seen by the user and Used in the JFrame.
-	 * @param ctrl Reference for editing and JFrame.
+	 * @param ctrl SystemController for changes outside of VisitQueue.
 	 */
 	public VisitCreateView(SystemController ctrl) {
 		controller=ctrl;

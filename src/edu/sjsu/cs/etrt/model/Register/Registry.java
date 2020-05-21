@@ -104,6 +104,13 @@ public class Registry {
 	}
 	
 	/**
+	 * set treatment number of patient object
+	 * @param t Treatment num
+	 */
+	public void setTreatment(Treatment t) {
+		getPatient().setTreatmentNum(t);
+	}
+	/**
 	 * get treatment number of patient object
 	 * @return Treatment enum
 	 */
@@ -128,23 +135,6 @@ public class Registry {
 		return getPatient().getScoreTFI();
 	}
 	
-	/**
-	 * set treatment based on TFI and THI scores combined
-	 */
-	public void setTreatment() {
-		int sum = getScoreTHI() + getScoreTFI();		//add two scores
-		//base treatment on accumulated sum = max total = 350
-		if(sum <= 70)
-			getPatient().setTreatmentNum(Treatment.Grade0);
-		else if(sum <= 140)
-			getPatient().setTreatmentNum(Treatment.Grade1);
-		else if(sum <= 210) 
-			getPatient().setTreatmentNum(Treatment.Grade2);
-		else if(sum <= 280)
-			getPatient().setTreatmentNum(Treatment.Grade3);
-		else
-			getPatient().setTreatmentNum(Treatment.Grade4);
-	}
 	
 	/**
 	 * set insurance number of patient object

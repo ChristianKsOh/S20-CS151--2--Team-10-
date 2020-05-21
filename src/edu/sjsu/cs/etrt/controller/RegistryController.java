@@ -114,14 +114,6 @@ public class RegistryController {
 	}
 	
 	/**
-	 * get treatment of patient with model
-	 * @return Treatment
-	 */
-	public Treatment getTreatment() {
-		return model.getTreatment();
-	}
-	
-	/**
 	 * set THI score of patient with model 
 	 * @return int THI score
 	 */
@@ -138,10 +130,10 @@ public class RegistryController {
 	}
 	
 	/**
-	 * set treatment based on TFI and THI scores combined
+	 * set treatment as default grade0 using model
 	 */
 	public void setTreatment() {
-		model.setTreatment();
+		model.setTreatment(Treatment.Grade0);
 	}
 	
 	/**

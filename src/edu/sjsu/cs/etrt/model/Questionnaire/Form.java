@@ -22,26 +22,16 @@ public class Form {
 	}
 	
 	/**
-<<<<<<< HEAD
-	 * set score of form
-	 * @param s score object
-=======
 	 * set THI score of patient
 	 * @param s score value
->>>>>>> branch 'master' of https://github.com/ChristianKsOh/S20-CS151--2--Team-10-.git
 	 */
 	public void setScoreTHI(int s) {
 		patient.addScoreTHI(s);
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * get THI score of form
 	 * @return int THI score
-=======
-	 * get THI patient score
-	 * @return THI score.
->>>>>>> branch 'master' of https://github.com/ChristianKsOh/S20-CS151--2--Team-10-.git
 	 */
 	public int getScoreTHI() {
 		return patient.getScoreTHI();
@@ -113,5 +103,23 @@ public class Form {
 	public int getTFIScore() {
 		return this.getPatient().getScoreTFI();
 	}	
+	
+	/**
+	 * set treatment based on sum of scores
+	 */
+	public void setTreatment() {
+		//sum
+		int sum = getPatient().getScoreTFI() + getPatient().getScoreTHI();
+		if(sum <= 70) 
+			getPatient().setTreatmentNum(Treatment.Grade0);
+		else if(sum <= 140)
+			getPatient().setTreatmentNum(Treatment.Grade1);
+		else if(sum <= 210)
+			getPatient().setTreatmentNum(Treatment.Grade2);
+		else if(sum <= 280)
+			getPatient().setTreatmentNum(Treatment.Grade3);
+		else
+			getPatient().setTreatmentNum(Treatment.Grade4);
+	}
 	
 }

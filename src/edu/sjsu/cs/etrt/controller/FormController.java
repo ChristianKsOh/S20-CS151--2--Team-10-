@@ -115,6 +115,13 @@ public class FormController {
 	}	
 	
 	/**
+	 * set treatment based on TFI and THI scores combined
+	 */
+	public void setTreatment() {
+		model.setTreatment();
+	}
+	
+	/**
 	 * open patient from system using model and for index
 	 */
 	public void openView() {

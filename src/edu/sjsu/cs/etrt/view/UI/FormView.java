@@ -2,6 +2,7 @@ package edu.sjsu.cs.etrt.view.UI;
 import edu.sjsu.cs.etrt.controller.FormController;
 import edu.sjsu.cs.etrt.controller.PatientController;
 import edu.sjsu.cs.etrt.controller.SystemController;
+import edu.sjsu.cs.etrt.model.Patient.Treatment;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -292,6 +293,7 @@ public class FormView extends UIPanel{
 				if(count == 25) {
 					fCtrl.setScoreTHI(score);
 					THImessage.setText("Submitted successfully! Total: " + fCtrl.getScoreTHI());
+					fCtrl.setTreatment();	//set treatment
 					//reset count and score
 					count = score = 0;
 				}
@@ -321,6 +323,7 @@ public class FormView extends UIPanel{
 				if(count >= 19) {
 					fCtrl.setScoreTFI(score);
 					TFImessage.setText("Submitted successfully! Total: " + fCtrl.getScoreTFI());
+					fCtrl.setTreatment();		//set treatment
 					//reset count and score
 					count = score = 0;
 				}

@@ -92,15 +92,16 @@ public class RegistryView extends UIPanel{
 			panel.add(tLast, c);
 			
 			label = new JLabel("Treatment: ");
-			JTextArea tCategory = new JTextArea("");
+			JTextArea tTreatment = new JTextArea("grade0");
+			tTreatment.setEditable(false);
 			c.fill = GridBagConstraints.HORIZONTAL;
 			
-			tCategory.setBackground(Color.WHITE);
+			tTreatment.setBackground(Color.WHITE);
 			c.gridx = 4;
 			//c.gridy = 1;
 			panel.add(label, c);
 			c.gridx=5;
-			panel.add(tCategory,c);
+			panel.add(tTreatment,c);
 
 			label = new JLabel("Registration Date: ");
 			JTextArea tRegDate = new JTextArea("");
@@ -338,6 +339,7 @@ public class RegistryView extends UIPanel{
 					regCtrl.setSID(tSocialId.getText());
 					regCtrl.setInsurance(tInsuranceId.getText());
 					regCtrl.setVisitNum();
+					regCtrl.setTreatment();
 					//Address
 					regCtrl.setStreet1(tStreet1.getText());
 					regCtrl.setStreet2(tStreet2.getText());

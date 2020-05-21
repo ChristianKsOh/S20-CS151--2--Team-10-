@@ -247,7 +247,8 @@ public class RegistryController {
 	}	
 	
 	/**
-	 * generation of UI
+	 * generation of UI refresh
+	 * @return generation of UI
 	 */
 	public JPanel getViewPanel() {
 		return view.generateUI();

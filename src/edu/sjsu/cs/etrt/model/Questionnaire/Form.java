@@ -1,28 +1,16 @@
 package edu.sjsu.cs.etrt.model.Questionnaire;
-
 import edu.sjsu.cs.etrt.model.Patient.*;
-//import UI.UIPanel;
 
-public abstract class Form {
-	private int THIscore;	//store THIscore		
-	private int TFIscore;	//store TFIscore
+public class Form {
 	private Patient patient;	//patient object
-	//private Treatment treatmentNum;		//treatment number assigned
-	
 	
 	/**
 	 * Creates a new visit based on the patient, doctor name, 
 	 * and time and date. Also generates a visit number.
 	 * @param patient object of patient
-	 * @param questionList questionList of form
-	 * @param answerList answerList of form
-	 * @param score score of form
-	 * @param t enumeration treatment of form
 	 */
-	public Form(Patient patient, int thiscore, int tfiscore) {
+	public Form(Patient patient) {
 		this.patient = patient;	
-		this.THIscore = thiscore;
-		this.TFIscore = tfiscore;
 	}
 	
 	/**
@@ -34,18 +22,67 @@ public abstract class Form {
 	}
 	
 	/**
-	 * set THI score of patient
-	 * @param score value
+	 * set score of form
+	 * @param s score object
 	 */
-	public void setTHIScore(int s) {
-		this.getPatient().addScoreTHI(s);
+	public void setScoreTHI(int s) {
+		patient.addScoreTHI(s);
 	}
 	
 	/**
-	 * get THI patient score
-	 * 
+	 * get THI score of form
+	 * @return int THI score
 	 */
+	public int getScoreTHI() {
+		return patient.getScoreTHI();
+	}
+		
+	/**
+	 * set TFI score of form
+	 * @param s
+	 */
+	public void setScoreTFI(int s) {
+		patient.addScoreTFI(s);
+	}
 	
+	/**
+	 * get TFI score of form
+	 * @return int TFI score
+	 */
+	public int getScoreTFI() {
+		return patient.getScoreTFI();
+	}
+		
+	/**
+	 * get name of patient of form; concatenate strings of first/middle/last name
+	 * @return String name of patient
+	 */
+	public String getName(){
+		return patient.getFirstName() + " "  + patient.getMiddleInitial() 
+		+ " " + patient.getLastName();
+	}
+		
+	/**
+	 * get visit number of patient
+	 * @return int Visit number
+	 */
+	public int getVisitNumber() {
+		return patient.getVisitNumber();
+	}
+	
+	
+	/**
+	 * set THI score of form to patient THI score
+	 * @param thi score value
+	 */
+	public void setTHIScore(int thi) {
+		this.getPatient().addScoreTFI(thi);
+	}
+	
+	/**
+	 * get THI score of patient
+	 * @return int THI score of patient
+	 */
 	public int getTHIScore() {
 		return this.getPatient().getScoreTHI();
 	}	
@@ -53,64 +90,18 @@ public abstract class Form {
 	
 	/**
 	 * set TFIscore of patient
-	 * @param score value
+	 * @param tfi tfi score value
 	 */
-	public void setTFIScore(int s) {
-		this.getPatient().addScoreTFI(s);
+	public void setTFIScore(int tfi) {
+		this.getPatient().addScoreTFI(tfi);
 	}
 	
 	/**
-	 * get TFIScore
-	 * @return score value
+	 * get TFIScore of patient
+	 * @return int TFI score of patient
 	 */ 
 	public int getTFIScore() {
 		return this.getPatient().getScoreTFI();
 	}	
 	
-	/**
-	 * set treatment based on category
-	 */
-	/*
-	public void setTreatment() {
-		switch(getPatient().getCategoryNum()) {
-		case category0:
-		case category1:
-		case category2:
-		case category3:
-		case category4:
-		}
-				
-	}
-	*/
-	
-	/**
-	 * set category based on score
-	 */
-	/*
-	public void setCategory(int score) {		
-		//total possible = 350 / 5 = 70
-		if(score <= 70) {
-			getPatient().setCategoryNum(Category.category0); 
-		}
-		else if (score <= 140) {
-			getPatient().setCategoryNum(Category.category1);
-		}
-		else if(score <= 210) {
-			getPatient().setCategoryNum(Category.category2);
-		}
-		else if(score <= 280)
-		{
-			getPatient().setCategoryNum(Category.category3);
-		}
-		else {
-			getPatient().setCategoryNum(Category.category4);
-		}
-	}
-	*/
-	
-	/**
-	 * check whether form is THI or TFI
-	 * @return boolean if THI
-	 */
-	public abstract boolean THI();
 }

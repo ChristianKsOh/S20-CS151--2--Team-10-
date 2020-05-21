@@ -310,8 +310,19 @@ public class RegistryView extends UIPanel{
 			});
 			panelButtons.add(systemButton);
 			
-				JButton submitButton = new JButton("Submit");
-				submitButton.addActionListener(event->{
+			JButton submitButton = new JButton("Submit");
+			submitButton.addActionListener(event->{
+				//check for empty mandatory fields
+				if(tFirst.getText().equals("")||tLast.getText().equals("")
+					|| tRegDate.getText().equals("") || tDoB.getText().equals("")
+					|| tPhoneNumber.getText().equals("") || tGender.getText().equals("")
+					|| tSocialId.getText().equals("") || tInsuranceId.getText().equals("")
+					|| tStreet1.getText().equals("") || tCity.getText().equals("")
+					|| tState.getText().equals("") || tZip.getText().equals("")
+					|| tCountry.getText().equals("")) {
+					System.out.println("Please enter in all fields besides Demographics.");
+				}
+				else {
 					//create a new patient 
 					Patient p = new Patient();
 					//add patient to list
@@ -341,9 +352,11 @@ public class RegistryView extends UIPanel{
 					regCtrl.setNotes(tNotes.getText());
 					
 					regCtrl.openSystem();
-
-				});
-				panelButtons.add(submitButton);
+				}
+				
+			});
+				
+			panelButtons.add(submitButton);
 				
 			//add panels/add to main panel
 			mainPanel.add(panelButtons, BorderLayout.SOUTH);

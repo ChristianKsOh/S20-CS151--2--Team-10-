@@ -12,16 +12,24 @@ import javax.swing.*;
 public class FormView extends UIPanel{
 	//controller instance
 	private FormController fCtrl;		//form cntrl
-	private PatientController pCtrl;	//patient ctrl?
-	private SystemController systemCtrl;	//systemCtrl
+	private SystemController systemCtrl;
 	
+	/**
+	 * FormView controller using FormController and SystemController
+	 * @param fCtrl FormController
+	 * @param system SystemController
+	 */
 	//instance of Form - default THI display
 	public FormView(FormController fCtrl, SystemController system)
 	{
 		this.fCtrl=fCtrl;
-		systemCtrl=system;
+		this.systemCtrl=system;
 	}
 	
+
+	/**
+	 * refresh/create new frame
+ 	*/
 	@Override
 	public void refresh() {
 		//frame

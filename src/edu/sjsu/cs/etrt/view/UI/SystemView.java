@@ -214,17 +214,4 @@ public class SystemView extends UIPanel{
 		main.add(visits);
 		main.add(Box.createRigidArea(new Dimension(0, 10)));	//padding
 	}
-	
-	public static void main(String[] args) {
-		SystemController system=new SystemController();
-		
-		//system.getPatientList().addPatient(p);
-		//system.getPatientList().addPatient(p2);
-		
-		//system.getVisitQueue().enqueue(new InitialVisit(p,"Doctor",4,20,2020,3,30,DateAndTime.PM,"Notes"));
-		//system.getVisitQueue().enqueue(new InitialVisit(p2,"Smth",4,20,2020,3,30,DateAndTime.PM,"Notes"));
-		
-		//system.openSystem();
-		
-	}
 }

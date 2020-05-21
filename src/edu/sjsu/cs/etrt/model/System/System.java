@@ -17,7 +17,7 @@ public class System {
 	public System(SystemController system) {
 		visits=new VisitQueueController(system);
 		patients=new PatientListController(system);
-		registry=new RegistryController(patients,visits,system);
+		registry=new RegistryController(patients,system);
 	}
 	
 	/**
